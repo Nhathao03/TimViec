@@ -18,20 +18,16 @@ namespace TimViec.Controllers
 		// display item
 		public async Task<IActionResult> Index()
 		{
-			var companies = await _companyRepository.GetAllAsync();
-			return View(companies);
+			var job = await _jobRepository.GetAllAsync();
+			return View(job);
 		}
+
 		public IActionResult Profile()
         {
             return View();
         }
 
-		public IActionResult Details_Company()
-		{
-			return View();
-		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

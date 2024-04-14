@@ -15,9 +15,9 @@ namespace TimViec.Respository
         {
             return await _context.Companies.ToListAsync();
         }
-        public async Task<Company> GetByIdAsync(int Id)
+        public async Task<Company> GetByIdAsync(int id)
         {
-            return await _context.Companies.FindAsync(Id);
+            return await _context.Companies.FindAsync(id);
         }
         public async Task AddAsync(Company company)
         {

@@ -287,17 +287,14 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("R1_Language")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("R2_Language")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("R3_Language")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -345,16 +342,13 @@ namespace TimViec.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("Id_company")
+                    b.Property<int?>("Id_rank")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_rank")
+                    b.Property<int?>("Id_skill")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_skill")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_type_work")
+                    b.Property<int?>("Id_type_work")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
@@ -362,10 +356,20 @@ namespace TimViec.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("R1_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("RankId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Salary")
+                    b.Property<decimal?>("Salary")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SkillId")
@@ -378,6 +382,10 @@ namespace TimViec.Migrations
 
                     b.Property<int?>("Type_workId")
                         .HasColumnType("int");
+
+                    b.Property<string>("img")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
 

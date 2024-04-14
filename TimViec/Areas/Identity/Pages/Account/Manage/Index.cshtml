@@ -4,9 +4,97 @@
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
-
-<h4>@ViewData["Title"]</h4>
+<link rel="stylesheet" href="../LayoutTimViec/css/Profile.css">
 <partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="container bootstrap snippets bootdey">
+    <div class="container-xl px-4 mt-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" src="" alt="">
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <!-- Profile picture upload button-->
+                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Thông tin chi tiết</div>
+                    <div class="card-body">
+                        <form method="post">
+
+                            <div class="mb-3">
+                                <label class="small mb-1" asp-for="Username">Email</label>
+                                <input asp-for="Username" class="form-control" disabled />
+                            </div>
+
+                            <div class="mb-3">
+                                <div>
+                                    <label class="small mb-1" for="inputFirstName">Họ</label>
+                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Nhập đầy đủ tên của bạn">
+                                </div>
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputOrgName">Cấp bậc</label>
+                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Junior">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputLocation">Địa chỉ</label>
+                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="Thủ Đức, TP. Hồ Chí Minh">
+                                </div>
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputOrgName">Kinh nghiệm</label>
+                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="2 năm">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputLocation">Địa chỉ</label>
+                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="Thủ Đức, TP. Hồ Chí Minh">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputEmailAddress">CV của bạn</label>
+                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Vui lòng cập nhật CV ở đây">
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" asp-for="Input.PhoneNumber">Số điện thoại</label>
+                                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputBirthday">Ngày sinh</label>
+                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" type="button">Lưu thay đổi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* 
 <div class="row">
     <div class="col-md-6">
         <form id="profile-form" method="post">
@@ -24,7 +112,7 @@
         </form>
     </div>
 </div>
-
+ *@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
