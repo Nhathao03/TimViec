@@ -7,7 +7,7 @@ namespace TimViec.Models
         public int Id { get; set; }
 
         [Required, StringLength(50)]
-        public string Skill { get; set; }
+        public string Skills { get; set; }
 
         public List<Job>? Jobs { get; set; }
 
