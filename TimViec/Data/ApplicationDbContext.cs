@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TimViec.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -20,5 +20,6 @@ namespace TimViec.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Type_work> Type_Works { get; set; }
 
+        public DbSet<StatusJob> StatusJobs { get; set; }
     }
 }

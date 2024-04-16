@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TimViec.Models.Company>
+﻿@model IEnumerable<TimViec.Models.Job>
 
 @{
 	ViewData["Title"] = "Home Page";
@@ -205,7 +205,7 @@
 				<div class=" col-md-4 col-sm-6">
 					<div class="single-explore-item">
 						<div class="single-explore-img">
-							<img src="@item.Image" alt="explore image">
+							<img src="@item.img" alt="explore image">
 							<div class="single-explore-img-info">
 								<button onclick="window.location.href='#'">best rated</button>
 								<div class="single-explore-image-icon-box">
@@ -225,7 +225,7 @@
 							</div>
 						</div>
 						<div class="single-explore-txt bg-theme-1">
-							<h2><a href="#">@item.Name_company</a></h2>
+							<h2><a href="#">@item.Title</a></h2>
 							<p class="explore-rating-price">
 								<span class="explore-rating">5.0</span>
 									<a href="#">@item.R1_Language</a>
@@ -244,7 +244,7 @@
 							<div class="explore-open-close-part">
 								<div class="row">
 									<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-area="" asp-controller="Home" asp-action="Details_Company">Chi tiết</a></button>
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Chi tiết</a></button>
 									</div>
 									<div class="col-sm-7">
 										<div class="explore-map-icon">
