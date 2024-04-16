@@ -6,3 +6,9 @@
 function translateEN() {
     window.location.href = 'https://translate.google.com/translate?h1=en&s1=vi&t1=en&u=${window.location.href}';
 }
+(function ($) {
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+})(jQuery);
