@@ -9,5 +9,8 @@ namespace TimViec.Models
         [Required, StringLength(100)]
         public string rank { get; set; }
 
+        public List<Job>? Jobs { get; set; }
+
+
     }
 }

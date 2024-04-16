@@ -8,6 +8,8 @@ namespace TimViec.Models
 
         [Required, StringLength(100)]
         public string Title { get; set; }
+
+        public int CompanyId { get; set; }
         public Company? Company { get; set; }
 
         [Required, StringLength(100)]
@@ -18,11 +20,11 @@ namespace TimViec.Models
         [Required, StringLength(300)]
         public string  Description { get; set; }
 
-        public int? Id_skill { get; set; }
+        public int? SkillId { get; set; }
 
         public Skill? Skill { get; set; }
 
-        public int? Id_rank { get; set; }
+        public int? RankId { get; set; }
 
         public Rank? Rank { get; set; }
 
@@ -33,8 +35,11 @@ namespace TimViec.Models
         public string? R2_Language { get; set; }
 
         public string? R3_Language { get; set; }
-        public int? Id_type_work { get; set; }
+        public int? Type_workId { get; set; }
 
         public Type_work? Type_work { get; set; }
+
+        public List<application>? applications { get; set; }
+
     }
 }

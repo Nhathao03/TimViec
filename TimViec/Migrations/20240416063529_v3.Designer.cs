@@ -12,8 +12,8 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416040953_AddColumnToUser")]
-    partial class AddColumnToUser
+    [Migration("20240416063529_v3")]
+    partial class v3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -360,7 +360,7 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -368,22 +368,28 @@ namespace TimViec.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("Id_company")
+                    b.Property<int?>("Id_rank")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_rank")
+                    b.Property<int?>("Id_skill")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_skill")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_type_work")
+                    b.Property<int?>("Id_type_work")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("R1_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RankId")
                         .HasColumnType("int");
@@ -401,6 +407,10 @@ namespace TimViec.Migrations
 
                     b.Property<int?>("Type_workId")
                         .HasColumnType("int");
+
+                    b.Property<string>("img")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -590,7 +600,7 @@ namespace TimViec.Migrations
             modelBuilder.Entity("TimViec.Models.Company", b =>
                 {
                     b.HasOne("TimViec.Models.City", "city")
-                        .WithMany()
+                        .WithMany("Companies")
                         .HasForeignKey("cityId");
 
                     b.Navigation("city");
@@ -599,19 +609,21 @@ namespace TimViec.Migrations
             modelBuilder.Entity("TimViec.Models.Job", b =>
                 {
                     b.HasOne("TimViec.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .WithMany("Jobs")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TimViec.Models.Rank", "Rank")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("RankId");
 
                     b.HasOne("TimViec.Models.Skill", "Skill")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("SkillId");
 
                     b.HasOne("TimViec.Models.Type_work", "Type_work")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("Type_workId");
 
                     b.Navigation("Company");
@@ -626,10 +638,40 @@ namespace TimViec.Migrations
             modelBuilder.Entity("TimViec.Models.applications", b =>
                 {
                     b.HasOne("TimViec.Models.Job", "Job")
-                        .WithMany()
+                        .WithMany("applications")
                         .HasForeignKey("JobId");
 
                     b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("TimViec.Models.City", b =>
+                {
+                    b.Navigation("Companies");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Company", b =>
+                {
+                    b.Navigation("Jobs");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Job", b =>
+                {
+                    b.Navigation("applications");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Rank", b =>
+                {
+                    b.Navigation("Jobs");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Skill", b =>
+                {
+                    b.Navigation("Jobs");
+                });
+
+            modelBuilder.Entity("TimViec.Models.Type_work", b =>
+                {
+                    b.Navigation("Jobs");
                 });
 #pragma warning restore 612, 618
         }

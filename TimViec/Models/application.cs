@@ -2,11 +2,10 @@
 
 namespace TimViec.Models
 {
-    public class applications
+    public class application
     {
         public int  Id { get; set; }
-        public int Id_job {  get; set; }
-        public Job? Job { get; set; }
+        
 
         [Required, StringLength(200)]
         public string ImageCV { get; set; }
@@ -15,6 +14,9 @@ namespace TimViec.Models
         public string Note { get; set; }
         [Required]
         public string Status { get; set; }
+
+        public int JobId { get; set; }
+        public Job? Job { get; set; }
 
     }
 }

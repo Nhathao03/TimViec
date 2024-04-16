@@ -8,5 +8,8 @@ namespace TimViec.Models
 
         [Required, StringLength(100)]
         public string Name_city { get; set; }
+
+        public List<Company>? Companies { get; set; }
+
     }
 }

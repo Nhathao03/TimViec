@@ -38,8 +38,11 @@ namespace TimViec.Models
         [StringLength(50)]
         public string? R3_Language { get; set; }
 
-        public int? Id_city { get; set; }
+        public int? cityId { get; set; }
 
         public City? city { get; set; }
+
+        public List<Job>? Jobs { get; set; }
+
     }
 }

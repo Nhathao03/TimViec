@@ -8,5 +8,8 @@ namespace TimViec.Models
 
         [Required, StringLength(50)]
         public string Skills { get; set; }
+
+        public List<Job>? Jobs { get; set; }
+
     }
 }
