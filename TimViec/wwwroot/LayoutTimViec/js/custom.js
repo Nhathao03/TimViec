@@ -18,7 +18,14 @@ $(document).ready(function(){
 5. counter
 ======================================*/
 
-    // 1. Scroll To Top 
+	// 1. Scroll To Top
+
+	
+		$('.set-bg').each(function () {
+			var bg = $(this).data('setbg');
+			$(this).css('background-image', 'url(' + bg + ')');
+		});
+	
 		$(window).on('scroll',function () {
 			if ($(this).scrollTop() > 600) {
 				$('.return-to-top').fadeIn();

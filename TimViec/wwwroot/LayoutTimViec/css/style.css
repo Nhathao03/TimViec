@@ -379,10 +379,16 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     box-shadow: 0 5px 10px rgba(71,71,71,.4);
 }
 
+.left-image{
+    width:100%;
+
+}
 /*-------------------------------------
         6. Works 
 --------------------------------------*/
-.works{padding: 0 0 90px;}
+.works {
+    padding: 0 0 90px;
+}
 .works-content {margin-top: 73px;}
 
 .single-how-works{
@@ -458,6 +464,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     height: 270px;
     position: relative;
     overflow: hidden;
+    text-align:center;
     background-position: center center;
 }
 .set-bg {

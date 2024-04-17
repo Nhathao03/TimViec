@@ -13,11 +13,13 @@ namespace TimViec.Respository
         }
         public async Task<IEnumerable<Job>> GetAllAsync()
         {
-            return await _context.Jobs.ToListAsync();
+            return await _context.Jobs.Include(p =>
+       p.Company).ToListAsync();
         }
         public async Task<Job> GetByIdAsync(int id)
         {
-            return await _context.Jobs.FindAsync(id);
+            return await _context.Jobs.Include(p =>
+                      p.Company).FirstOrDefaultAsync(p => p.Id == id);
         }
         public async Task AddAsync(Job job)
         {

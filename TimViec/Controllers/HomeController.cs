@@ -16,12 +16,19 @@ namespace TimViec.Controllers
 		}
 
 		// display item
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string searchString)
 		{
 			var job = await _jobRepository.GetAllAsync();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                job = job.Where(n => n.Title.Contains(searchString)).ToList();
+            }
 			return View(job);
 		}
-		public IActionResult Profile()
+
+    
+
+        public IActionResult Profile()
         {
             return View();
         }

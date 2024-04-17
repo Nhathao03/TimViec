@@ -1,557 +1,112 @@
 ﻿@model IEnumerable<TimViec.Models.Job>
 
 @{
-	ViewData["Title"] = "Home Page";
-	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+    ViewData["Title"] = "Index";
 }
 
+<h2>Index</h2>
+<form class="d-flex" asp-action="Index" asp-controller="Home">
+    <input name="searchString" class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-dark" type="submit">Search by name</button>
+</form>
 
 
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.Name_company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.R1_Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.R2_Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.R3_Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type_work)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Skill.Skills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rank.rank)
+            </td>
+            <td>
+                    @if (item.img != null)
+                    {
+                        <img src="~/imgae/@Html.DisplayFor(modelItem=> item.img)" width="150px" />
+                    }
+                    else
+                    {
 
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-
-<section id="home" class="welcome-hero">
-	<div class="container">
-		<div class="welcome-hero-txt">
-			<h2>Tìm việc là dễ<br> không dễ không tìm</h2>
-			<p>
-				Tìm theo ngôn ngữ, địa điểm và nhiều sự lựa chọn khác chỉ với một lần nhấp chuột
-			</p>
-		</div>
-		<div class="welcome-hero-serch-box">
-			<div class="welcome-hero-form">
-				<div class="single-welcome-hero-form">
-					<h3>Tìm kiếm</h3>
-					<form action="index.html">
-						<input type="text" placeholder="Ví dụ: Java, Python, C#, Javascript" />
-					</form>
-					<div class="welcome-hero-form-icon">
-						<i class="flaticon-list-with-dots"></i>
-					</div>
-				</div>
-				<div class="single-welcome-hero-form">
-					<h3>Địa chỉ</h3>
-					<form action="index.html">
-						<input type="text" placeholder="Ví dụ: Hồ Chí Minh" />
-					</form>
-					<div class="welcome-hero-form-icon">
-						<i class="flaticon-gps-fixed-indicator"></i>
-					</div>
-				</div>
-			</div>
-			<div class="welcome-hero-serch">
-				<button class="welcome-hero-btn" onclick="window.location.href='#'">
-					Tìm kiếm  <i data-feather="search"></i>
-				</button>
-			</div>
-		</div>
-	</div>
-
-</section><!--/.welcome-hero-->
-<!--welcome-hero end -->
-<!--list-topics start -->
-
-<section id="list-topics" class="list-topics">
-	<div class="container">
-		<div class="list-topics-content">
-			<ul>
-				<li>
-					<div class="single-list-topics-content">
-						<div class="single-list-topics-icon">
-							<img src="../LayoutTimViec/img/Java.png" alt="Alternate Text" />
- 						</div>
-						<h2><a href="#">Java</a></h2>
-					</div>
-				</li>
-				<li>
-					<div class="single-list-topics-content">
-						<div class="single-list-topics-icon">
-							<img src="../LayoutTimViec/img/Python.png" alt="Alternate Text" />
-						</div>
-						<h2><a href="#">Python</a></h2>
-					</div>
-				</li>
-				<li>
-					<div class="single-list-topics-content">
-						<div class="single-list-topics-icon">
-							<img src="../LayoutTimViec/img/JavaScript.png" alt="Alternate Text" />
-						</div>
-						<h2><a href="#">JavaScript</a></h2>
-					</div>
-				</li>
-				<li>
-					<div class="single-list-topics-content">
-						<div class="single-list-topics-icon">
-							<img src="../LayoutTimViec/img/C++.png" alt="Alternate Text" />
-						</div>
-						<h2><a href="#">C++</a></h2>
-					</div>
-				</li>
-				<li>
-					<div class="single-list-topics-content">
-						<div class="single-list-topics-icon">
-							<img src="../LayoutTimViec/img/CSS3.png" alt="Alternate Text" />
-						</div>
-						<h2><a href="#">CSS3</a></h2>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div><!--/.container-->
-
-</section><!--/.list-topics-->
-<!--list-topics end-->
-<!--works start -->
-<section id="works" class="works">
-	<div class="container">
-		<div class="section-header">
-			<h2>how it works</h2>
-			<p>Learn More about how our website works</p>
-		</div><!--/.section-header-->
-		<div class="works-content">
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-lightbulb-idea"></i>
-						</div>
-						<h2><a href="#">choose <span> what to</span> do</a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-networking"></i>
-						</div>
-						<h2><a href="#">find <span> what you want</span></a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-location-on-road"></i>
-						</div>
-						<h2><a href="#">explore <span> amazing</span> place</a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--/.container-->
-
-</section><!--/.works-->
-<!--works end -->
-<!--explore start -->
-	
-<section id="explore" class="explore">
-	<div class="container">
-		<div class="section-header">
-			<h2>Danh sách các công ty phổ biến hiện nay</h2>
-			
-		</div><!--/.section-header-->
-		<div class="explore-content">
-			<div class="row">
-				@foreach (var item in Model)
-				{
-				<div class=" col-md-4 col-sm-6">
-					<div class="single-explore-item">
-							<div class="single-explore-img set-bg" data-setbg="@Url.Content("../imgae/" + item.img)" style="background-image: url(&quot;img/featured/feature-1.jpg&quot;);">
-							
-							<div class="single-explore-img-info">
-								<button onclick="window.location.href='#'">best rated</button>
-								<div class="single-explore-image-icon-box">
-									<ul>
-										<li>
-											<div class="single-explore-image-icon">
-												<i class="fa fa-arrows-alt"></i>
-											</div>
-										</li>
-										<li>
-											<div class="single-explore-image-icon">
-												<i class="fa fa-bookmark-o"></i>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="single-explore-txt bg-theme-1">
-							<h2><a href="#">@item.Title</a></h2>
-							<p class="explore-rating-price">
-								<span class="explore-rating">5.0</span>
-									<a href="#">@item.R1_Language</a>
-									<span class="explore-price-box">@item.R2_Language</span>
-									<a href="#">@item.R3_Language</a>
-							</p>
-							<div class="explore-person">
-								<div class="row">
-									<div class="col-sm-10">
-										<p>
-											@item.Location
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="explore-open-close-part">
-								<div class="row">
-									<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Chi tiết</a></button>
-									</div>
-									<div class="col-sm-7">
-										<div class="explore-map-icon">
-											<a href="#"><i data-feather="map-pin"></i></a>
-											<a href="#"><i data-feather="upload"></i></a>
-											<a href="#"><i data-feather="heart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-                }
-			</div>
-		</div>
-	</div><!--/.container-->
-</section><!--/.explore-->
-<!--explore end -->
-<!--reviews start -->
-<section id="reviews" class="reviews">
-	<div class="section-header">
-		<h2>clients reviews</h2>
-		<p>What our client say about us</p>
-	</div><!--/.section-header-->
-	<div class="reviews-content">
-		<div class="testimonial-carousel">
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c1.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Tom Leakar</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c2.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>monirul islam</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c3.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Shohrab Hossain</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c4.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Tom Leakar</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c1.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Tom Leakar</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c2.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>monirul islam</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c3.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Shohrab Hossain</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-			<div class="single-testimonial-box">
-				<div class="testimonial-description">
-					<div class="testimonial-info">
-						<div class="testimonial-img">
-							<img src="../LayoutTimViec/images/clients/c4.png" alt="clients">
-						</div><!--/.testimonial-img-->
-						<div class="testimonial-person">
-							<h2>Tom Leakar</h2>
-							<h4>london, UK</h4>
-							<div class="testimonial-person-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-						</div><!--/.testimonial-person-->
-					</div><!--/.testimonial-info-->
-					<div class="testimonial-comment">
-						<p>
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
-						</p>
-					</div><!--/.testimonial-comment-->
-				</div><!--/.testimonial-description-->
-			</div><!--/.single-testimonial-box-->
-		</div>
-	</div>
-
-</section><!--/.reviews-->
-<!--reviews end -->
-<!-- statistics strat -->
-<section id="statistics" class="statistics">
-	<div class="container">
-		<div class="statistics-counter">
-			<div class="col-md-3 col-sm-6">
-				<div class="single-ststistics-box">
-					<div class="statistics-content">
-						<div class="counter">90 </div> <span>K+</span>
-					</div><!--/.statistics-content-->
-					<h3>listings</h3>
-				</div><!--/.single-ststistics-box-->
-			</div><!--/.col-->
-			<div class="col-md-3 col-sm-6">
-				<div class="single-ststistics-box">
-					<div class="statistics-content">
-						<div class="counter">40</div> <span>k+</span>
-					</div><!--/.statistics-content-->
-					<h3>listing categories</h3>
-				</div><!--/.single-ststistics-box-->
-			</div><!--/.col-->
-			<div class="col-md-3 col-sm-6">
-				<div class="single-ststistics-box">
-					<div class="statistics-content">
-						<div class="counter">65</div> <span>k+</span>
-					</div><!--/.statistics-content-->
-					<h3>visitors</h3>
-				</div><!--/.single-ststistics-box-->
-			</div><!--/.col-->
-			<div class="col-md-3 col-sm-6">
-				<div class="single-ststistics-box">
-					<div class="statistics-content">
-						<div class="counter">50</div> <span>k+</span>
-					</div><!--/.statistics-content-->
-					<h3>happy clients</h3>
-				</div><!--/.single-ststistics-box-->
-			</div><!--/.col-->
-		</div><!--/.statistics-counter-->
-	</div><!--/.container-->
-
-</section><!--/.counter-->
-<!-- statistics end -->
-<!--blog start -->
-<section id="blog" class="blog">
-	<div class="container">
-		<div class="section-header">
-			<h2>news and articles</h2>
-			<p>Always upto date with our latest News and Articles </p>
-		</div><!--/.section-header-->
-		<div class="blog-content">
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b1.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b2.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b3.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--/.container-->
-
-</section><!--/.blog-->
-
-
-<!--blog end -->
-
-
+                        <h5>Không có hình ảnh</h5>
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.R1_Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.R2_Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.R3_Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type_work.Type)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
