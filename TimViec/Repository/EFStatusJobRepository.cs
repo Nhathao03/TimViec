@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
 using TimViec.Data;
 using TimViec.Models;
 
@@ -18,7 +19,7 @@ namespace TimViec.Repository
         public async Task<StatusJob> GetByIdAsync(int Id)
         {
             return await _context.StatusJobs.FindAsync(Id);
-        }
+        } 
         public async Task AddAsync(StatusJob statusJob)
         {
             _context.StatusJobs.Add(statusJob);
@@ -34,7 +35,11 @@ namespace TimViec.Repository
             var statusJob = await _context.StatusJobs.FindAsync(id);
             _context.StatusJobs.Remove(statusJob);
             await _context.SaveChangesAsync();
+        }
 
+        public List<StatusJob> GetListJobByEmail(string email)
+        {
+            return _context.StatusJobs.Where(x => x.Email == email).ToList();
         }
     }
 }

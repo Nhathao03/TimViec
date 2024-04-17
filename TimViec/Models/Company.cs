@@ -29,15 +29,6 @@ namespace TimViec.Models
 
         public DateTime? Date { get; set; }
 
-        [StringLength(50)]
-        public string? R1_Language { get; set; }
-
-        [StringLength(50)]
-        public string? R2_Language { get; set; }
-
-        [StringLength(50)]
-        public string? R3_Language { get; set; }
-
         public int? Id_city { get; set; }
 
         public City? city { get; set; }

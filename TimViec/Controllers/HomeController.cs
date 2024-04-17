@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
+using TimViec.ViewModel;
 
 namespace TimViec.Controllers
 {
@@ -16,30 +16,57 @@ namespace TimViec.Controllers
 		private readonly ICompanyRespository _companyRepository;
 		private readonly IStatusRepository _statusRepository;
 
-		public HomeController(ICompanyRespository companyRepository, IJobRespository jobRepository, IStatusRepository statusRepository)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public HomeController(ICompanyRespository companyRepository, 
+            IJobRespository jobRepository, 
+            IStatusRepository statusRepository,
+            UserManager<ApplicationUser> userManager)
 		{
 			_jobRepository = jobRepository;
 			_companyRepository = companyRepository;
 			_statusRepository = statusRepository;
+            _userManager = userManager;
 		}
 
         // display item
         public async Task<IActionResult> Index()
         {
-			var job = await _jobRepository.GetAllAsync();
-			return View(job);
+			var jobs = await _jobRepository.GetAllAsync();
+			var companies = await _companyRepository.GetAllAsync();
+            // get list companies
+
+            //take n = 6 item in table job
+            jobs = jobs.Take(6);
+            
+            companies = companies.Take(3);
+            HomeViewModel home = new HomeViewModel()
+            {
+                Jobs = jobs,
+                Companies = companies
+            };
+
+			return View(home);
 		}
 
+		//status job
 		public async Task<IActionResult> CheckST()
         {
             var status = await _statusRepository.GetAllAsync();
-            return View(status); ;
+            return View(status); 
+        }
+        
+        //status job
+		public IActionResult StJ()
+        {
+            var name = User.Identity.Name;
+            var status = _statusRepository.GetListJobByEmail(email: name);
+            return View(status); 
         }
 
-        //details job
 
-     
-		public async Task<IActionResult> Details_Job(int id)
+        //details job     
+        public async Task<IActionResult> Details_Job(int id)
         {
             var job = await _jobRepository.GetByIdAsync(id);
             Global.id_job = Convert.ToString(job.Id);

@@ -1,9 +1,19 @@
-﻿@model IEnumerable<TimViec.Models.Job>
+﻿@model TimViec.ViewModel.HomeViewModel
 
 @{
 	ViewData["Title"] = "Home Page";
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
+
+@* @{
+	var jobs = Model.Jobs;
+	var companies = Model.Companies;
+
+	foreach (var item in jobs)
+	{
+		
+	}
+} *@
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -109,53 +119,28 @@
 <section id="works" class="works">
 	<div class="container">
 		<div class="section-header">
-			<h2>how it works</h2>
-			<p>Learn More about how our website works</p>
+			<h2>TOP 3</h2>
+			<h4>Công ty nổi bật nhất hiện nay</h4>
 		</div><!--/.section-header-->
 		<div class="works-content">
 			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-lightbulb-idea"></i>
+				@foreach (var item in Model.Companies)
+				{
+					<div class="col-md-4 col-sm-6">
+						<div class="single-how-works">
+							<div class="single-how-works-icon">
+								<i class="flaticon-lightbulb-idea"></i>
+							</div>
+							<h2><a href="#">@item.Name_company</a></h2>
+							<p>
+								@item.Description
+							</p>
+							<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+								Chi tiết
+							</button>
 						</div>
-						<h2><a href="#">choose <span> what to</span> do</a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
 					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-networking"></i>
-						</div>
-						<h2><a href="#">find <span> what you want</span></a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-how-works">
-						<div class="single-how-works-icon">
-							<i class="flaticon-location-on-road"></i>
-						</div>
-						<h2><a href="#">explore <span> amazing</span> place</a></h2>
-						<p>
-							Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
-						</p>
-						<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-							read more
-						</button>
-					</div>
-				</div>
+				}
 			</div>
 		</div>
 	</div><!--/.container-->
@@ -274,8 +259,9 @@
 		</div><!--/.section-header-->
 		<div class="explore-content">
 			<div class="row">
-				@foreach (var item in Model)
-				{
+
+				@foreach (var item in Model.Jobs)
+				{ 
 				<div class=" col-md-4 col-sm-6">
 					<div class="single-explore-item">
 						<div class="single-explore-img">
