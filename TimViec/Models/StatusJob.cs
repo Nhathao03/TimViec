@@ -10,5 +10,9 @@
 
         public string Note { get; set; }
 
+        public string imgCV { get; set; }
+
+        public string Jobname { get; set; }
+
     }
 }

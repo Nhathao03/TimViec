@@ -1,22 +1,14 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] ="Hồ sơ";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
-
-<h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 
 
-<link rel="stylesheet" href="../LayoutTimViec/css/Profile.css">
+<link rel="stylesheet" href="../../LayoutTimViec/css/Profile.css">
 
-
-<div class="container bootstrap snippets bootdey">
-    <div class="container-xl px-4 mt-4">
-        <!-- Account page navigation-->
-        <span><p style="font-size: 25px; text-align: center">Thông tin cá nhân</p></span>
-        <hr class="mt-0 mb-4">
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
@@ -54,19 +46,10 @@
                                 <input asp-for="Input.Fullname" class="form-control" />
                                 <span asp-validation-for="Input.Fullname" class="text-danger"></span>
                             </div>
-                            <div class="row gx-3 mb-3">
-
-                                <div class="col-md-6">
-                                    <label asp-for="Input.Experiance">Kinh nghiệm</label>
-                                    <input asp-for="Input.Experiance" class="form-control" />
-                                    <span asp-validation-for="Input.Experiance" class="text-danger"></span>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label asp-for="Input.Birth">Ngày sinh</label>
-                                    <input asp-for="Input.Birth" class="form-control" />
-                                    <span asp-validation-for="Input.Birth" class="text-danger"></span>
-                                </div>
+                            <div class="mb-3">
+                                <label asp-for="Input.Birth">Ngày sinh</label>
+                                <input asp-for="Input.Birth" class="form-control" />
+                                <span asp-validation-for="Input.Birth" class="text-danger"></span>
                             </div>
                             <div class=" mb-3">
                                 <label asp-for="Input.imgCV">CV của bạn</label>
@@ -92,8 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 
 @* <div class="row">
     <div class="col-md-6">

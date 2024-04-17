@@ -12,8 +12,8 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416040953_AddColumnToUser")]
-    partial class AddColumnToUser
+    [Migration("20240417063431_AddimgCVtoStatusJob")]
+    partial class AddimgCVtoStatusJob
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,11 +226,9 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("avatar")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imgCV")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -368,22 +366,28 @@ namespace TimViec.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("Id_company")
+                    b.Property<int?>("Id_rank")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_rank")
+                    b.Property<int?>("Id_skill")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_skill")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_type_work")
+                    b.Property<int?>("Id_type_work")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("R1_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RankId")
                         .HasColumnType("int");
@@ -401,6 +405,10 @@ namespace TimViec.Migrations
 
                     b.Property<int?>("Type_workId")
                         .HasColumnType("int");
+
+                    b.Property<string>("img")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -472,6 +480,10 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imgCV")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -19,7 +19,6 @@ namespace TimViec.Data
         public DbSet<Rank> Ranks { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Type_work> Type_Works { get; set; }
-
         public DbSet<StatusJob> StatusJobs { get; set; }
     }
 }

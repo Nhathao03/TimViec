@@ -3,10 +3,9 @@
 
 @{
     ViewData["Title"] = "Log in";
-    // Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
-<h2>@ViewData["Title"]</h2>
 <body>
     <style>
         .col-md-4 {
@@ -16,7 +15,7 @@
     </style>
 
     <div class="row">
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-5 col-md-offset-2">
             <section>
                 <h3><b>Chào mừng bạn đến với</b><b style="color: red;"> Dev IT</b></h3>
                 <hr />
@@ -53,7 +52,7 @@
                 }
             </section>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <section>
                 <form id="account" method="post">
                     <h2 style="text-align: center">Đăng nhập</h2>
@@ -77,12 +76,12 @@
                         </label>
                     </div>
                     <div>
-                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="width: 100%">
                             <img data-controller="lazyload" src="https://itviec.com/assets/google_logo-af373a5e64715e7d4fcdea711f96995f7fd7a49725b3dd8910d4749b74742cb2.svg" width="30" height="30" class=" ls-is-cached lazyloaded">
                             <span>Đăng nhập bằng Google</span>
                         </button>
-                        <p></p>
-                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Đăng nhập</button>
+                        <br /><br />
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="width: 100%">Đăng nhập</button>
                         <p>Bằng việc tiếp tục, bạn đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a> của Dev IT.</p>
                     </div>
                     <div>

@@ -11,6 +11,7 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
         public static string Index => "Index";
 
         public static string Email => "Email";
+        public static string StatusJob => "StatusJob";
 
         public static string ChangePassword => "ChangePassword";
 
@@ -27,6 +28,7 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
+        public static string StatusJobNavClass(ViewContext viewContext) => PageNavClass(viewContext, StatusJob);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
 

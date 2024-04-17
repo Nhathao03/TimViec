@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TimViec.Models.StatusJob>
+
+@{
+    ViewData["Title"] = "CheckST";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<h3 style="text-align: center">Danh sách các công việc đang ứng tuyển</h3>
+<div>
+    <hr />
+    <dl class="col-md-10" style="margin-left: 380px; width: 1100px">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tên công việc</th>
+                    <th scope="col">Ghi chú</th>
+                    <th scope="col">CV</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                @foreach (var item in Model)
+                {
+                    <td scope="row">@item.ID</td>
+                    <td scope="row">@item.Fullname</td>
+                    <td scope="row">@item.Email</td>
+                    <td scope="row">@item.Jobname</td>
+                    <td scope="row">@item.imgCV</td>
+                    <td scope="row">@item.Note</td>
+                    <td scope="row">@item.Status</td>
+                    <td>
+                    <form asp-action="CheckST">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </form>
+                    </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </dl>    
+</div>
+
+
+<a style="margin-top: 100px" asp-action="Index">Back to List</a>

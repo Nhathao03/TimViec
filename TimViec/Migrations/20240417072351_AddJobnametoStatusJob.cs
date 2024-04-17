@@ -5,14 +5,14 @@
 namespace TimViec.Migrations
 {
     /// <inheritdoc />
-    public partial class Addimgtojob : Migration
+    public partial class AddJobnametoStatusJob : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "img",
-                table: "Jobs",
+                name: "Jobname",
+                table: "StatusJobs",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -22,8 +22,8 @@ namespace TimViec.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "img",
-                table: "Jobs");
+                name: "Jobname",
+                table: "StatusJobs");
         }
     }
 }

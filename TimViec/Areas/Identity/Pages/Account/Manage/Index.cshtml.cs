@@ -108,22 +108,13 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //if (Input.PhoneNumber != phoneNumber)
-            //{
-            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            //    if (!setPhoneResult.Succeeded)
-            //    {
-            //        StatusMessage = "Unexpected error when trying to set phone number.";
-            //        return RedirectToPage();
-            //    }
-            //}
+            
 
             user.Firstname = Input.Firstname;
             user.Lastname = Input.Lastname;
             user.Fullname = Input.Fullname;
             user.PhoneNumber = Input.PhoneNumber;
-          //  user.Birth = Input.Birth;
+            user.Birth = (DateTime)Input.Birth;
             user.avatar = Input.avatar;      
             user.imgCV = Input.imgCV;
 
