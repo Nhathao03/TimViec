@@ -49,12 +49,12 @@ namespace TimViec.Controllers
 			return View(home);
 		}
 
-		//status job
-		public async Task<IActionResult> CheckST()
-        {
-            var status = await _statusRepository.GetAllAsync();
-            return View(status); 
-        }
+		////status job
+		//public async Task<IActionResult> CheckST()
+  //      {
+  //          var status = await _statusRepository.GetAllAsync();
+  //          return View(status); 
+  //      }
         
         //status job
 		public IActionResult StJ()
@@ -76,9 +76,19 @@ namespace TimViec.Controllers
             }
             return View(job);
         }
-      
-      
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+		//details company     
+		public async Task<IActionResult> Details_Company(int id)
+		{
+			var company = await _companyRepository.GetByIdAsync(id);
+			if (company == null)
+			{
+				return NotFound();
+			}
+			return View(company);
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

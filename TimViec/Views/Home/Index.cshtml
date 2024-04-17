@@ -129,15 +129,13 @@
 					<div class="col-md-4 col-sm-6">
 						<div class="single-how-works">
 							<div class="single-how-works-icon">
-								<i class="flaticon-lightbulb-idea"></i>
+								<img src="~/LayoutTimViec/img/@item.Image" alt="" />
 							</div>
 							<h2><a href="#">@item.Name_company</a></h2>
 							<p>
 								@item.Description
 							</p>
-							<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-								Chi tiết
-							</button>
+							<button class="welcome-hero-btn how-work-btn" ><a asp-action="Details_Company" asp-route-id="@item.Id">Chi tiết</a></button>
 						</div>
 					</div>
 				}

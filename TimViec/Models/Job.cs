@@ -10,13 +10,13 @@ namespace TimViec.Models
         public string Title { get; set; }
         public Company? Company { get; set; }
 
-        [Required, StringLength(100)]
+        [Required]
         public string Location { get; set; }
         [Required]
         public decimal Salary { get; set; }
 
-        [Required, StringLength(300)]
-        public string  Description { get; set; }
+        [Required]
+        public string Description { get; set; }
 
         public int? Id_skill { get; set; }
 

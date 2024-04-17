@@ -9,10 +9,10 @@ namespace TimViec.Models
         [Required, StringLength(100)]
         public string Name_company { get; set; }
 
-        [Required, StringLength(300)]
+        [Required]
         public string Location { get; set; }
 
-        [Required, StringLength(300)]
+        [Required]
         public string Description { get; set; }
 
         [Required, StringLength(100)]
