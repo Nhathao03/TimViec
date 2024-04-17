@@ -14,7 +14,35 @@
 	<title>Tìm việc làm</title>
 
 	<!-- For favicon png -->
-	<link rel="shortcut icon" type="image/icon" href="../LayoutTimViec/logo/logo.png" />
+	<link rel="shortcut icon" type="image/icon" href="../../LayoutTimViec/logo/logo.png" />
+
+	<!--font-awesome.min.css-->
+	<link rel="stylesheet" href="../../LayoutTimViec/css/font-awesome.min.css">
+									
+	<!--linear icon css-->			
+	<link rel="stylesheet" href="../../LayoutTimViec/css/linearicons.css">
+									
+	<!--animate.css-->				
+	<link rel="stylesheet" href="../../LayoutTimViec/css/animate.css">
+									
+	<!--flaticon.css-->				
+	<link rel="stylesheet" href="../../LayoutTimViec/css/flaticon.css">
+									
+	<!--slick.css-->				
+	<link rel="stylesheet" href="../../LayoutTimViec/css/slick.css">
+	<link rel="stylesheet" href="../../LayoutTimViec/css/slick-theme.css">
+									
+	<!--bootstrap.min.css-->		
+	<link rel="stylesheet" href="../../LayoutTimViec/css/bootstrap.min.css">
+									
+	<!-- bootsnav -->				
+	<link rel="stylesheet" href="../../LayoutTimViec/css/bootsnav.css">
+									
+	<!--style.css-->				
+	<link rel="stylesheet" href="../../LayoutTimViec/css/style.css">
+									
+	<!--responsive.css-->			
+	<link rel="stylesheet" href="../../LayoutTimViec/css/responsive.css">
 </head>
 
 <body>
@@ -42,6 +70,9 @@
 					<ul>
 						<li class="header-top-contact">
 							+1 222 777 6565
+						</li>
+						<li class="header-top-contact">
+							<a asp-area="" asp-controller="Home" asp-action="CheckST">Trạng thái công việc</a>
 						</li>
 						<partial name="_LoginPartial"/>
 					</ul>
@@ -76,9 +107,6 @@
 							<li class="scroll"><a href="#explore">Công ty phổ biến</a></li>
 							<li class="scroll"><a href="#reviews">Công ty phổ biến</a></li>
 							<li class="scroll"><a href="#blog">Blog</a></li>
-							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="Profile">Cá nhân</a></li>
-
-						
 						</ul><!--/.nav -->
 					</div><!-- /.navbar-collapse -->
 				</div><!--/.container-->
@@ -143,33 +171,36 @@
 	</footer><!--/.footer-->
 	<!--footer end-->
 	<!-- Include all js compiled plugins (below), or include individual files as needed -->
-	<script src="../LayoutTimViec/js/site.js"></script>
+	<script src="../../LayoutTimViec/js/site.js"></script>
 
-	<script src="../LayoutTimViec/js/jquery.js"></script>
+	<script src="../../LayoutTimViec/js/jquery.js"></script>
+	<!-- bootsnav js -->
+	<script src="../../LayoutTimViec/js/bootsnav.js"></script>
+
+	<!--feather.min.js-->
+	<script src="../../LayoutTimViec/js/feather.min.js"></script>
+
+	<!-- counter js -->
+	<script src="../../LayoutTimViec/js/jquery.counterup.min.js"></script>
+	<script src="../../LayoutTimViec/js/waypoints.min.js"></script>
+
+	<!--slick.min.js-->
+	<script src="../../LayoutTimViec/js/slick.min.js"></script>
+	<!--Custom JS-->
+	<script src="../../LayoutTimViec/js/custom.js"></script>
 
 	<!--modernizr.min.js-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 	<!--bootstrap.min.js-->
-	<script src="../LayoutTimViec/js/bootstrap.min.js"></script>
+	<script src="../../LayoutTimViec/js/bootstrap.min.js"></script>
 
-	<!-- bootsnav js -->
-	<script src="../LayoutTimViec/js/bootsnav.js"></script>
-
-	<!--feather.min.js-->
-	<script src="../LayoutTimViec/js/feather.min.js"></script>
-
-	<!-- counter js -->
-	<script src="../LayoutTimViec/js/jquery.counterup.min.js"></script>
-	<script src="../LayoutTimViec/js/waypoints.min.js"></script>
-
-	<!--slick.min.js-->
-	<script src="../LayoutTimViec/js/slick.min.js"></script>
-
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-	<!--Custom JS-->
-	<script src="../LayoutTimViec/js/custom.js"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+
 
 </body>
 

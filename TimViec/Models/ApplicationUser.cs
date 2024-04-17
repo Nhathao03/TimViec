@@ -9,9 +9,9 @@ namespace TimViec.Models
 
         public string Fullname { get; set; }
 
-        public string imgCV { get; set; }
+        public string? imgCV { get; set; }
 
-        public string avatar { get; set; }
+        public string? avatar { get; set; }
         public DateTime Birth { get; set; }
     }
 }

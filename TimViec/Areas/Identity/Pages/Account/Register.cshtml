@@ -2,10 +2,9 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-    // Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
-<h2>@ViewData["Title"]</h2>
 <style>
     .col-md-4 {
         background-color: rgb(227, 229, 230);
@@ -14,8 +13,8 @@
 </style>
 
 <div class="row">
-
-    <div class="col-md-6 col-md-offset-2">
+    <div class="container">
+    <div class="col-md-8">
         <section>
             <h3><b>Chào mừng bạn đến với</b><b style="color: red;"> Dev IT</b></h3>
             <hr />
@@ -95,7 +94,7 @@
             <a asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" class="nav-link">Đã có tài khoản</a>
         </form>
     </div>
-
+    </div>
 </div>
 
 @section Scripts {

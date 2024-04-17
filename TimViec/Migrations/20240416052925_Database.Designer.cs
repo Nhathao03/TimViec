@@ -12,8 +12,8 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416043738_Addimgtojob")]
-    partial class Addimgtojob
+    [Migration("20240416052925_Database")]
+    partial class Database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,7 +226,6 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("avatar")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imgCV")
@@ -368,22 +367,28 @@ namespace TimViec.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("Id_company")
+                    b.Property<int?>("Id_rank")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_rank")
+                    b.Property<int?>("Id_skill")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_skill")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_type_work")
+                    b.Property<int?>("Id_type_work")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("R1_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RankId")
                         .HasColumnType("int");

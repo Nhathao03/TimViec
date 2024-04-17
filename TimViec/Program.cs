@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TimViec.Data;
 using TimViec.Models;
+using TimViec.Repository;
 using TimViec.Respository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICompanyRespository, EFCompanyRespository>();
 builder.Services.AddScoped<IJobRespository, EFJobRespository>();
+builder.Services.AddScoped<IStatusRepository, EFStatusJobRepository>();
 
 var app = builder.Build();
 
