@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimViec.Models
 {
@@ -8,6 +9,8 @@ namespace TimViec.Models
 
         [Required, StringLength(100)]
         public string Title { get; set; }
+
+        public int CompanyID { get; set; }
         public Company? Company { get; set; }
 
         [Required]
@@ -33,7 +36,9 @@ namespace TimViec.Models
         public string? R2_Language { get; set; }
 
         public string? R3_Language { get; set; }
-        public int? Id_type_work { get; set; }
+
+		[ForeignKey("Type_work")]
+		public int? Type_workID { get; set; }
 
         public Type_work? Type_work { get; set; }
     }

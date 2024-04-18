@@ -65,19 +65,10 @@
 					</ul>
 				</div>							
 			</li>
-			<li class="head-responsive-right pull-right">
-				<div class="header-top-right">
-					<ul>
-						<li class="header-top-contact">
-							+1 222 777 6565
-						</li>
-						<li class="header-top-contact">
-							<a asp-area="" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a>
-						</li>
+		
+						
 						<partial name="_LoginPartial"/>
-					</ul>
-				</div>
-			</li>
+			
 		</ul>
 
 	</header><!--/.header-top-->
@@ -103,10 +94,11 @@
 					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 							<li class=" scroll active"><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-							<li class="scroll"><a href="#works">Công ty IT</a></li>
-							<li class="scroll"><a href="#explore">Công ty phổ biến</a></li>
-							<li class="scroll"><a href="#reviews">Công ty phổ biến</a></li>
-							<li class="scroll"><a href="#blog">Blog</a></li>
+							<li class="scroll"><a href="#works">Top 3 công ty</a></li>
+							<li class="scroll"><a href="#explore">Công việc phổ biến</a></li>
+							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="Job">Công việc</a></li>
+							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="Company">Công ty</a></li>
+							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a></li>
 						</ul><!--/.nav -->
 					</div><!-- /.navbar-collapse -->
 				</div><!--/.container-->
@@ -118,34 +110,22 @@
 	</section><!-- /.top-area-->
 	<!-- top-area End -->
 	@RenderBody()
+
 	<!--footer start-->
 	<footer id="footer" class="footer">
 		<div class="container">
 			<div class="footer-menu">
 				<div class="row">
 					<div class="col-sm-3">
-						<div class="navbar-header">
-							<a class="navbar-brand" href="index.html">list<span>race</span></a>
-						</div><!--/.navbar-header-->
-					</div>
-					<div class="col-sm-9">
-						<ul class="footer-menu-item">
-							<li class="scroll"><a href="#works">how it works</a></li>
-							<li class="scroll"><a href="#explore">explore</a></li>
-							<li class="scroll"><a href="#reviews">review</a></li>
-							<li class="scroll"><a href="#blog">blog</a></li>
-							<li class="scroll"><a href="#contact">contact</a></li>
-							<li class=" scroll"><a href="#contact">my account</a></li>
-						</ul><!--/.nav -->
-					</div>
+						<p style="font-size: 50px">Dev<span style="color: red">IT</span></p>
+
+					</div
 				</div>
 			</div>
 			<div class="hm-footer-copyright">
 				<div class="row">
 					<div class="col-sm-5">
-						<p>
-							&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
-						</p><!--/p-->
+						
 					</div>
 					<div class="col-sm-7">
 						<div class="footer-social">

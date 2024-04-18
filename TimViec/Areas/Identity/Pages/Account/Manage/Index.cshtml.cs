@@ -118,12 +118,14 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             user.avatar = Input.avatar;      
             user.imgCV = Input.imgCV;
 
+
             await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Hồ sơ của bạn đã được cập nhật thành công !";
             return RedirectToPage();
         }
+
 
         //// Process the product update
         //[HttpPost]

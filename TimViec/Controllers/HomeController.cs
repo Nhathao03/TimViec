@@ -15,7 +15,6 @@ namespace TimViec.Controllers
 		private readonly IJobRespository _jobRepository;
 		private readonly ICompanyRespository _companyRepository;
 		private readonly IStatusRepository _statusRepository;
-
         private readonly UserManager<ApplicationUser> _userManager;
 
         public HomeController(ICompanyRespository companyRepository, 
@@ -65,11 +64,43 @@ namespace TimViec.Controllers
         }
 
 
-        //details job     
-        public async Task<IActionResult> Details_Job(int id)
+        //all Job
+        public async Task<IActionResult> Job()
+        {
+
+            var job = await _jobRepository.GetAllAsync();
+            return View(job);
+        }
+
+         //all company
+        public async Task<IActionResult> Company()
+        {
+
+            var companies = await _companyRepository.GetAllAsync();
+            return View(companies);
+        }
+
+		// search
+        [HttpPost]
+        public async Task<IActionResult> Search(string stringSearch)
+		{
+			var result = _jobRepository.Search(stringSearch);
+
+			return View(result);
+		}
+
+		// display item
+		public async Task<IActionResult> Details_CPN(int id)
+		{
+			var result = _jobRepository.Details_CPN(id);
+
+			return View(result);
+		}
+
+		//details job     
+		public async Task<IActionResult> Details_Job(int id)
         {
             var job = await _jobRepository.GetByIdAsync(id);
-            Global.id_job = Convert.ToString(job.Id);
             if (job == null)
             {
                 return NotFound();
@@ -77,16 +108,6 @@ namespace TimViec.Controllers
             return View(job);
         }
 
-		//details company     
-		public async Task<IActionResult> Details_Company(int id)
-		{
-			var company = await _companyRepository.GetByIdAsync(id);
-			if (company == null)
-			{
-				return NotFound();
-			}
-			return View(company);
-		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
