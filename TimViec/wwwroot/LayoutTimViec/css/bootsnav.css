@@ -206,6 +206,8 @@ li.close-full-menu{
     padding-bottom: 30px;
 }
 
+
+
 /* Atribute Navigation
 =================================*/
 .attr-nav{
@@ -501,6 +503,137 @@ nav.navbar.bootsnav.no-background{
 body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     left: -280px;
 }
+.containers {
+    display: none;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.container_overlay {
+    background: rgba(0, 0, 0, .7);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    border: 0 solid #dbdbdb;
+    width: 768px;
+    height: 718px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+}
+
+.icon-x {
+    cursor: pointer;
+}
+
+.form-about {
+    margin-top: 15px;
+}
+
+.form-about_title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.25rem;
+    letter-spacing: .00875rem;
+}
+
+.form-about_input {
+    width: 100%;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.25rem;
+    letter-spacing: .00875rem;
+    border-width: 1px;
+    border-radius: .25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, .7)
+}
+
+.footer-form {
+    float: right;
+}
+
+.form-accpet_1 {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 1px solid #757575;
+    border-radius: 4px;
+    position: absolute;
+}
+
+.form-accpet_2 {
+    margin-left: 25px;
+    color: gray;
+    cursor: pointer;
+}
+
+.footer-form {
+    margin-top: 15px;
+}
+
+.huy {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .3s;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.25rem;
+    letter-spacing: .00875rem;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: .25rem;
+    cursor: pointer;
+    height: 2.25rem;
+}
+
+.xacnhan {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .3s;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.25rem;
+    letter-spacing: .00875rem;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: .25rem;
+    cursor: pointer;
+    height: 2.25rem;
+    color: white;
+    background-color: red;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+    .xacnhan:hover {
+        background-color: rgba(218, 76, 76, 0.7);
+    }
 
 /* Navbar Responsive
 =================================*/

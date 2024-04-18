@@ -114,6 +114,47 @@
 	</section><!-- /.top-area-->
 	<!-- top-area End -->
 	@RenderBody()
+	<div class="containers" id="myOverlay">
+		<div class="container_overlay"></div>
+		<form>
+			<div class="form">
+				<div class="form-header">
+					<div class="form-title">
+						<h2>Bạn đang ứng tuyển <span style="color: red;">BackEnd Developer</span> </h2>
+					</div>
+					<div class="icon-x">
+						<i class="fa-solid fa-x" style="color: #01080e;"></i>
+					</div>
+				</div>
+				<hr>
+				<div class="form-about">
+					<label for="fullName" class="form-about_title">Họ và Tên:</label><br>
+					<input type="text" id="fullName" name="fullName" placeholder="Nguyễn Văn A" class="form-about_input" required><br>
+					<label for="email" class="form-about_title">Email:</label><br>
+					<input type="email" id="email" name="email" placeholder="hohatquang890@gmail.com" class="form-about_input" required><br>
+					<label for="phoneNumber" class="form-about_title">Số điện thoại:</label><br>
+					<input type="tel" id="phoneNumber" name="phoneNumber" placeholder="09861258968" class="form-about_input" required><br>
+					<label for="phoneNumber" class="form-about_title">CV của bạn:</label><br>
+					<input type="file" id="phoneNumber" name="phoneNumber" placeholder="Bỏ file cv bạn ở đây" class="form-about_input" required><br>
+					<label for="phoneNumber" class="form-about_title">Đoạn giới thiệu bản thân hoặc link portfolio:</label><br>
+					<input type="tel" id="phoneNumber" name="phoneNumber" class="form-about_input" required><br>
+				</div>
+				<div class="form-accept">
+					<div class="form-accpet_1">
+					</div>
+					<div class="form-accpet_2">
+						Tôi đã đọc và đồng ý với <span style="color: black;">Điều khoản sử dụng</span> và <span style="color: black;">Chính sách bảo mật</span> của TopDev.
+					</div>
+
+				</div>
+				<div class="footer-form">
+					<button class="huy" id="closeBtn">Hủy</button>
+					<button class="xacnhan">Nộp CV</button>
+				</div>
+
+			</div>
+		</form>
+	</div>
 	<!--footer start-->
 	<footer id="footer" class="footer">
 		<div class="container">
@@ -167,6 +208,8 @@
 	</footer><!--/.footer-->
 	<!--footer end-->
 	<!-- Include all js compiled plugins (below), or include individual files as needed -->
+	<script src="../../LayoutTimViec/js/bootsnav.js"></script>
+
 	<script src="../../LayoutTimViec/js/site.js"></script>
 
 	<script src="../../LayoutTimViec/js/jquery.js"></script>
@@ -178,7 +221,6 @@
 	<script src="../../LayoutTimViec/js/bootstrap.min.js"></script>
 
 	<!-- bootsnav js -->
-	<script src="../../LayoutTimViec/js/bootsnav.js"></script>
 
 	<!--feather.min.js-->
 	<script src="../../LayoutTimViec/js/feather.min.js"></script>
