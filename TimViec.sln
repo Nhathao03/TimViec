@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimViec", "TimViec\TimViec.csproj", "{2D3D0A9C-B474-4E94-AE16-5BE25106F2C8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab22", "C:\Users\honha\Downloads\Lab22\Lab22.csproj", "{80D05C0D-BCF7-410E-A92E-52C4CEF73836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2D3D0A9C-B474-4E94-AE16-5BE25106F2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3D0A9C-B474-4E94-AE16-5BE25106F2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3D0A9C-B474-4E94-AE16-5BE25106F2C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D05C0D-BCF7-410E-A92E-52C4CEF73836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D05C0D-BCF7-410E-A92E-52C4CEF73836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D05C0D-BCF7-410E-A92E-52C4CEF73836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D05C0D-BCF7-410E-A92E-52C4CEF73836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
