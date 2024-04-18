@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using TimViec.ViewModel;
 
 namespace TimViec.Data
 {
@@ -20,5 +21,7 @@ namespace TimViec.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Type_work> Type_Works { get; set; }
         public DbSet<StatusJob> StatusJobs { get; set; }
+        public DbSet<TimViec.ViewModel.SearchViewModel> SearchViewModel { get; set; } = default!;
+        public DbSet<TimViec.ViewModel.Details_CPN> Details_CPN { get; set; } = default!;
     }
 }

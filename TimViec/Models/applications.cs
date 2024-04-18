@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimViec.Models
 {
     public class applications
     {
         public int  Id { get; set; }
-        public int Id_job {  get; set; }
+		[ForeignKey("Job")]
+
+		public int JobID {  get; set; }
         public Job? Job { get; set; }
 
         [Required, StringLength(200)]

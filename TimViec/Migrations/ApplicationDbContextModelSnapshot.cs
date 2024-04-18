@@ -282,15 +282,14 @@ namespace TimViec.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Id_city")
+                    b.Property<int?>("ID_city")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -299,8 +298,7 @@ namespace TimViec.Migrations
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name_company")
                         .IsRequired()
@@ -343,7 +341,7 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -354,9 +352,6 @@ namespace TimViec.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Id_skill")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Id_type_work")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
@@ -386,7 +381,7 @@ namespace TimViec.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Type_workId")
+                    b.Property<int?>("Type_workID")
                         .HasColumnType("int");
 
                     b.Property<string>("img")
@@ -395,13 +390,13 @@ namespace TimViec.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("CompanyID");
 
                     b.HasIndex("RankId");
 
                     b.HasIndex("SkillId");
 
-                    b.HasIndex("Type_workId");
+                    b.HasIndex("Type_workID");
 
                     b.ToTable("Jobs");
                 });
@@ -458,9 +453,8 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Jobname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("JobID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -475,6 +469,8 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("JobID");
 
                     b.ToTable("StatusJobs");
                 });
@@ -508,15 +504,12 @@ namespace TimViec.Migrations
                     b.Property<DateTime>("Create_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id_job")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageCV")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int?>("JobId")
+                    b.Property<int>("JobID")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
@@ -530,7 +523,7 @@ namespace TimViec.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JobId");
+                    b.HasIndex("JobID");
 
                     b.ToTable("applications");
                 });
@@ -599,7 +592,9 @@ namespace TimViec.Migrations
                 {
                     b.HasOne("TimViec.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TimViec.Models.Rank", "Rank")
                         .WithMany()
@@ -611,7 +606,7 @@ namespace TimViec.Migrations
 
                     b.HasOne("TimViec.Models.Type_work", "Type_work")
                         .WithMany()
-                        .HasForeignKey("Type_workId");
+                        .HasForeignKey("Type_workID");
 
                     b.Navigation("Company");
 
@@ -622,11 +617,24 @@ namespace TimViec.Migrations
                     b.Navigation("Type_work");
                 });
 
+            modelBuilder.Entity("TimViec.Models.StatusJob", b =>
+                {
+                    b.HasOne("TimViec.Models.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Job");
+                });
+
             modelBuilder.Entity("TimViec.Models.applications", b =>
                 {
                     b.HasOne("TimViec.Models.Job", "Job")
                         .WithMany()
-                        .HasForeignKey("JobId");
+                        .HasForeignKey("JobID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Job");
                 });

@@ -1,0 +1,190 @@
+﻿@model List<TimViec.ViewModel.Details_CPN>
+@{
+    ViewData["Title"] = "Details_CPN";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+<style>
+    .form-container {
+        margin-left: 400px;
+        width: 800px;
+        margin-top: 100px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+</style>
+
+<section class="explore-work" id="explore">
+    <div class="container expanded">
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="section-heading">
+                    <h1 style="font-size: 35px">@item.CompanyName1</h1>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="left-image">
+                    <img style="width: 100%; height: 300px" src="~/LayoutTimViec/img/@item.Image" alt="Interior Design Work">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <ul>
+                        <li>
+                            <h4>Quy mô</h4>
+                            <ul class="info">
+                                <li>
+                                    <span>
+                                       @item.Company_Size
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <br />
+                            <h4>Loại hình</h4>
+                            <ul class="info">
+                                <li>
+                                    <span>
+                                       @item.Company_Type
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <br />
+                            <h4>Địa chỉ</h4>
+                            <ul class="info">
+                                <li>
+                                    <span class="float-start">
+                                       @item.Location
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <br />
+                            <h4>Email</h4>
+                            <ul class="info">
+                                <li>
+                                    <span class="float-start">
+                                       @item.Email
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <br />
+                            <h4>Mô tả</h4>
+                            <ul class="info">
+                                <li>
+                                    <span>
+                                        @item.Description
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <br />
+                            <h4>Quy trình phỏng vấn</h4>
+                            <ul class="info">
+                                <li>
+                                    <span>
+                                        Vòng 1: Nộp CV ứng tuyển
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        Vòng 2: Thực hiện bài khảo sát tại công ty
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        break;
+        }
+    </div>
+    </div>
+</section>
+
+<section id="explore" class="explore">
+    <div class="container">
+        <div class="section-header">
+            @foreach (var item in Model)
+            {
+                <h2>Danh sách công việc của công ty @item.CompanyName1</h2>
+                break;
+            }
+        </div><!--/.section-header-->
+        <div class="explore-content">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class=" col-md-4 col-sm-6">
+                        <div class="single-explore-item">
+                            <div class="single-explore-img">
+                                <img style="height: 256px; width: 100%" src="~/LayoutTimViec/img/@item.ImageJob" alt="explore image">
+                                <div class="single-explore-img-info">
+                                    <button onclick="window.location.href='#'">best rated</button>
+                                    <div class="single-explore-image-icon-box">
+                                        <ul>
+                                            <li>
+                                                <div class="single-explore-image-icon">
+                                                    <i class="fa fa-arrows-alt"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="single-explore-image-icon">
+                                                    <i class="fa fa-bookmark-o"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-explore-txt bg-theme-1">
+                                <h2><a href="#">@item.JobName</a></h2>
+                                <p class="explore-rating-price">
+                                    <span class="explore-rating">5.0</span>
+                                    <a href="#">@item.R1_Language</a>
+                                    <span class="explore-price-box">@item.R2_Language</span>
+                                    <a href="#">@item.R3_Language</a>
+                                </p>
+                                <div class="explore-person">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <p>
+                                                @item.Location
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="explore-open-close-part">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Chi tiết</a></button>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="explore-map-icon">
+                                                <a href="#"><i data-feather="map-pin"></i></a>
+                                                <a href="#"><i data-feather="upload"></i></a>
+                                                <a href="#"><i data-feather="heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->

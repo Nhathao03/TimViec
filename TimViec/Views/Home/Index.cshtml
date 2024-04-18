@@ -36,27 +36,13 @@
 			<div class="welcome-hero-form">
 				<div class="single-welcome-hero-form">
 					<h3>Tìm kiếm</h3>
-					<form action="index.html">
-						<input type="text" placeholder="Ví dụ: Java, Python, C#, Javascript" />
+					<form asp-action="Search" asp-controller="Home" method="post">
+						<input style="margin-left: -700px" type="text" placeholder="Ví dụ: Javascript, Hồ Chí Minh, Hà Nội" name="stringSearch" />
+							<button class="welcome-hero-btn" type="submit" style="margin-left: 900px; margin-top: -70px">
+								<a asp-area="" asp-controller="Home" asp-action="Search">Tìm kiếm</a><i data-feather="search"></i>
+							</button>
 					</form>
-					<div class="welcome-hero-form-icon">
-						<i class="flaticon-list-with-dots"></i>
-					</div>
 				</div>
-				<div class="single-welcome-hero-form">
-					<h3>Địa chỉ</h3>
-					<form action="index.html">
-						<input type="text" placeholder="Ví dụ: Hồ Chí Minh" />
-					</form>
-					<div class="welcome-hero-form-icon">
-						<i class="flaticon-gps-fixed-indicator"></i>
-					</div>
-				</div>
-			</div>
-			<div class="welcome-hero-serch">
-				<button class="welcome-hero-btn" onclick="window.location.href='#'">
-					Tìm kiếm  <i data-feather="search"></i>
-				</button>
 			</div>
 		</div>
 	</div>
@@ -135,7 +121,7 @@
 							<p>
 								@item.Description
 							</p>
-							<button class="welcome-hero-btn how-work-btn" ><a asp-action="Details_Company" asp-route-id="@item.Id">Chi tiết</a></button>
+							<button class="welcome-hero-btn how-work-btn" ><a asp-action="Details_CPN" asp-route-id="@item.Id">Chi tiết</a></button>
 						</div>
 					</div>
 				}
@@ -170,7 +156,7 @@
 				<li class="carousel__slide">
 					<figure>
 						<div>
-							<img src="~/LayoutTimViec/img/fireg.jpg" alt="SFVN">
+							<img style="width: 773px; height: 455px" src="~/LayoutTimViec/img/fireg.jpg" alt="SFVN">
 						</div>
 						<div style="width: 300px">
 							<h3>CÔNG TY CỔ PHẦN ĐẦU TƯ SFVN</h3>
@@ -182,7 +168,7 @@
 				<li class="carousel__slide">
 					<figure>
 						<div>
-							<img src="~/LayoutTimViec/img/fpt1.png" alt="SFVN">
+							<img style="width: 773px; height: 455px" src="~/LayoutTimViec/img/fpt1.png" alt="SFVN">
 						</div>
 						<div style="width: 300px">
 							<h3>CÔNG TY CỔ PHẦN ĐẦU TƯ SFVN</h3>
@@ -193,7 +179,7 @@
 				<li class="carousel__slide">
 					<figure>
 						<div>
-							<img src="~/LayoutTimViec/img/gtsc1.png" alt="SFVN">
+							<img style="width: 773px; height: 455px" src="~/LayoutTimViec/img/gtsc1.png" alt="SFVN">
 						</div>
 						<div style="width: 300px">
 							<h3>CÔNG TY CỔ PHẦN ĐẦU TƯ SFVN</h3>
@@ -204,7 +190,7 @@
 				<li class="carousel__slide">
 					<figure>
 						<div>
-							<img src="~/LayoutTimViec/img/viettel.jpg" alt="SFVN">
+							<img style="width: 773px; height: 455px" src="~/LayoutTimViec/img/viettel.jpg" alt="SFVN">
 						</div>
 						<div style="width: 300px">
 							<h3>CÔNG TY CỔ PHẦN ĐẦU TƯ SFVN</h3>
@@ -215,7 +201,7 @@
 				<li class="carousel__slide">
 					<figure>
 						<div>
-							<img src="~/LayoutTimViec/img/NEC.jpg" alt="SFVN">
+							<img style="width: 773px; height: 455px" src="~/LayoutTimViec/img/NEC.jpg" alt="SFVN">
 						</div>
 						<div style="width: 300px">
 							<h3>CÔNG TY CỔ PHẦN ĐẦU TƯ SFVN</h3>
@@ -263,7 +249,7 @@
 				<div class=" col-md-4 col-sm-6">
 					<div class="single-explore-item">
 						<div class="single-explore-img">
-							<img style="height: 256px" src="~/LayoutTimViec/img/@item.img" alt="explore image">
+							<img style="height: 256px; width: 100%" src="~/LayoutTimViec/img/@item.img" alt="explore image">
 							<div class="single-explore-img-info">
 								<button onclick="window.location.href='#'">best rated</button>
 								<div class="single-explore-image-icon-box">
@@ -326,37 +312,38 @@
 <!-- statistics strat -->
 <section id="statistics" class="statistics">
 	<div class="container">
+		<h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">Nhu cầu nhân lực IT Việt Nam 2022-2025</h1>
 		<div class="statistics-counter">
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">90 </div> <span>K+</span>
+						<div class="counter">530</div> <span>K+</span>
 					</div><!--/.statistics-content-->
-					<h3>listings</h3>
+					<h3>2022</h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">40</div> <span>k+</span>
+						<div class="counter">550</div> <span>k+</span>
 					</div><!--/.statistics-content-->
-					<h3>listing categories</h3>
+					<h3>2023</h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">65</div> <span>k+</span>
+						<div class="counter">650</div> <span>k+</span>
 					</div><!--/.statistics-content-->
-					<h3>visitors</h3>
+					<h3>2024</h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 			<div class="col-md-3 col-sm-6">
 				<div class="single-ststistics-box">
 					<div class="statistics-content">
-						<div class="counter">50</div> <span>k+</span>
+						<div class="counter">700</div> <span>k+</span>
 					</div><!--/.statistics-content-->
-					<h3>happy clients</h3>
+					<h3>2025</h3>
 				</div><!--/.single-ststistics-box-->
 			</div><!--/.col-->
 		</div><!--/.statistics-counter-->
@@ -364,60 +351,4 @@
 
 </section><!--/.counter-->
 <!-- statistics end -->
-<!--blog start -->
-<section id="blog" class="blog">
-	<div class="container">
-		<div class="section-header">
-			<h2>news and articles</h2>
-			<p>Always upto date with our latest News and Articles </p>
-		</div><!--/.section-header-->
-		<div class="blog-content">
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b1.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b2.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="single-blog-item">
-						<div class="single-blog-item-img">
-							<img src="../LayoutTimViec/images/blog/b3.jpg" alt="blog image">
-						</div>
-						<div class="single-blog-item-txt">
-							<h2><a href="#">How to find your Desired Place more quickly</a></h2>
-							<h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!--/.container-->
 
-</section><!--/.blog-->
-<!--blog end -->

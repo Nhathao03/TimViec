@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimViec.Models
 {
     public class Company
     {
-        public  int Id { get; set; }
+        public int Id { get; set; }
 
         [Required, StringLength(100)]
         public string Name_company { get; set; }
@@ -28,8 +29,9 @@ namespace TimViec.Models
         public string Company_type { get; set; }
 
         public DateTime? Date { get; set; }
+		[ForeignKey("City")]
 
-        public int? Id_city { get; set; }
+		public int? ID_city { get; set; }
 
         public City? city { get; set; }
     }

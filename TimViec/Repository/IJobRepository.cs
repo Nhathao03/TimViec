@@ -1,4 +1,5 @@
 ﻿using TimViec.Models;
+using TimViec.ViewModel;
 
 namespace TimViec.Respository
 {
@@ -9,5 +10,9 @@ namespace TimViec.Respository
 		Task AddAsync(Job job);
 		Task UpdateAsync(Job job);
 		Task DeleteAsync(int id);
+
+		List<SearchViewModel> Search(string stringSearch);
+		List<Details_CPN> Details_CPN(int ID);
+
 	}
 }

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TimViec.Models.Company>
+@{
+	ViewData["Title"] = "Job";
+	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+
+<section id="explore" class="explore">
+	<div class="container">
+		<div class="section-header">
+			<h2>Danh sách công ty</h2>
+
+		</div><!--/.section-header-->
+		<div class="explore-content">
+			<div class="row">
+
+				@foreach (var item in Model)
+				{
+					<div class=" col-md-4 col-sm-6">
+						<div class="single-explore-item">
+							<div class="single-explore-img">
+								<img style="height: 256px; width: 100%" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
+								<div class="single-explore-img-info">
+									<button onclick="window.location.href='#'">best rated</button>
+									<div class="single-explore-image-icon-box">
+										<ul>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-arrows-alt"></i>
+												</div>
+											</li>
+											<li>
+												<div class="single-explore-image-icon">
+													<i class="fa fa-bookmark-o"></i>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="single-explore-txt bg-theme-1">
+								<h2><a href="#">@item.Name_company</a></h2>
+								<p class="explore-rating-price">
+									<span class="explore-rating">5.0</span>
+									<a href="#">@item.Company_size</a>
+									<span class="explore-price-box">@item.Company_type</span>
+								</p>
+								<div class="explore-person">
+									<div class="row">
+										<div class="col-sm-10">
+											<p>
+												@item.Location
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="explore-open-close-part">
+									<div class="row">
+										<div class="col-sm-5">
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_CPN" asp-route-id="@item.Id">Chi tiết</a></button>
+										</div>
+										<div class="col-sm-7">
+											<div class="explore-map-icon">
+												<a href="#"><i data-feather="map-pin"></i></a>
+												<a href="#"><i data-feather="upload"></i></a>
+												<a href="#"><i data-feather="heart"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->
