@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Signing;
 using System.Security.Cryptography.Xml;
 using TimViec.Data;
 using TimViec.Models;
@@ -40,6 +41,28 @@ namespace TimViec.Repository
         public List<StatusJob> GetListJobByEmail(string email)
         {
             return _context.StatusJobs.Where(x => x.Email == email).ToList();
+        } 
+        
+        public List<string> GetJobnameByID(List<int> JobID)
+        {
+
+            var jobTitles = new List<string>();
+
+
+            foreach (var jobId in JobID )
+            {
+                var job = _context.Jobs.FirstOrDefault(j => j.Id == jobId);
+                if (job != null)
+                {
+                    jobTitles.Add(job.Title);
+                }
+            }
+
+            return jobTitles;
+
+            //var jobname =  _context.Jobs.FirstOrDefault(p => p.Id == JobID);
+
+            //return jobname()
         }
     }
 }

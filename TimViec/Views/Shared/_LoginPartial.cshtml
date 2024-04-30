@@ -7,9 +7,17 @@
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav">
+
+            @* User *@
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Cá nhân</a>
+                <a style="color: #fff" asp-area="Identity" asp-page="/Account/Manage/Index" title="Quản lý">Cá nhân</a>
             </li>
+
+            @* Admin *@
+            <li>
+                <a style="color: #fff" asp-area="Admin" asp-controller="Manager" asp-action="Job">Admin</a>
+            </li>
+
             <li style="margin-right: 10px">
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Đăng xuất</button>
             </li>
@@ -19,7 +27,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Đăng ký</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
+        <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a></li>
+        <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
     </ul>
 }

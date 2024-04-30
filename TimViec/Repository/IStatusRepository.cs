@@ -10,5 +10,7 @@ namespace TimViec.Repository
         Task UpdateAsync(StatusJob statusJob);
         Task DeleteAsync(int id);
         List<StatusJob> GetListJobByEmail(string email);
+
+        List<string> GetJobnameByID(List<int> JobID);
     }
 }

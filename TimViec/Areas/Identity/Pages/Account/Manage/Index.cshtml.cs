@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using TimViec.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TimViec.Areas.Identity.Pages.Account.Manage
 {
@@ -126,33 +128,5 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
-
-        //// Process the product update
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(ApplicationUser applicationUser, IFormFile imgCV)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (imgCV != null)
-        //        {
-        //            // Lưu hình ảnh đại diện
-        //            applicationUser.imgCV = await SaveImage(imgCV);
-        //        }
-        //        await _userManager.UpdateAsync(applicationUser);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(applicationUser);
-        //}
-
-        ////Luu anh
-        //private async Task<string> SaveImage(IFormFile image)
-        //{
-        //    var savePath = Path.Combine("wwwroot/images", image.FileName);
-        //    using (var fileStream = new FileStream(savePath, FileMode.Create))
-        //    {
-        //        await image.CopyToAsync(fileStream);
-        //    }
-        //    return "/images/" + image.FileName; // Trả về đường dẫn tương đối
-        //}
     }
 }

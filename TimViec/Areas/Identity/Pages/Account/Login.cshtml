@@ -5,7 +5,7 @@
     ViewData["Title"] = "Log in";
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
-
+<br />
 <body>
     <style>
         .col-md-4 {
@@ -91,9 +91,7 @@
                         <p>
                             <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký tài khoản</a>
                         </p>
-                        <p>
-                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                        </p>
+                        
                     </div>
                 </form>
             </section>

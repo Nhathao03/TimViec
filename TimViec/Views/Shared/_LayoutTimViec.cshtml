@@ -16,20 +16,7 @@
 	<!-- For favicon png -->
 	<link rel="shortcut icon" type="image/icon" href="../../LayoutTimViec/logo/logo.png" />
 
-	<!--font-awesome.min.css-->
-	<link rel="stylesheet" href="../../LayoutTimViec/css/font-awesome.min.css">
-									
-	<!--linear icon css-->			
-	<link rel="stylesheet" href="../../LayoutTimViec/css/linearicons.css">
-									
-	<!--animate.css-->				
-	<link rel="stylesheet" href="../../LayoutTimViec/css/animate.css">
-									
-	<!--flaticon.css-->				
-	<link rel="stylesheet" href="../../LayoutTimViec/css/flaticon.css">
-									
-	<!--slick.css-->				
-	<link rel="stylesheet" href="../../LayoutTimViec/css/slick.css">
+	
 	<link rel="stylesheet" href="../../LayoutTimViec/css/slick-theme.css">
 									
 	<!--bootstrap.min.css-->		
@@ -41,8 +28,7 @@
 	<!--style.css-->				
 	<link rel="stylesheet" href="../../LayoutTimViec/css/style.css">
 									
-	<!--responsive.css-->			
-	<link rel="stylesheet" href="../../LayoutTimViec/css/responsive.css">
+	
 </head>
 
 <body>
@@ -52,11 +38,11 @@
 	<!--header-top start -->
 
 	<header id="header-top" class="header-top">
-		<ul>
+		<ul style="background-color: rgba(1, 28, 55, 1);">
 			<li>
 				<div class="header-top-left" >
 					<ul>
-						<li class="select-opt">
+						<li class="select-opt" style="border:none">
 							<select name="language" id="language" onchange="translateEN()">
 								<option value="EN">English</option>
 								<option value="VN">Vietnamese</option>
@@ -64,11 +50,8 @@
 						</li>
 					</ul>
 				</div>							
-			</li>
-		
-						
-						<partial name="_LoginPartial"/>
-			
+			</li>				
+			<partial name="_LoginPartial"/>
 		</ul>
 
 	</header><!--/.header-top-->
@@ -86,19 +69,57 @@
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 							<i class="fa fa-bars"></i>
 						</button>
-						<a style="font-size: 60px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dev<span>IT</span></a>
+						<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/LayoutTimViec/logo/logo.png" style="width: 95px; height: 70px; margin-top: -40px" /></a>
 
 					</div><!--/.navbar-header-->
 					<!-- End Header Navigation -->
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-							<li class=" scroll active"><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-							<li class="scroll"><a href="#works">Top 3 công ty</a></li>
-							<li class="scroll"><a href="#explore">Công việc phổ biến</a></li>
-							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="Job">Công việc</a></li>
-							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="Company">Công ty</a></li>
-							<li class="scroll"><a asp-area="" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a></li>
+							<div class="dropdn">
+								<ul>
+									<li class="dropbtn"><a style="color: #fff" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+								</ul>
+							</div>
+							<div class="dropdn">
+								<ul>
+									<li class="dropbtn">Tìm việc làm</li>
+								</ul>
+								<div class="dropdn-content">
+									<a href="#">Kỹ năng</a>
+									<a href="#">Địa điểm</a>
+									<a href="#">Loại hình</a>
+									<a href="#">Cấp bậc</a>
+									<a href="#">Công ty</a>
+								</div>
+							</div>
+							<div class="dropdn">
+								<ul>
+									<li class="dropbtn">Top công ty IT Việt Nam</li>
+								</ul>
+								<div class="dropdn-content">
+									 <a href="#">Trong năm 2024</a>
+									 <a href="#">Trong năm 2023</a>
+									 <a href="#">Trong năm 2022</a>
+									 <a href="#">Trong năm 2021</a>
+									 <a href="#">Trong năm 2020</a>
+								</div>
+							</div>
+							<div class="dropdn">
+								<ul>
+								    <li class="dropbtn"><a style="color: #fff" asp-area="" asp-controller="Home" asp-action="Job">Công việc</a></li>
+								</ul>
+							</div>
+							<div class="dropdn">
+								<ul>
+									<li class="dropbtn"><a style="color: #fff" asp-area="" asp-controller="Home" asp-action="Company">Công ty</a></li>
+								</ul>
+							</div>
+							<div class="dropdn">
+								<ul>
+									<li class="dropbtn"><a style="color: #fff" asp-area="" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a></li>
+								</ul>  
+							</div>
 						</ul><!--/.nav -->
 					</div><!-- /.navbar-collapse -->
 				</div><!--/.container-->

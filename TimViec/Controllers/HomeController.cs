@@ -48,18 +48,13 @@ namespace TimViec.Controllers
 			return View(home);
 		}
 
-		////status job
-		//public async Task<IActionResult> CheckST()
-  //      {
-  //          var status = await _statusRepository.GetAllAsync();
-  //          return View(status); 
-  //      }
-        
         //status job
 		public IActionResult StJ()
         {
             var name = User.Identity.Name;
             var status = _statusRepository.GetListJobByEmail(email: name);
+
+
             return View(status); 
         }
 
