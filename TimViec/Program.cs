@@ -46,6 +46,13 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapRazorPages();
 
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+	  name: "areas",
+	  pattern: "{area:exists}/{controller=Manager}/{action=Job}/{id?}"
+	);
+});
 
 app.MapControllerRoute(
 	name: "default",
