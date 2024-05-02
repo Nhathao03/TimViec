@@ -15,6 +15,8 @@ namespace TimViec.Data
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<applications> applications { get; set; }
+
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Decentralize> Decentralizes { get; set; }
         public DbSet<Rank> Ranks { get; set; }
