@@ -1,0 +1,136 @@
+﻿@model TimViec.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Account_Admin";
+}
+
+<link href="~/Admin/css/profileAdmin.css" rel="stylesheet" />
+	<div class="container">
+		
+		 <div class="row gutters">
+		 	<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+		 		<div class="card h-100">
+		 			<div class="card-body">
+		 				<div class="account-settings">
+		 					<div class="user-profile">
+		 						<div class="user-avatar">
+		 							<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+		 						</div>
+							<h5 class="user-name">@Html.DisplayFor(model => model.Fullname)</h5>
+
+							<h6 class="user-email">@Html.DisplayFor(model => model.Email)</h6>
+		 					</div>
+		 					<div class="about">
+		 						<h5>About</h5>
+							<p>I'm @Html.DisplayFor(model => model.Fullname) Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 	<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+		 		<div class="card h-100">
+		 			<div class="card-body">
+		 				<div class="row gutters">
+		 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+		 						<h6 class="mb-2 text-primary">Chi tiết cá nhân</h6>
+		 					</div>
+		 				<from asp-action="accountUser" method="post">
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							<input type="hidden" asp-for="Id" />
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="Firstname" class="control-label">Họ</label>
+		 							<input asp-for="Firstname" class="form-control" placeholder="Nhập họ và tên" />
+		 							<span asp-validation-for="Firstname" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="Lastname" class="control-label">Tên</label>
+		 							<input asp-for="Lastname" class="form-control" placeholder="Nhập email" />
+		 							<span asp-validation-for="Lastname" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="Fullname" class="control-label">Họ và tên</label>
+		 							<input asp-for="Fullname" class="form-control" placeholder="Nhập họ và tên" />
+		 							<span asp-validation-for="Fullname" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="Email" class="control-label">Email</label>
+		 							<input asp-for="Email" class="form-control" placeholder="Nhập email" />
+		 							<span asp-validation-for="Email" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+		 							<input asp-for="PhoneNumber" class="form-control" placeholder="Nhập số điện thoại"/>
+		 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label asp-for="Birth">Ngày sinh</label>
+		 							<input asp-for="Birth" class="form-control" placeholder ="Nhập ngày sinh"/>
+		 							<span asp-validation-for="Birth" class="text-danger"></span>
+		 						</div>
+		 					</div>
+		 				</from>
+		 				</div>
+		 				<div class="row gutters">
+		 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+		 						<h6 class="mt-3 mb-2 text-primary">Address</h6>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label for="Street">Street</label>
+		 							<input type="name" class="form-control" id="Street" placeholder="Enter Street">
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label for="ciTy">City</label>
+		 							<input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label for="sTate">State</label>
+		 							<input type="text" class="form-control" id="sTate" placeholder="Enter State">
+		 						</div>
+		 					</div>
+		 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+		 						<div class="form-group">
+		 							<label for="zIp">Zip Code</label>
+		 							<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+		 						</div>
+		 					</div>
+		 				</div>
+		 				<br />
+		 				<div class="row gutters">
+		 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+		 						<div class="text-right">
+		 							<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+		 							<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+		 						</div>
+		 					</div>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 </div>
+	</div>
+	break;
+}
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
+

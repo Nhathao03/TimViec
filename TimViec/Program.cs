@@ -27,6 +27,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICompanyRespository, EFCompanyRespository>();
 builder.Services.AddScoped<IJobRespository, EFJobRespository>();
 builder.Services.AddScoped<IStatusRepository, EFStatusJobRepository>();
+builder.Services.AddScoped<IApplicationUser, EFApplicationUser>();
 
 var app = builder.Build();
 
@@ -39,7 +40,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(); 
 
 app.UseRouting();
 

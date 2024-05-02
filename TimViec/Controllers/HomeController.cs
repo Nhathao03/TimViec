@@ -88,7 +88,10 @@ namespace TimViec.Controllers
 		public async Task<IActionResult> Details_CPN(int id)
 		{
 			var result = _jobRepository.Details_CPN(id);
-
+			if (result == null)
+			{
+				return NotFound();
+			}
 			return View(result);
 		}
 
