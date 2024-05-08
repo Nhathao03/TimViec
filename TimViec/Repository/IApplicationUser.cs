@@ -1,4 +1,5 @@
 ﻿using TimViec.Models;
+using TimViec.ViewModel;
 
 namespace TimViec.Repository
 {
@@ -6,10 +7,11 @@ namespace TimViec.Repository
 	{
 		Task<IEnumerable<ApplicationUser>> GetAllAsync();
 		Task<ApplicationUser> GetByIdAsync(string id);
-		Task<ApplicationUser> GetByIdAsyncUser(int id);
+		Task<ApplicationUser> GetByIdAsyncUser(string id);
 		Task AddAsync(ApplicationUser applicationUser);
 		Task UpdateAsync(ApplicationUser applicationUser);
 		Task DeleteAsync(int id);
-		
+		List<ViewAccountUserModel> GetAllUser(string role);
+
 	}
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
@@ -16,20 +17,25 @@ namespace TimViec.Areas.Admin.Controllers
 		private readonly ICompanyRespository _companyRepository;
         private readonly IStatusRepository _statusRepository;
         private readonly IApplicationUser _applicationUser;
+		private readonly UserManager<ApplicationUser> _userManagers;
 
-        public ManagerController(ICompanyRespository companyRepository,
+		public ManagerController(ICompanyRespository companyRepository,
 			IJobRespository jobRepository,
 			IStatusRepository statusRepository,
-			IApplicationUser userManager)
+			IApplicationUser userManager,
+			UserManager<ApplicationUser> userManagers)
 		{
 			_jobRepository = jobRepository;
 			_companyRepository = companyRepository;
             _statusRepository = statusRepository;
             _applicationUser = userManager;
-        }
+			_userManagers = userManagers;
+		}
 
-        //Hiển thị tất cả công việc
-        public async Task<IActionResult> Job()
+
+	
+		//Hiển thị tất cả công việc
+		public async Task<IActionResult> Job()
         {
             var job = await _jobRepository.GetAllAsync();
             return View(job);
@@ -89,17 +95,19 @@ namespace TimViec.Areas.Admin.Controllers
         //***************************************************************************
 
 
-        //account user
+        //account admin
         public async Task<IActionResult> Account_Admin(string Id)
         {
-            var MAdmin = await _applicationUser.GetByIdAsync(Id);
+            
+            var user = await _userManagers.GetUserAsync(User);
+            //var MAdmin = await _applicationUser.GetByIdAsync(Id);
 
-			if (MAdmin == null)
+			if (user == null)
 			{
 				return NotFound();
 			}
 
-			return View(MAdmin);
+			return View(user);
         }
 
 		// Process the product update
@@ -109,12 +117,19 @@ namespace TimViec.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				await _applicationUser.UpdateAsync(applicationUser);
-				return RedirectToAction("Index");
+				return RedirectToAction("Job");
 			}
 			return View(applicationUser);
 		}
 
+        //account user
+        public async Task<IActionResult> Account_User(string role)
+        {
+            role = "User";
+            var result = _applicationUser.GetAllUser(role);
 
+            return View(result);
+        }
 
-	}
+    }
 }

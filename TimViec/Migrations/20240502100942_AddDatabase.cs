@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TimViec.Migrations
 {
     /// <inheritdoc />
-    public partial class Database : Migration
+    public partial class AddDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,19 +67,6 @@ namespace TimViec.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Decentralizes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Decentralizes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,15 +228,14 @@ namespace TimViec.Migrations
                     Company_size = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Company_type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ID_city = table.Column<int>(type: "int", nullable: true),
-                    cityId = table.Column<int>(type: "int", nullable: true)
+                    CityID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Companies_Cities_cityId",
-                        column: x => x.cityId,
+                        name: "FK_Companies_Cities_CityID",
+                        column: x => x.CityID,
                         principalTable: "Cities",
                         principalColumn: "Id");
                 });
@@ -393,9 +379,9 @@ namespace TimViec.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Companies_cityId",
+                name: "IX_Companies_CityID",
                 table: "Companies",
-                column: "cityId");
+                column: "CityID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CompanyID",
@@ -443,9 +429,6 @@ namespace TimViec.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Decentralizes");
 
             migrationBuilder.DropTable(
                 name: "StatusJobs");

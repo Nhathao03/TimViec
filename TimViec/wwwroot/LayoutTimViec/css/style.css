@@ -947,20 +947,17 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     100%  {bottom:7px;}
 }
 /*========================Thank you=================*/
-
+/* dropdn Button */
 .dropbtn {
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    background-color: rgba(1, 28, 55, 1);
 }
 
-.dropdn {
-    position: relative;
-    display: inline-block;
-}
-
+/* dropdn Content (Hidden by Default) */
 .dropdn-content {
     display: none;
     position: absolute;
@@ -970,22 +967,47 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     z-index: 1;
 }
 
+/* Show the dropdn menu on hover */
+.dropdn:hover .dropdn-content {
+    display: block;
+}
+
+/* Style the dropdn menu links */
 .dropdn-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    width: 172px;
 }
 
+    /* Add a grey background color to dropdn links on hover */
     .dropdn-content a:hover {
-        background-color: #f1f1f1
+        background-color: #ddd;
     }
-    
 
-.dropdn:hover .dropdn-content {
+/* Position the dropdn-submenu content */
+.dropdn-submenu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #f9f9f9;
+    width: 665px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Show the dropdn-submenu content on hover */
+.dropdn-submenu:hover .dropdn-submenu-content {
     display: block;
 }
 
-.dropdn:hover .dropbtn {
-    background-color: rgba(61, 96, 132, 1);
+.dropdn {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn:hover {
+    background-color: rgb(55, 104, 136);
 }
