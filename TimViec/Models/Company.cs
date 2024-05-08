@@ -31,8 +31,8 @@ namespace TimViec.Models
         public DateTime? Date { get; set; }
 		[ForeignKey("City")]
 
-		public int? ID_city { get; set; }
+		public int? CityID { get; set; }
 
-        public City? city { get; set; }
+        public City? City { get; set; }
     }
 }

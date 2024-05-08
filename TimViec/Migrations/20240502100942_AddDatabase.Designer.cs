@@ -12,8 +12,8 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240418074729_Database")]
-    partial class Database
+    [Migration("20240502100942_AddDatabase")]
+    partial class AddDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -270,6 +270,9 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CityID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Company_size")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -292,9 +295,6 @@ namespace TimViec.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ID_city")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -308,32 +308,11 @@ namespace TimViec.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("cityId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("cityId");
+                    b.HasIndex("CityID");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("TimViec.Models.Decentralize", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Decentralizes");
                 });
 
             modelBuilder.Entity("TimViec.Models.Job", b =>
@@ -584,11 +563,11 @@ namespace TimViec.Migrations
 
             modelBuilder.Entity("TimViec.Models.Company", b =>
                 {
-                    b.HasOne("TimViec.Models.City", "city")
+                    b.HasOne("TimViec.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("cityId");
+                        .HasForeignKey("CityID");
 
-                    b.Navigation("city");
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("TimViec.Models.Job", b =>

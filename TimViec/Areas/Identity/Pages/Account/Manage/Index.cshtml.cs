@@ -96,7 +96,7 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile imgCV)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -117,7 +117,10 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             user.Fullname = Input.Fullname;
             user.PhoneNumber = Input.PhoneNumber;
             user.Birth = (DateTime)Input.Birth;
-            user.avatar = Input.avatar;      
+            if(Input.imgCV != null)
+            {
+                user.imgCV = await SaveImage(imgCV);
+            }    
             user.imgCV = Input.imgCV;
 
 
@@ -126,6 +129,17 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Hồ sơ của bạn đã được cập nhật thành công !";
             return RedirectToPage();
+        }
+
+        //Luu anh
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "LayoutTimViec/img/" + image.FileName;
         }
 
     }

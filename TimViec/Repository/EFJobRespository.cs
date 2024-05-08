@@ -89,5 +89,6 @@ namespace TimViec.Respository
 
 		    return result.ToList();
         }
-	}
+
+    }
 }

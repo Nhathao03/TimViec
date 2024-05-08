@@ -16,12 +16,13 @@ namespace TimViec.Repository
 		{
 			return await _context.applicationUsers.ToListAsync();
 		}
+
 		public async Task<ApplicationUser> GetByIdAsync(string Id)
 		{
 			return await _context.applicationUsers.FindAsync(Id);
 		}
 
-		public async Task<ApplicationUser> GetByIdAsyncUser(int Id)
+		public async Task<ApplicationUser> GetByIdAsyncUser(string Id)
 		{
 			return await _context.applicationUsers.FindAsync(Id);
 		}
@@ -40,7 +41,22 @@ namespace TimViec.Repository
 			var user = await _context.applicationUsers.FindAsync(id);
 			_context.applicationUsers.Remove(user);
 			await _context.SaveChangesAsync();
+		}
 
+		public List<ViewAccountUserModel> GetAllUser(string role)
+		{
+			var result = from a in _context.applicationUsers
+						 join ur in _context.UserRoles on a.Id equals ur.UserId
+                         join r in _context.Roles on ur.RoleId equals r.Id
+                         where (r.Name.Contains(role))
+						 select new ViewAccountUserModel
+						 {
+							 fullname = a.Fullname,
+							 email = a.Email,
+							 Birth = a.Birth,
+							 phonenumber = a.PhoneNumber,
+						 };
+			return result.ToList();
 		}
 	}
 }

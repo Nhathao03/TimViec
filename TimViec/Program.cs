@@ -28,6 +28,10 @@ builder.Services.AddScoped<ICompanyRespository, EFCompanyRespository>();
 builder.Services.AddScoped<IJobRespository, EFJobRespository>();
 builder.Services.AddScoped<IStatusRepository, EFStatusJobRepository>();
 builder.Services.AddScoped<IApplicationUser, EFApplicationUser>();
+builder.Services.AddScoped<IRankRespository, EFRankRespository>();
+builder.Services.AddScoped<ICityRespository, EFCityRespository>();
+builder.Services.AddScoped<IType_WorkRespository, EFType_WorkRespository>();
+builder.Services.AddScoped<ISkillRespository, EFSkillRespository>();
 
 var app = builder.Build();
 

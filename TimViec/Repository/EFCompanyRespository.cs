@@ -34,7 +34,8 @@ namespace TimViec.Respository
             var company = await _context.Companies.FindAsync(id);
             _context.Companies.Remove(company);
             await _context.SaveChangesAsync();
-
         }
+
+
     }
 }

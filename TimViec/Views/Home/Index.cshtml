@@ -5,15 +5,6 @@
 	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
-@* @{
-	var jobs = Model.Jobs;
-	var companies = Model.Companies;
-
-	foreach (var item in jobs)
-	{
-		
-	}
-} *@
 <!--font-awesome.min.css-->
 <link rel="stylesheet" href="../../LayoutTimViec/css/font-awesome.min.css">
 
@@ -46,10 +37,10 @@
 			<div class="welcome-hero-form">
 				<div class="single-welcome-hero-form">
 					<h3>Tìm kiếm</h3>
-					<form asp-action="Search" asp-controller="Home" method="post">
+					<form asp-action="Search" asp-controller="Home" method="get">
 						<input style="margin-left: -700px" type="text" placeholder="Ví dụ: Javascript, Hồ Chí Minh, Hà Nội" name="stringSearch" />
-							<button class="welcome-hero-btn" type="submit" style="margin-left: 900px; margin-top: -70px">
-								<a asp-area="" asp-controller="Home" asp-action="Search">Tìm kiếm</a><i data-feather="search"></i>
+							<button class="welcome-hero-btn" type="submit" style="margin-left: 900px; margin-top: -70px" >
+								Tìm kiếm<i data-feather="search"></i>
 							</button>
 					</form>
 				</div>
