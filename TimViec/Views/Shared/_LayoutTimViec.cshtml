@@ -28,7 +28,6 @@
 									
 	<!--style.css-->				
 	<link rel="stylesheet" href="../../LayoutTimViec/css/style.css">
-									
 	
 </head>
 
@@ -78,13 +77,13 @@
 					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 							<div class="dropdn">
-								<button class="dropbtn"><a style="color: white" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></button>
+								<button class="dropbtn"><a style="color: white" asp-controller="Home" asp-action="Index">Trang chủ</a></button>
 							</div>
 							<div class="dropdn">
 								<button class="dropbtn">Tìm việc làm</button>
 							<div class="dropdn-content">
 								<div class="dropdn-submenu">
-									<a href="#">Skill</a>
+									<a href="#">Kỹ năng</a>
 									<div class="dropdn-submenu-content">
 										<table>
 											@if(ViewBag.Skill != null && ViewBag.Skill.Count > 0)
@@ -92,17 +91,11 @@
 												string dataMenu = string.Empty;
 												for(int i=0; i <  ViewBag.Skill.Count; i++)
 												{
-													if(i == 0 || i%4 == 0)
+													if(i%4 == 0)
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a>"+ViewBag.Skill[i]+"</a></t>";
-													
-
-													if(i%4 == 0)
-													{
-														dataMenu += "</tr>";
-													}
+													dataMenu += "<td><a style=cursor:pointer href='Home/ChoeseSearchSkill' >"+ViewBag.Skill[i]+"</a></td>";												
 												}
 												 @Html.Raw(dataMenu);
 											}
@@ -122,7 +115,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a>"+ViewBag.Type[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Type[i]+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -148,7 +141,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a>"+ViewBag.Rank[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Rank[i]+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -174,7 +167,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a>"+ViewBag.Location[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Location[i]+"</a></t>";
 													
 
 													if(i%4 == 0)

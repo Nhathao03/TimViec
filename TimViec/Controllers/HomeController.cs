@@ -118,6 +118,7 @@ namespace TimViec.Controllers
             ViewBag.Type = type_work.Select(t => t.Type).ToList();
             ViewBag.Rank = rank.Select(r => r.rank).ToList();
             ViewBag.Location = city.Select(c => c.Name_city).ToList();
+
             var companies = await _companyRepository.GetAllAsync();
 			return View(companies);
 		}
@@ -155,9 +156,13 @@ namespace TimViec.Controllers
 
 		//***************************************************************************************
 		//all Job
-		public async Task<IActionResult> CreateApplication()
+		public async Task<IActionResult> CreateApplication(int id)
 		{
+			
 			var status = await _statusRepository.GetAllAsync();
+			var job = await _jobRepository.GetByIdAsync(id);
+			ViewBag.GetJob = job;
+			
             if (status == null)
             {
                 return NotFound();
@@ -166,19 +171,21 @@ namespace TimViec.Controllers
 		}
 		// add status job
 		[HttpPost]
-		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV)
+		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV, int id)
 		{
+			statusJob.ID = 0;
+			statusJob.JobID = id;
 			if (imgCV != null)
 			{
 				// save imgae
 				statusJob.imgCV = await SaveImage(imgCV);
 			}
 
-			statusJob.Status = (int)Constants.StatusJob.Inprogress;
+            statusJob.Status = (int)Constants.StatusJob.Inprogress;
+
 			await _statusRepository.AddAsync(statusJob);
 			return RedirectToAction(nameof(Index));
 
-			return View(statusJob);
 		}
 
 		//Luu anh
@@ -192,8 +199,7 @@ namespace TimViec.Controllers
 			return "LayoutTimViec/img/" + image.FileName;
 		}
 
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

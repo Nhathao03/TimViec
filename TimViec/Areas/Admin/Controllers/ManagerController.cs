@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
@@ -32,10 +34,30 @@ namespace TimViec.Areas.Admin.Controllers
 			_userManagers = userManagers;
 		}
 
+        //Index
+        public async Task<IActionResult> Index()
+        {
+            var CountCompany = await _companyRepository.GetAllAsync();
+            int CountC = (from c in CountCompany select c.Id).Count();
 
-	
-		//Hiển thị tất cả công việc
-		public async Task<IActionResult> Job()
+            string role = "User";
+            var CountUser = _applicationUser.GetAllUser(role);
+            int CountU = (from u in CountUser select u.email).Count();
+
+            //var MiddleSalary = await _jobRepository.GetAllAsync();
+            //int CountS = ( from s in MiddleSalary select s.Salary).Count();
+            //for ( int i = 0; i< CountS; i++)
+            //{
+            //    MiddleSalary.
+            //}
+
+            ViewBag.CountCompany = CountC;
+            ViewBag.CountUser = CountU;
+            return View();
+        }
+
+        //Hiển thị tất cả công việc
+        public async Task<IActionResult> Job()
         {
             var job = await _jobRepository.GetAllAsync();
             return View(job);
@@ -100,7 +122,6 @@ namespace TimViec.Areas.Admin.Controllers
         {
             
             var user = await _userManagers.GetUserAsync(User);
-            //var MAdmin = await _applicationUser.GetByIdAsync(Id);
 
 			if (user == null)
 			{
@@ -114,14 +135,27 @@ namespace TimViec.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser)
 		{
-			if (ModelState.IsValid)
-			{
-				await _applicationUser.UpdateAsync(applicationUser);
-				return RedirectToAction("Job");
-			}
-			return View(applicationUser);
+  //          if (avatar != null)
+  //          {
+  //              // Lưu hình ảnh đại diện
+  //              applicationUser.avatar = await SaveImage(avatar);
+  //          }
+            await _applicationUser.UpdateAsync(applicationUser);
+            return RedirectToAction("Account_Admin");
 		}
 
+        //Luu anh
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "LayoutTimViec/img/" + image.FileName;
+        }
+
+        //*********************************************************************************************
         //account user
         public async Task<IActionResult> Account_User(string role)
         {

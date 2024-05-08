@@ -61,7 +61,7 @@ namespace TimViec.Respository
                          };
 		    return result.ToList();
         }
-        
+
         public List<Details_CPN> Details_CPN(int ID)
 		{
             var result = from j in _context.Jobs

@@ -21,11 +21,11 @@ namespace TimViec.Models
         [Required]
         public string Description { get; set; }
 
-        public int? Id_skill { get; set; }
+        public int? SkillID { get; set; }
 
         public Skill? Skill { get; set; }
 
-        public int? Id_rank { get; set; }
+        public int? RankID { get; set; }
 
         public Rank? Rank { get; set; }
 

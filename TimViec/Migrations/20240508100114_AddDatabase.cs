@@ -251,10 +251,8 @@ namespace TimViec.Migrations
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Id_skill = table.Column<int>(type: "int", nullable: true),
-                    SkillId = table.Column<int>(type: "int", nullable: true),
-                    Id_rank = table.Column<int>(type: "int", nullable: true),
-                    RankId = table.Column<int>(type: "int", nullable: true),
+                    SkillID = table.Column<int>(type: "int", nullable: true),
+                    RankID = table.Column<int>(type: "int", nullable: true),
                     img = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     R1_Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     R2_Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -271,13 +269,13 @@ namespace TimViec.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Jobs_Ranks_RankId",
-                        column: x => x.RankId,
+                        name: "FK_Jobs_Ranks_RankID",
+                        column: x => x.RankID,
                         principalTable: "Ranks",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Jobs_Skills_SkillId",
-                        column: x => x.SkillId,
+                        name: "FK_Jobs_Skills_SkillID",
+                        column: x => x.SkillID,
                         principalTable: "Skills",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -288,39 +286,16 @@ namespace TimViec.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "applications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    JobID = table.Column<int>(type: "int", nullable: false),
-                    ImageCV = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Create_at = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_applications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_applications_Jobs_JobID",
-                        column: x => x.JobID,
-                        principalTable: "Jobs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "StatusJobs",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     Fullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    imgCV = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    imgCV = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     JobID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -333,11 +308,6 @@ namespace TimViec.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_applications_JobID",
-                table: "applications",
-                column: "JobID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -389,14 +359,14 @@ namespace TimViec.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_RankId",
+                name: "IX_Jobs_RankID",
                 table: "Jobs",
-                column: "RankId");
+                column: "RankID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_SkillId",
+                name: "IX_Jobs_SkillID",
                 table: "Jobs",
-                column: "SkillId");
+                column: "SkillID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_Type_workID",
@@ -412,9 +382,6 @@ namespace TimViec.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "applications");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

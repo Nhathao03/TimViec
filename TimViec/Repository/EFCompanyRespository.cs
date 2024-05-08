@@ -1,6 +1,7 @@
 ﻿using TimViec.Data;
 using TimViec.Models;
 using Microsoft.EntityFrameworkCore;
+using TimViec.ViewModel;
 
 namespace TimViec.Respository
 {
@@ -35,7 +36,5 @@ namespace TimViec.Respository
             _context.Companies.Remove(company);
             await _context.SaveChangesAsync();
         }
-
-
     }
 }

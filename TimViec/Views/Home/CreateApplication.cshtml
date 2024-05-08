@@ -5,13 +5,12 @@
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 <br />
-
-
+<p style="text-align: center; font-size: 30px; color: black">Nộp đơn ứng tuyển cho @ViewBag.GetJob.Title </p>
 <div class="row">
     <div class="col-md-4" style="margin-left: 550px">
         <form asp-action="CreateApplication" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <p style="text-align: center; font-size: 30px; color: black">Nộp đơn ứng tuyển</p>
+            
             <div class="form-group">
                 <label asp-for="Email" class="control-label" style="color: black">Email</label>
                 <input asp-for="Email" class="form-control" />
