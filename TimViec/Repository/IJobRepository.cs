@@ -12,7 +12,14 @@ namespace TimViec.Respository
 		Task DeleteAsync(int id);
 
 		List<SearchViewModel> Search(string stringSearch);
-		List<Details_CPN> Details_CPN(int ID);
+
+
+		List<ChoeseSearchSkill> ChoeseSearchSkills(int ID);
+
+		List<ChoeseSearchType> ChoeseSearchType(int ID);
+
+		List<ChoeseSearchRank> ChoeseSearchRank(int ID);
+		List<ChoeseSearchLocation> ChoeseSearchLocation(int ID);
 
 	}
 }

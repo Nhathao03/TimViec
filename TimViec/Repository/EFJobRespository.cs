@@ -60,36 +60,82 @@ namespace TimViec.Respository
                              Image = j.img,
                          };
 		    return result.ToList();
+
         }
 
-        public List<Details_CPN> Details_CPN(int ID)
+       
+
+		public List<ChoeseSearchSkill> ChoeseSearchSkills(int ID)
 		{
-            var result = from j in _context.Jobs
+			var result = from s in _context.Skills
+				         join j in _context.Jobs  on s.Id equals j.SkillID
+						 where (j.SkillID.Equals(ID))
+						 select new ChoeseSearchSkill
+						 {
+							 R1_Language = j.R1_Language,
+							 R2_Language = j.R2_Language,
+							 R3_Language = j.R3_Language,
+							 Id = j.Id,
+                             NameJob = j.Title,
+                             Image = j.img,
+                             SkillName = s.Skills,
+						 };
+			return result.ToList();
+		}
+
+		public List<ChoeseSearchType> ChoeseSearchType(int ID)
+		{
+			var result = from t in _context.Type_Works
+						 join j in _context.Jobs on t.Id equals j.Type_workID
+						 where (j.Type_workID.Equals(ID))
+						 select new ChoeseSearchType
+						 {
+							 R1_Language = j.R1_Language,
+							 R2_Language = j.R2_Language,
+							 R3_Language = j.R3_Language,
+							 Id = j.Id,
+							 NameJob = j.Title,	
+                             Type = t.Type,
+							 Image = j.img, 
+						 };
+			return result.ToList();
+		}
+
+		public List<ChoeseSearchRank> ChoeseSearchRank(int ID)
+		{
+			var result = from r in _context.Ranks
+						 join j in _context.Jobs on r.Id equals j.RankID
+						 where (r.Id.Equals(ID))
+						 select new ChoeseSearchRank
+						 {
+							 R1_Language = j.R1_Language,
+							 R2_Language = j.R2_Language,
+							 R3_Language = j.R3_Language,
+							 Id = j.Id,
+							 NameJob = j.Title,
+							 Rankname = r.rank,
+							 Image = j.img,
+						 };
+			return result.ToList();
+		}
+
+		public List<ChoeseSearchLocation> ChoeseSearchLocation(int ID)
+		{
+			var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
-                         where (c.Id.Equals(ID))
-                         select new Details_CPN
-                         {
-                             CompanyName1 = c.Name_company,
-                             JobName = j.Title,
-                             Email = c.Email,
-                             Company_Size = c.Company_size,
-                             Company_Type = c.Company_type,
-                             R1_Language = j.R1_Language,
-                             R2_Language = j.R2_Language,
-                             R3_Language = j.R3_Language,
-                             Description = c.Description,
-                             DescriptionJob = j.Description,
-                             Location = c.Location,
-                             LocationJob = j.Location,
-                             Image = c.Image,
-                             ImageJob = j.img,
-                             IDJob = j.Id
-                             
-                         };
-
-
-		    return result.ToList();
-        }
-
-    }
+						 join city in _context.Cities on c.CityID equals city.Id
+						 where (c.CityID.Equals(ID))
+						 select new ChoeseSearchLocation
+						 {
+							 R1_Language = j.R1_Language,
+							 R2_Language = j.R2_Language,
+							 R3_Language = j.R3_Language,
+							 Id = j.Id,
+							 NameJob = j.Title,
+							 Cityname = city.Name_city,
+							 Image = j.img,
+						 };
+			return result.ToList();
+		}
+	}
 }

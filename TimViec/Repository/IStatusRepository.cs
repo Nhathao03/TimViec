@@ -1,4 +1,5 @@
 ﻿using TimViec.Models;
+using TimViec.ViewModel;
 
 namespace TimViec.Repository
 {
@@ -9,8 +10,8 @@ namespace TimViec.Repository
         Task AddAsync(StatusJob statusJob);
         Task UpdateAsync(StatusJob statusJob);
         Task DeleteAsync(int id);
-        List<StatusJob> GetListJobByEmail(string email);
+        List<StatusViewModel> GetListJobByEmail(string email);
 
-        List<string> GetJobnameByID(List<int> JobID);
+
     }
 }

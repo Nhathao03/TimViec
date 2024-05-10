@@ -1,0 +1,56 @@
+﻿@model List<TimViec.ViewModel.ChoeseSearchSkill>
+@{
+    ViewData["Title"] = "Job";
+    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+}
+
+<section id="explore" class="explore">
+	<div class="container">
+		<div class="section-header">
+			<h2><b>Công việc</b></h2>
+		</div><!--/.section-header-->
+		<div class="explore-content">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class=" col-md-4 col-sm-6">
+						<div class="single-explore-item">
+							<div class="single-explore-img">
+								<img style="height: 256px; width: 100%" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
+								<div class="single-explore-img-info">
+									<button onclick="window.location.href='#'" style="width: 35px;height: 37px;">
+										<img src="~/LayoutTimViec/img/save.png" />
+									</button>
+								</div>
+							</div>
+							<div class="single-explore-txt bg-theme-1">
+								<h2><a href="#">@item.NameJob</a></h2><br />
+								<span class="explore-rating" style="width: 70px">@item.SkillName</span>
+								<p class="explore-rating-price">
+									<a href="#">@item.R1_Language</a>
+									<span class="explore-price-box">@item.R2_Language</span>
+									<a href="#">@item.R3_Language</a>
+								</p>
+								<div class="explore-open-close-part">
+									<div class="row">
+										<div class="col-sm-5">
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Chi tiết</a></button>
+										</div>
+										<div class="col-sm-7">
+											<div class="explore-map-icon">
+												<a href="#"><i data-feather="map-pin"></i></a>
+												<a href="#"><i data-feather="upload"></i></a>
+												<a href="#"><i data-feather="heart"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				}
+			</div>
+		</div>
+	</div><!--/.container-->
+</section><!--/.explore-->
+<!--explore end -->
