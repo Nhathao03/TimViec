@@ -39,42 +39,24 @@ namespace TimViec.Repository
             await _context.SaveChangesAsync();
         }
 
-        public List<StatusJob> GetListJobByEmail(string email)
+        public List<StatusViewModel> GetListJobByEmail(string email)
         {
-
-            //var Namecompany = from j in _context.Jobs
-            //                  join s in _context.StatusJobs on j.Id equals s.JobID
-            //                  select new StatusJob
-            //                  {
-            //                      Email = s.Email,
-            //                      Fullname = s.Fullname,
-            //                      imgCV = s.imgCV,
-            //                      Convert.ToString(JobID) = j.Title,
-            //                      Note = s.Note,
-            //                      Status = s.Status,
-            //                  };
-
-
-            // return Namecompany.Where(x => x.Email == email).ToList();                 
-            return _context.StatusJobs.Where(x => x.Email == email).ToList();
+            var status = from j in _context.Jobs
+                         join s in _context.StatusJobs on j.Id equals s.JobID
+                         where (s.Email.Equals(email))
+                         select new StatusViewModel
+                         {
+                             Name = s.Fullname,
+                             NameJob = j.Title,
+                             Email = s.Email,
+                             imgCV = s.imgCV,
+                             Note = s.Note,
+                             Id = s.ID,
+                             Status = s.Status,
+                         };
+            return status.Where(x => x.Email == email).ToList();
         }
 
-        public List<string> GetJobnameByID(List<int> JobID)
-        {
-
-            var jobTitles = new List<string>();
-
-
-            foreach (var jobId in JobID)
-            {
-                var job = _context.Jobs.FirstOrDefault(j => j.Id == jobId);
-                if (job != null)
-                {
-                    jobTitles.Add(job.Title);
-                }
-            }
-
-            return jobTitles;
-        }
+        
     }
 }

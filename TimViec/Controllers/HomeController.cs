@@ -42,16 +42,26 @@ namespace TimViec.Controllers
 			_rankRespository = rankRespository;
 		}
 
-		// display item
-		public async Task<IActionResult> Index()
+		private async Task DisplayDropdown()
 		{
-			var jobs = await _jobRepository.GetAllAsync();
-			var companies = await _companyRepository.GetAllAsync();
 			var rank = await _rankRespository.GetAllAsync();
 			var skill = await _skillRespository.GetAllAsync();
 			var type_work = await _WorkRespository.GetAllAsync();
 			var city = await _cityRespository.GetAllAsync();
 
+			ViewBag.Skill = skill.ToList();
+			ViewBag.Type = type_work.ToList();
+			ViewBag.Rank = rank.ToList();
+			ViewBag.Location = city.ToList();
+		}
+
+		// display item
+		public async Task<IActionResult> Index()
+		{
+			var jobs = await _jobRepository.GetAllAsync();
+			var companies = await _companyRepository.GetAllAsync();
+
+			await DisplayDropdown();
 
 			// get list companies
 
@@ -63,17 +73,7 @@ namespace TimViec.Controllers
 			{
 				Jobs = jobs,
 				Companies = companies,
-				Cities = city,
-				ranks = rank,
-				Type_Works = type_work,
-				skills = skill,
 			};
-
-
-			ViewBag.Skill = skill.Select(s => s.Skills).ToList();
-			ViewBag.Type = type_work.Select(t => t.Type).ToList();
-			ViewBag.Rank = rank.Select(r => r.rank).ToList();
-			ViewBag.Location = city.Select(c => c.Name_city).ToList();
 
 			return View(home);
 		}
@@ -83,8 +83,6 @@ namespace TimViec.Controllers
 		{
 			var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
-		
-	
 
 			return View(status);
 		}
@@ -93,17 +91,10 @@ namespace TimViec.Controllers
 		//all Job
 		public async Task<IActionResult> Job()
 		{
-            var rank = await _rankRespository.GetAllAsync();
-            var skill = await _skillRespository.GetAllAsync();
-            var type_work = await _WorkRespository.GetAllAsync();
-            var city = await _cityRespository.GetAllAsync();
 
-            ViewBag.Skill = skill.Select(s => s.Skills).ToList();
-            ViewBag.Type = type_work.Select(t => t.Type).ToList();
-            ViewBag.Rank = rank.Select(r => r.rank).ToList();
-            ViewBag.Location = city.Select(c => c.Name_city).ToList();
+			await DisplayDropdown();
 
-            var job = await _jobRepository.GetAllAsync();
+			var job = await _jobRepository.GetAllAsync();
 			return View(job);
 		}
 
@@ -115,12 +106,12 @@ namespace TimViec.Controllers
             var type_work = await _WorkRespository.GetAllAsync();
             var city = await _cityRespository.GetAllAsync();
 
-            ViewBag.Skill = skill.Select(s => s.Skills).ToList();
-            ViewBag.Type = type_work.Select(t => t.Type).ToList();
-            ViewBag.Rank = rank.Select(r => r.rank).ToList();
-            ViewBag.Location = city.Select(c => c.Name_city).ToList();
+			ViewBag.Skill = skill.ToList();
+			ViewBag.Type = type_work.ToList();
+			ViewBag.Rank = rank.ToList();
+			ViewBag.Location = city.ToList();
 
-            var companies = await _companyRepository.GetAllAsync();
+			var companies = await _companyRepository.GetAllAsync();
 			return View(companies);
 		}
 
@@ -137,7 +128,7 @@ namespace TimViec.Controllers
 		public async Task<IActionResult> Details_CPN(int id)
 		{
 			
-			var result = _jobRepository.Details_CPN(id);
+			var result = _companyRepository.Details_CPN(id);
 			if (result == null)
 			{
 				return NotFound();
@@ -223,7 +214,35 @@ namespace TimViec.Controllers
 
 		}
 
+		//**********************************************************************************************
+		//Search in Dropdown
+		public async Task<IActionResult> ChoeseSearchSkill(int ID)
+		{
+			var skill = _jobRepository.ChoeseSearchSkills(ID);
 
+			return View(skill);
+		}
+
+		public async Task<IActionResult> ChoeseSearchType(int ID)
+		{
+			var type = _jobRepository.ChoeseSearchType(ID);
+
+			return View(type);
+		}
+
+		public async Task<IActionResult> ChoeseSearchRank(int ID)
+		{
+			var rank = _jobRepository.ChoeseSearchRank(ID);
+
+			return View(rank);
+		}
+
+		public async Task<IActionResult> ChoeseSearchLocation(int ID)
+		{
+			var location = _jobRepository.ChoeseSearchLocation(ID);
+
+			return View(location);
+		}
 		//*******************************************************************************************
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

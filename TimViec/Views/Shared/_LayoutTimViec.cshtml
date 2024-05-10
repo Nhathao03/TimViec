@@ -95,7 +95,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<td><a style=cursor:pointer href='Home/ChoeseSearchSkill'  data-id='i'>"+ViewBag.Skill[i]+"</a></td>";												
+													dataMenu += "<td><a style=cursor:pointer href='/Home/ChoeseSearchSkill/"+ViewBag.Skill[i].Id+"'>"+ViewBag.Skill[i].Skills+"</a></td>";												
 												}
 												 @Html.Raw(dataMenu);
 											}
@@ -115,7 +115,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Type[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer href='/Home/ChoeseSearchType/"+ViewBag.Type[i].Id+"'>"+ViewBag.Type[i].Type+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -141,7 +141,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Rank[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer  href='/Home/ChoeseSearchRank/"+ViewBag.Rank[i].Id+"'>"+ViewBag.Rank[i].rank+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -167,7 +167,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer>"+ViewBag.Location[i]+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer  href='/Home/ChoeseSearchLocation/"+ViewBag.Location[i].Id+"'>"+ViewBag.Location[i].Name_city+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -180,7 +180,6 @@
 										</table>
 									</div>
 								</div>
-								<a href="#">Công ty</a>
 								<a href="#">Đăng bài tuyển dụng</a>
 							</div>
 						</div>

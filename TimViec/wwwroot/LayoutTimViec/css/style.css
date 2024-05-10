@@ -480,14 +480,14 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     visibility:visible;
     bottom:0px
 }
-.single-explore-img-info button{
+.single-explore-img-info button {
     position: absolute;
     bottom: 15px;
     left: 15px;
     width: 83px;
     height: 21px;
     line-height: 21px;
-    background: #ff545a;
+    background: #95c0ff;
     border-radius: 3px;
     color: #fcfcfc;
     text-transform: capitalize;
@@ -993,7 +993,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     left: 100%;
     top: 0;
     background-color: #f9f9f9;
-    width: 665px;
+    width: 688px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -1010,4 +1010,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 
 .dropbtn:hover {
     background-color: rgb(55, 104, 136);
+}
+
+.hidenForm{
+    display: none;
 }
