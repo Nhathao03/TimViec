@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TimViec.Models;
 using static System.Net.Mime.MediaTypeNames;
+using static TimViec.Helpers.Constants;
 
 namespace TimViec.Areas.Identity.Pages.Account.Manage
 {
@@ -96,7 +97,7 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(IFormFile imgCV)
+        public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -110,21 +111,14 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            
-
             user.Firstname = Input.Firstname;
             user.Lastname = Input.Lastname;
             user.Fullname = Input.Fullname;
             user.PhoneNumber = Input.PhoneNumber;
             user.Birth = (DateTime)Input.Birth;
-            if(Input.imgCV != null)
-            {
-                user.imgCV = await SaveImage(imgCV);
-            }    
             user.imgCV = Input.imgCV;
 
-
-            await _userManager.UpdateAsync(user);
+			await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Hồ sơ của bạn đã được cập nhật thành công !";

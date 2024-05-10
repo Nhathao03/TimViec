@@ -17,12 +17,7 @@ namespace TimViec.Repository
 			return await _context.applicationUsers.ToListAsync();
 		}
 
-		public async Task<ApplicationUser> GetByIdAsync(string Id)
-		{
-			return await _context.applicationUsers.FindAsync(Id);
-		}
-
-		public async Task<ApplicationUser> GetByIdAsyncUser(string Id)
+		public async Task<ApplicationUser> GetByIdAsync(int Id)
 		{
 			return await _context.applicationUsers.FindAsync(Id);
 		}

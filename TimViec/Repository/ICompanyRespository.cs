@@ -1,4 +1,5 @@
 ﻿using TimViec.Models;
+using TimViec.ViewModel;
 
 namespace TimViec.Respository
 {
@@ -9,5 +10,6 @@ namespace TimViec.Respository
         Task AddAsync(Company company);
         Task UpdateAsync(Company company);
         Task DeleteAsync(int id);
+        
     }
 }

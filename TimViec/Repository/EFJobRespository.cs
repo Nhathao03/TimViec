@@ -61,7 +61,7 @@ namespace TimViec.Respository
                          };
 		    return result.ToList();
         }
-        
+
         public List<Details_CPN> Details_CPN(int ID)
 		{
             var result = from j in _context.Jobs
@@ -82,8 +82,9 @@ namespace TimViec.Respository
                              Location = c.Location,
                              LocationJob = j.Location,
                              Image = c.Image,
-                             ImageJob = j.img
-
+                             ImageJob = j.img,
+                             IDJob = j.Id
+                             
                          };
 
 

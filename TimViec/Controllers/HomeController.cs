@@ -83,7 +83,8 @@ namespace TimViec.Controllers
 		{
 			var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
-
+		
+	
 
 			return View(status);
 		}
@@ -118,6 +119,7 @@ namespace TimViec.Controllers
             ViewBag.Type = type_work.Select(t => t.Type).ToList();
             ViewBag.Rank = rank.Select(r => r.rank).ToList();
             ViewBag.Location = city.Select(c => c.Name_city).ToList();
+
             var companies = await _companyRepository.GetAllAsync();
 			return View(companies);
 		}
@@ -134,6 +136,7 @@ namespace TimViec.Controllers
 		// display item
 		public async Task<IActionResult> Details_CPN(int id)
 		{
+			
 			var result = _jobRepository.Details_CPN(id);
 			if (result == null)
 			{
@@ -155,9 +158,13 @@ namespace TimViec.Controllers
 
 		//***************************************************************************************
 		//all Job
-		public async Task<IActionResult> CreateApplication()
+		public async Task<IActionResult> CreateApplication(int id)
 		{
+			
 			var status = await _statusRepository.GetAllAsync();
+			var job = await _jobRepository.GetByIdAsync(id);
+			ViewBag.GetJob = job;
+			
             if (status == null)
             {
                 return NotFound();
@@ -166,19 +173,21 @@ namespace TimViec.Controllers
 		}
 		// add status job
 		[HttpPost]
-		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV)
+		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV, int id)
 		{
+			statusJob.ID = 0;
+			statusJob.JobID = id;
 			if (imgCV != null)
 			{
 				// save imgae
 				statusJob.imgCV = await SaveImage(imgCV);
 			}
 
-			statusJob.Status = (int)Constants.StatusJob.Inprogress;
+            statusJob.Status = (int)Constants.StatusJob.Inprogress;
+
 			await _statusRepository.AddAsync(statusJob);
 			return RedirectToAction(nameof(Index));
 
-			return View(statusJob);
 		}
 
 		//Luu anh
@@ -192,7 +201,30 @@ namespace TimViec.Controllers
 			return "LayoutTimViec/img/" + image.FileName;
 		}
 
+		// Delete Status
+		public async Task<IActionResult> Delete_Status(int id)
+		{
+			var status = await _statusRepository.GetByIdAsync(id);
 
+			if (status == null)
+
+			{
+				return NotFound();
+			}
+			return View(status);
+		}
+
+		// Process delete status
+		[HttpPost, ActionName("Delete_Status")]
+		public async Task<IActionResult> DeleteConfirmed_Company(int id)
+		{
+			await _statusRepository.DeleteAsync(id);
+			return RedirectToAction(nameof(StJ));
+
+		}
+
+
+		//*******************************************************************************************
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

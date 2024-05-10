@@ -1,6 +1,7 @@
 ﻿using TimViec.Data;
 using TimViec.Models;
 using Microsoft.EntityFrameworkCore;
+using TimViec.ViewModel;
 
 namespace TimViec.Respository
 {

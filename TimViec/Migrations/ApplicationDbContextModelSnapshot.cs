@@ -327,12 +327,6 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Id_rank")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Id_skill")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -346,13 +340,13 @@ namespace TimViec.Migrations
                     b.Property<string>("R3_Language")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RankId")
+                    b.Property<int?>("RankID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("SkillId")
+                    b.Property<int?>("SkillID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -371,9 +365,9 @@ namespace TimViec.Migrations
 
                     b.HasIndex("CompanyID");
 
-                    b.HasIndex("RankId");
+                    b.HasIndex("RankID");
 
-                    b.HasIndex("SkillId");
+                    b.HasIndex("SkillID");
 
                     b.HasIndex("Type_workID");
 
@@ -468,41 +462,6 @@ namespace TimViec.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Type_Works");
-                });
-
-            modelBuilder.Entity("TimViec.Models.applications", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Create_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageCV")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("JobID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobID");
-
-                    b.ToTable("applications");
                 });
 
             modelBuilder.Entity("TimViec.ViewModel.Details_CPN", b =>
@@ -688,11 +647,11 @@ namespace TimViec.Migrations
 
                     b.HasOne("TimViec.Models.Rank", "Rank")
                         .WithMany()
-                        .HasForeignKey("RankId");
+                        .HasForeignKey("RankID");
 
                     b.HasOne("TimViec.Models.Skill", "Skill")
                         .WithMany()
-                        .HasForeignKey("SkillId");
+                        .HasForeignKey("SkillID");
 
                     b.HasOne("TimViec.Models.Type_work", "Type_work")
                         .WithMany()
@@ -708,17 +667,6 @@ namespace TimViec.Migrations
                 });
 
             modelBuilder.Entity("TimViec.Models.StatusJob", b =>
-                {
-                    b.HasOne("TimViec.Models.Job", "Job")
-                        .WithMany()
-                        .HasForeignKey("JobID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Job");
-                });
-
-            modelBuilder.Entity("TimViec.Models.applications", b =>
                 {
                     b.HasOne("TimViec.Models.Job", "Job")
                         .WithMany()

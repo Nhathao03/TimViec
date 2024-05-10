@@ -12,7 +12,7 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240502100942_AddDatabase")]
+    [Migration("20240508100114_AddDatabase")]
     partial class AddDatabase
     {
         /// <inheritdoc />
@@ -330,12 +330,6 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Id_rank")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Id_skill")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -349,13 +343,13 @@ namespace TimViec.Migrations
                     b.Property<string>("R3_Language")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RankId")
+                    b.Property<int?>("RankID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("SkillId")
+                    b.Property<int?>("SkillID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -374,9 +368,9 @@ namespace TimViec.Migrations
 
                     b.HasIndex("CompanyID");
 
-                    b.HasIndex("RankId");
+                    b.HasIndex("RankID");
 
-                    b.HasIndex("SkillId");
+                    b.HasIndex("SkillID");
 
                     b.HasIndex("Type_workID");
 
@@ -442,12 +436,10 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("imgCV")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -475,7 +467,7 @@ namespace TimViec.Migrations
                     b.ToTable("Type_Works");
                 });
 
-            modelBuilder.Entity("TimViec.Models.applications", b =>
+            modelBuilder.Entity("TimViec.ViewModel.Details_CPN", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -483,31 +475,109 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Create_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageCV")
+                    b.Property<string>("CompanyName1")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
+                    b.Property<string>("Company_Size")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("Company_Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionJob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageJob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationJob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R1_Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JobID");
+                    b.ToTable("Details_CPN");
+                });
 
-                    b.ToTable("applications");
+            modelBuilder.Entity("TimViec.ViewModel.SearchViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R1_Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R2_Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("R3_Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SearchViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -580,11 +650,11 @@ namespace TimViec.Migrations
 
                     b.HasOne("TimViec.Models.Rank", "Rank")
                         .WithMany()
-                        .HasForeignKey("RankId");
+                        .HasForeignKey("RankID");
 
                     b.HasOne("TimViec.Models.Skill", "Skill")
                         .WithMany()
-                        .HasForeignKey("SkillId");
+                        .HasForeignKey("SkillID");
 
                     b.HasOne("TimViec.Models.Type_work", "Type_work")
                         .WithMany()
@@ -600,17 +670,6 @@ namespace TimViec.Migrations
                 });
 
             modelBuilder.Entity("TimViec.Models.StatusJob", b =>
-                {
-                    b.HasOne("TimViec.Models.Job", "Job")
-                        .WithMany()
-                        .HasForeignKey("JobID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Job");
-                });
-
-            modelBuilder.Entity("TimViec.Models.applications", b =>
                 {
                     b.HasOne("TimViec.Models.Job", "Job")
                         .WithMany()

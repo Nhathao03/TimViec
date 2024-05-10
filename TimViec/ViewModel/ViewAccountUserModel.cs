@@ -4,6 +4,7 @@ namespace TimViec.ViewModel
 {
 	public class ViewAccountUserModel
 	{
+		public int Id { get; set; }
 		public string fullname { get; set; }
 		public string email { get; set; }
 		public DateTime Birth {  get; set; }

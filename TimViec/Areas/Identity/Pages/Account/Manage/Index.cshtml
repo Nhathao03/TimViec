@@ -2,8 +2,7 @@
 @model IndexModel
 @{
     ViewData["Title"] ="Hồ sơ";
-    ViewData["ActivePage"] = ManageNavPages.Index;
-    
+    ViewData["ActivePage"] = ManageNavPages.Index; 
 }
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 
@@ -15,10 +14,8 @@
          <div class="card mb-4 mb-xl-0">
              <div class="card-body text-center">
                  <!-- Profile picture image-->
-                 <img class="img-account-profile rounded-circle mb-2" asp-for="imgCV" alt="">
-           
-                 <input type="file" asp-for="Input.avatar" class="form-control" />
-                 <span asp-validation-for="Input.avatar" class="text-danger"></span>
+                 <img class="img-account-profile rounded-circle mb-2"  alt="">
+          
              </div>
          </div>
      </div>
@@ -56,7 +53,6 @@
                          <input type="file" asp-for="Input.imgCV" class="form-control" />
                          <span asp-validation-for="Input.imgCV" class="text-danger"></span>
                      </div>
-
 
                      <div class="mb-3">
                          <label asp-for="Username">Email</label>

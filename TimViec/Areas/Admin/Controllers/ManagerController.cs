@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
@@ -17,25 +19,53 @@ namespace TimViec.Areas.Admin.Controllers
 		private readonly ICompanyRespository _companyRepository;
         private readonly IStatusRepository _statusRepository;
         private readonly IApplicationUser _applicationUser;
-		private readonly UserManager<ApplicationUser> _userManagers;
+        private readonly IType_WorkRespository _WorkRespository;
+        private readonly UserManager<ApplicationUser> _userManagers;
 
 		public ManagerController(ICompanyRespository companyRepository,
 			IJobRespository jobRepository,
 			IStatusRepository statusRepository,
 			IApplicationUser userManager,
-			UserManager<ApplicationUser> userManagers)
+            IType_WorkRespository type_workRespository,
+            UserManager<ApplicationUser> userManagers)
 		{
 			_jobRepository = jobRepository;
 			_companyRepository = companyRepository;
             _statusRepository = statusRepository;
             _applicationUser = userManager;
 			_userManagers = userManagers;
-		}
+            _WorkRespository = type_workRespository;
+        }
 
+        //Index
+        public async Task<IActionResult> Index()
+        {
+            var CountCompany = await _companyRepository.GetAllAsync();
+            int CountC = (from c in CountCompany select c.Id).Count();
 
-	
-		//Hiển thị tất cả công việc
-		public async Task<IActionResult> Job()
+            string role = "User";
+            var CountUser = _applicationUser.GetAllUser(role);
+            int CountU = (from u in CountUser select u.email).Count();
+
+            var GetJob = await _jobRepository.GetAllAsync();
+            int CountS = (from s in GetJob select s.Salary).Count();
+            int totalSalary = Convert.ToInt32(GetJob.Sum(s => s.Salary));
+
+            int MiddleSalary = 0;
+            for (int i = 0; i < CountS; i++)
+            {
+                MiddleSalary = totalSalary / CountS;
+            }
+
+            ViewBag.CountCompany = CountC;
+            ViewBag.CountUser = CountU;
+            ViewBag.MiddleSalary = MiddleSalary;
+
+            return View();
+        }
+
+        //Hiển thị tất cả công việc
+        public async Task<IActionResult> Job()
         {
             var job = await _jobRepository.GetAllAsync();
             return View(job);
@@ -68,6 +98,7 @@ namespace TimViec.Areas.Admin.Controllers
         {
 
             var companies = await _companyRepository.GetAllAsync();
+
             return View(companies);
         }
 
@@ -96,11 +127,10 @@ namespace TimViec.Areas.Admin.Controllers
 
 
         //account admin
-        public async Task<IActionResult> Account_Admin(string Id)
+        public async Task<IActionResult> Account_Admin()
         {
             
             var user = await _userManagers.GetUserAsync(User);
-            //var MAdmin = await _applicationUser.GetByIdAsync(Id);
 
 			if (user == null)
 			{
@@ -112,16 +142,31 @@ namespace TimViec.Areas.Admin.Controllers
 
 		// Process the product update
 		[HttpPost]
-		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser)
+		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser, IFormFile avatar)
 		{
 			if (ModelState.IsValid)
 			{
+				if (avatar != null)
+				{
+					applicationUser.avatar = await SaveImage(avatar);
+				}
 				await _applicationUser.UpdateAsync(applicationUser);
-				return RedirectToAction("Job");
+				return RedirectToAction("Account_Admin");
 			}
 			return View(applicationUser);
 		}
 
+		private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "LayoutTimViec/img/" + image.FileName;
+        }
+
+        //*********************************************************************************************
         //account user
         public async Task<IActionResult> Account_User(string role)
         {
@@ -130,6 +175,27 @@ namespace TimViec.Areas.Admin.Controllers
 
             return View(result);
         }
+
+        //// Delete user
+        //public async Task<IActionResult> Delete_User()
+        //{
+        //    var user = await _userManagers.GetUserAsync(User);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(user);
+        //}
+
+        //// Xử lý xóa sản phẩm
+        //[HttpPost, ActionName("Delete_User")]
+        //public async Task<IActionResult> DeleteConfirmed_User(int id)
+        //{
+        //    await _applicationUser.DeleteAsync(id);
+        //    return RedirectToAction(nameof(Job));
+
+        //}
 
     }
 }
