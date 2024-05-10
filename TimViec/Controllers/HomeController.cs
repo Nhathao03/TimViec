@@ -78,11 +78,16 @@ namespace TimViec.Controllers
 			return View(home);
 		}
 
-		//status job
-		public IActionResult StJ()
-		{
-			var name = User.Identity.Name;
+        //status job
+        public IActionResult StJ()
+		{		
+            var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
+
+			foreach(var job in status)
+			{
+				job.StatusName = EnumExtension.GetEnumDescription((Constants.StatusJob)job.Status);
+			}
 
 			return View(status);
 		}
@@ -101,17 +106,9 @@ namespace TimViec.Controllers
 		//all company
 		public async Task<IActionResult> Company()
 		{
-            var rank = await _rankRespository.GetAllAsync();
-            var skill = await _skillRespository.GetAllAsync();
-            var type_work = await _WorkRespository.GetAllAsync();
-            var city = await _cityRespository.GetAllAsync();
+            await DisplayDropdown();
 
-			ViewBag.Skill = skill.ToList();
-			ViewBag.Type = type_work.ToList();
-			ViewBag.Rank = rank.ToList();
-			ViewBag.Location = city.ToList();
-
-			var companies = await _companyRepository.GetAllAsync();
+            var companies = await _companyRepository.GetAllAsync();
 			return View(companies);
 		}
 
@@ -119,7 +116,8 @@ namespace TimViec.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Search(string stringSearch)
 		{
-			var result = _jobRepository.Search(stringSearch);
+            await DisplayDropdown();
+            var result = _jobRepository.Search(stringSearch);
 
 			return View(result);
 		}
@@ -127,8 +125,9 @@ namespace TimViec.Controllers
 		// display item
 		public async Task<IActionResult> Details_CPN(int id)
 		{
-			
-			var result = _companyRepository.Details_CPN(id);
+            await DisplayDropdown();
+
+            var result = _companyRepository.Details_CPN(id);
 			if (result == null)
 			{
 				return NotFound();
@@ -139,7 +138,9 @@ namespace TimViec.Controllers
 		//details job     
 		public async Task<IActionResult> Details_Job(int id)
 		{
-			var job = await _jobRepository.GetByIdAsync(id);
+            await DisplayDropdown();
+
+            var job = await _jobRepository.GetByIdAsync(id);
 			if (job == null)
 			{
 				return NotFound();
@@ -151,8 +152,9 @@ namespace TimViec.Controllers
 		//all Job
 		public async Task<IActionResult> CreateApplication(int id)
 		{
-			
-			var status = await _statusRepository.GetAllAsync();
+            await DisplayDropdown();
+
+            var status = await _statusRepository.GetAllAsync();
 			var job = await _jobRepository.GetByIdAsync(id);
 			ViewBag.GetJob = job;
 			
@@ -166,7 +168,7 @@ namespace TimViec.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV, int id)
 		{
-			statusJob.ID = 0;
+            statusJob.ID = 0;
 			statusJob.JobID = id;
 			if (imgCV != null)
 			{
@@ -195,7 +197,9 @@ namespace TimViec.Controllers
 		// Delete Status
 		public async Task<IActionResult> Delete_Status(int id)
 		{
-			var status = await _statusRepository.GetByIdAsync(id);
+            await DisplayDropdown();
+
+            var status = await _statusRepository.GetByIdAsync(id);
 
 			if (status == null)
 
@@ -218,28 +222,36 @@ namespace TimViec.Controllers
 		//Search in Dropdown
 		public async Task<IActionResult> ChoeseSearchSkill(int ID)
 		{
-			var skill = _jobRepository.ChoeseSearchSkills(ID);
+            await DisplayDropdown();
+
+            var skill = _jobRepository.ChoeseSearchSkills(ID);
 
 			return View(skill);
 		}
 
 		public async Task<IActionResult> ChoeseSearchType(int ID)
 		{
-			var type = _jobRepository.ChoeseSearchType(ID);
+            await DisplayDropdown();
+
+            var type = _jobRepository.ChoeseSearchType(ID);
 
 			return View(type);
 		}
 
 		public async Task<IActionResult> ChoeseSearchRank(int ID)
 		{
-			var rank = _jobRepository.ChoeseSearchRank(ID);
+            await DisplayDropdown();
+
+            var rank = _jobRepository.ChoeseSearchRank(ID);
 
 			return View(rank);
 		}
 
 		public async Task<IActionResult> ChoeseSearchLocation(int ID)
 		{
-			var location = _jobRepository.ChoeseSearchLocation(ID);
+            await DisplayDropdown();
+
+            var location = _jobRepository.ChoeseSearchLocation(ID);
 
 			return View(location);
 		}
