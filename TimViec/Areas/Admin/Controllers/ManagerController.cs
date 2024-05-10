@@ -19,20 +19,23 @@ namespace TimViec.Areas.Admin.Controllers
 		private readonly ICompanyRespository _companyRepository;
         private readonly IStatusRepository _statusRepository;
         private readonly IApplicationUser _applicationUser;
-		private readonly UserManager<ApplicationUser> _userManagers;
+        private readonly IType_WorkRespository _WorkRespository;
+        private readonly UserManager<ApplicationUser> _userManagers;
 
 		public ManagerController(ICompanyRespository companyRepository,
 			IJobRespository jobRepository,
 			IStatusRepository statusRepository,
 			IApplicationUser userManager,
-			UserManager<ApplicationUser> userManagers)
+            IType_WorkRespository type_workRespository,
+            UserManager<ApplicationUser> userManagers)
 		{
 			_jobRepository = jobRepository;
 			_companyRepository = companyRepository;
             _statusRepository = statusRepository;
             _applicationUser = userManager;
 			_userManagers = userManagers;
-		}
+            _WorkRespository = type_workRespository;
+        }
 
         //Index
         public async Task<IActionResult> Index()
@@ -44,15 +47,20 @@ namespace TimViec.Areas.Admin.Controllers
             var CountUser = _applicationUser.GetAllUser(role);
             int CountU = (from u in CountUser select u.email).Count();
 
-            //var MiddleSalary = await _jobRepository.GetAllAsync();
-            //int CountS = ( from s in MiddleSalary select s.Salary).Count();
-            //for ( int i = 0; i< CountS; i++)
-            //{
-            //    MiddleSalary.
-            //}
+            var GetJob = await _jobRepository.GetAllAsync();
+            int CountS = (from s in GetJob select s.Salary).Count();
+            int totalSalary = Convert.ToInt32(GetJob.Sum(s => s.Salary));
+
+            int MiddleSalary = 0;
+            for (int i = 0; i < CountS; i++)
+            {
+                MiddleSalary = totalSalary / CountS;
+            }
 
             ViewBag.CountCompany = CountC;
             ViewBag.CountUser = CountU;
+            ViewBag.MiddleSalary = MiddleSalary;
+
             return View();
         }
 
@@ -90,6 +98,7 @@ namespace TimViec.Areas.Admin.Controllers
         {
 
             var companies = await _companyRepository.GetAllAsync();
+
             return View(companies);
         }
 
@@ -118,7 +127,7 @@ namespace TimViec.Areas.Admin.Controllers
 
 
         //account admin
-        public async Task<IActionResult> Account_Admin(string Id)
+        public async Task<IActionResult> Account_Admin()
         {
             
             var user = await _userManagers.GetUserAsync(User);
@@ -133,19 +142,21 @@ namespace TimViec.Areas.Admin.Controllers
 
 		// Process the product update
 		[HttpPost]
-		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser)
+		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser, IFormFile avatar)
 		{
-  //          if (avatar != null)
-  //          {
-  //              // Lưu hình ảnh đại diện
-  //              applicationUser.avatar = await SaveImage(avatar);
-  //          }
-            await _applicationUser.UpdateAsync(applicationUser);
-            return RedirectToAction("Account_Admin");
+			if (ModelState.IsValid)
+			{
+				if (avatar != null)
+				{
+					applicationUser.avatar = await SaveImage(avatar);
+				}
+				await _applicationUser.UpdateAsync(applicationUser);
+				return RedirectToAction("Account_Admin");
+			}
+			return View(applicationUser);
 		}
 
-        //Luu anh
-        private async Task<string> SaveImage(IFormFile image)
+		private async Task<string> SaveImage(IFormFile image)
         {
             var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
             using (var fileStream = new FileStream(savePath, FileMode.Create))
@@ -164,6 +175,27 @@ namespace TimViec.Areas.Admin.Controllers
 
             return View(result);
         }
+
+        //// Delete user
+        //public async Task<IActionResult> Delete_User()
+        //{
+        //    var user = await _userManagers.GetUserAsync(User);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(user);
+        //}
+
+        //// Xử lý xóa sản phẩm
+        //[HttpPost, ActionName("Delete_User")]
+        //public async Task<IActionResult> DeleteConfirmed_User(int id)
+        //{
+        //    await _applicationUser.DeleteAsync(id);
+        //    return RedirectToAction(nameof(Job));
+
+        //}
 
     }
 }

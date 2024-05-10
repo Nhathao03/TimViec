@@ -1,4 +1,6 @@
-﻿namespace TimViec.ViewModel
+﻿using TimViec.Models;
+
+namespace TimViec.ViewModel
 {
 	public class Details_CPN
 	{
@@ -17,5 +19,7 @@
 		public string LocationJob { get; set; }
 		public string Image { get; set; }
 		public string ImageJob { get; set; }
+		public int IDJob { get; set; }
+
 	}
 }

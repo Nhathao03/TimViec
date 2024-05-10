@@ -83,7 +83,8 @@ namespace TimViec.Controllers
 		{
 			var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
-
+		
+	
 
 			return View(status);
 		}
@@ -135,6 +136,7 @@ namespace TimViec.Controllers
 		// display item
 		public async Task<IActionResult> Details_CPN(int id)
 		{
+			
 			var result = _jobRepository.Details_CPN(id);
 			if (result == null)
 			{
@@ -199,7 +201,31 @@ namespace TimViec.Controllers
 			return "LayoutTimViec/img/" + image.FileName;
 		}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		// Delete Status
+		public async Task<IActionResult> Delete_Status(int id)
+		{
+			var status = await _statusRepository.GetByIdAsync(id);
+
+			if (status == null)
+
+			{
+				return NotFound();
+			}
+			return View(status);
+		}
+
+		// Process delete status
+		[HttpPost, ActionName("Delete_Status")]
+		public async Task<IActionResult> DeleteConfirmed_Company(int id)
+		{
+			await _statusRepository.DeleteAsync(id);
+			return RedirectToAction(nameof(StJ));
+
+		}
+
+
+		//*******************************************************************************************
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

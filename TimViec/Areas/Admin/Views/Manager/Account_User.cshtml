@@ -19,6 +19,7 @@
                     <th>Email</th>
                     <th>Ngày sinh</th>
                     <th>Số điện thoại</th> 
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tfoot>
@@ -27,6 +28,7 @@
                     <th>Email</th>
                     <th>Ngày sinh</th>
                     <th>Số điện thoại</th>
+                    <th>Xóa</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -37,7 +39,12 @@
                         <td>@item.email</td>
                         <td>@item.Birth</td>
                         <td>@item.phonenumber</td>
-                       @*  <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td> *@
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Delete_User" asp-route-id="@item.email" class="btn btn-danger">Xóa</button>
+                            </form>
+                            
+                        </td> 
                     </tr>
                 }
             </tbody>

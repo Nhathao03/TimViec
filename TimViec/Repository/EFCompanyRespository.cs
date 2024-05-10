@@ -36,5 +36,7 @@ namespace TimViec.Respository
             _context.Companies.Remove(company);
             await _context.SaveChangesAsync();
         }
+
+
     }
 }

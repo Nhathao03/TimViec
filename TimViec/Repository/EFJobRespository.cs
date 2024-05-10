@@ -82,8 +82,9 @@ namespace TimViec.Respository
                              Location = c.Location,
                              LocationJob = j.Location,
                              Image = c.Image,
-                             ImageJob = j.img
-
+                             ImageJob = j.img,
+                             IDJob = j.Id
+                             
                          };
 
 

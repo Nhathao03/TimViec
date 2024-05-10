@@ -9,41 +9,39 @@
 <div>
     <hr />
     <dl class="col-md-10" style="margin-left: 244px;width: 1321px;">
-       
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Họ và tên</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Tên công việc</th>
-                        <th scope="col">CV</th>
-                        <th scope="col">Ghi chú</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col">Xóa</th>
-                    </tr>
-                </thead>
-            @foreach (var item in Model)
-            {
-                <tbody>
-                    <tr>
-                        <td scope="row">@item.ID</td>
-                        <td scope="row">@item.Fullname</td>
-                        <td scope="row">@item.Email</td>
-                        <td scope="row">@item.JobID</td>
-                        <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
-                        <td scope="row">@item.Note</td>
-                        <td scope="row">@item.Status</td>
-                        <td>
-                            <form asp-action="CheckST">
-                                <input type="submit" value="Delete" class="btn btn-default" />
-                            </form>
-                        </td>
-                    </tr>
-
-                </tbody>
-                }
-            </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tên công việc</th>
+                    <th scope="col">CV</th>
+                    <th scope="col">Ghi chú</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Xóa</th>
+                </tr>
+            </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td scope="row">@item.ID</td>
+                    <td scope="row">@item.Fullname</td>
+                    <td scope="row">@item.Email</td>
+                    <td scope="row">@item.JobID</td>
+                    <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
+                    <td scope="row">@item.Note</td>
+                    <td scope="row">@item.Status</td>
+                    <td>
+                        <form>
+                            <button type="submit" asp-action="Delete_Status" asp-route-id="@item.ID" class="btn btn-danger">Thu hồi</button>
+                        </form> 
+                    </td> 
+                </tr>
+            </tbody>
+            }
+        </table>
     </dl>
 </div>
 
