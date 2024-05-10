@@ -9,5 +9,6 @@
 		public string NameJob { get; set; }
 		public string Note { get; set; }
 		public int Status { get; set; }
+		public string StatusName { get; set; }
 	}
 }

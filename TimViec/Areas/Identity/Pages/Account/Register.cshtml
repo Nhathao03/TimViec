@@ -97,7 +97,7 @@
                 <a asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" class="nav-link">Đã có tài khoản</a>
             </form> 
         </div>
-            <div class="col-md-4" id="newForm" class="hidenForm">
+            <div class="col-md-4 hiddenForm" id="newForm" >
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post" >
                 <h1 style="text-align: center; margin-top: 5px">Tạo tài khoản mới</h1>
                 <button onclick="hideNewForm()" style="width: 48%" type="button" class="btn btn-primary">Ứng viên</button> | <button onclick="showNewForm()" style="width: 48%" type="button" class="btn btn-success">Nhà tuyển dụng</button>
