@@ -1,0 +1,78 @@
+﻿@model List<TimViec.ViewModel.Details_CPN>
+
+@{
+    ViewData["Title"] = "Job";
+}
+
+<h2>Quản lý công việc</h2>
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>Tên công việc</th>
+                            <th style="width: 36.604651%;">Địa chỉ</th>
+                            <th>Ngôn ngữ 1</th>
+                            @* <th data-type="date" data-format="YYYY/DD/MM">Start Date</th> *@
+                            <th>Ngôn ngữ 2</th>
+                            <th>Ngôn ngữ 3</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Location</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Location</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Location</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Location</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <td>@item.JobName</td>
+                                <td>@item.Location</td>
+                                <td>@item.R1_Language</td>
+                                <td>@item.R2_Language</td>
+                                <td>@item.R3_Language</td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

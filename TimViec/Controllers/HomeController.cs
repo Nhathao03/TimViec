@@ -12,7 +12,7 @@ using TimViec.ViewModel;
 namespace TimViec.Controllers
 {
 	[Authorize]
-	public class HomeController : Controller
+    public class HomeController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
 		private readonly ICompanyRespository _companyRepository;
@@ -80,7 +80,7 @@ namespace TimViec.Controllers
 
         //status job
         public IActionResult StJ()
-		{		
+		{
             var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
 
@@ -92,9 +92,23 @@ namespace TimViec.Controllers
 			return View(status);
 		}
 
+        // Delete Status
+        public async Task<IActionResult> Delete_Status(int id)
+        {
+            await DisplayDropdown();
 
-		//all Job
-		public async Task<IActionResult> Job()
+            var status = await _statusRepository.GetByIdAsync(id);
+
+            if (status == null)
+
+            {
+                return NotFound();
+            }
+            return View(status);
+        }
+
+        //all Job                                 
+        public async Task<IActionResult> Job()
 		{
 
 			await DisplayDropdown();
@@ -122,7 +136,7 @@ namespace TimViec.Controllers
 			return View(result);
 		}
 
-		// display item
+		// display details company
 		public async Task<IActionResult> Details_CPN(int id)
 		{
             await DisplayDropdown();
@@ -155,6 +169,7 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var status = await _statusRepository.GetAllAsync();
+
 			var job = await _jobRepository.GetByIdAsync(id);
 			ViewBag.GetJob = job;
 			
@@ -194,20 +209,7 @@ namespace TimViec.Controllers
 			return "LayoutTimViec/img/" + image.FileName;
 		}
 
-		// Delete Status
-		public async Task<IActionResult> Delete_Status(int id)
-		{
-            await DisplayDropdown();
-
-            var status = await _statusRepository.GetByIdAsync(id);
-
-			if (status == null)
-
-			{
-				return NotFound();
-			}
-			return View(status);
-		}
+		
 
 		// Process delete status
 		[HttpPost, ActionName("Delete_Status")]

@@ -11,6 +11,7 @@ namespace TimViec.Repository
 		Task UpdateAsync(ApplicationUser applicationUser);
 		Task DeleteAsync(int id);
 		List<ViewAccountUserModel> GetAllUser(string role);
+        List<ViewInforCompany> GetInforCompany(string email);
 
-	}
+    }
 }

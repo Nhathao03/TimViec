@@ -42,6 +42,7 @@ namespace TimViec.Respository
 			var result = from j in _context.Jobs
 						 join c in _context.Companies on j.CompanyID equals c.Id
                          join t in _context.Type_Works on j.Type_workID equals t.Id
+
 						 where (c.Id.Equals(ID))
 						 select new Details_CPN
 						 {
@@ -64,5 +65,24 @@ namespace TimViec.Respository
 						 };
 			return result.ToList();
 		}
-	}
+
+        public async Task<Company> GetByEmailAsync(string email)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public List<CountJobInCompany> CountJobInCompanies(int ID)
+        {
+            var result = from j in _context.Jobs
+                         join c in _context.Companies on j.CompanyID equals c.Id
+                         where (j.CompanyID.Equals(ID))
+                         select new CountJobInCompany
+                         {
+                             Count = j.CompanyID,
+                         };
+            return result.ToList();
+        }
+
+
+    }
 }

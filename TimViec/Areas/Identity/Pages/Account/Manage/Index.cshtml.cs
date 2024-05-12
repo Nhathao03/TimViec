@@ -15,6 +15,7 @@ using static TimViec.Helpers.Constants;
 namespace TimViec.Areas.Identity.Pages.Account.Manage
 {
     [Authorize]
+    [Authorize(Roles = "User")]
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;

@@ -12,5 +12,9 @@ namespace TimViec.Respository
         Task DeleteAsync(int id);
 		List<Details_CPN> Details_CPN(int ID);
 
-	}
+        Task<Company> GetByEmailAsync(string email);
+
+        List<CountJobInCompany> CountJobInCompanies(int ID);
+
+    }
 }

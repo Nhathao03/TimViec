@@ -53,5 +53,28 @@ namespace TimViec.Repository
 						 };
 			return result.ToList();
 		}
-	}
+
+        public List<ViewInforCompany> GetInforCompany(string email)
+        {
+			var result = from a in _context.applicationUsers
+						 join c in _context.Companies on a.Email equals c.Email
+						 where (c.Email.Equals(email))
+						 select new ViewInforCompany
+						 {
+							 Email = c.Email,
+							 Description = c.Description,
+							 Date = c.Date,
+							 City = c.CityID,
+							 Location = c.Location,
+							 logo = c.Image,
+							 Size = c.Company_size,
+							 Type = c.Company_type,
+							 Name = c.Name_company,
+							 Id = c.Id,
+                         };
+            return result.ToList();
+        }
+
+
+    }
 }

@@ -23,7 +23,7 @@ namespace TimViec.Models
         public string Image { get; set; }
 
         [StringLength(50)]
-        public int? Company_size { get; set; }
+        public string Company_size { get; set; }
 
         [StringLength(50)]
         public string Company_type { get; set; }
@@ -34,5 +34,6 @@ namespace TimViec.Models
 		public int? CityID { get; set; }
 
         public City? City { get; set; }
+       
     }
 }
