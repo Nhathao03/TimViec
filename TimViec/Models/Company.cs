@@ -23,7 +23,7 @@ namespace TimViec.Models
         public string Image { get; set; }
 
         [StringLength(50)]
-        public string Company_size { get; set; }
+        public int? Company_size { get; set; }
 
         [StringLength(50)]
         public string Company_type { get; set; }
