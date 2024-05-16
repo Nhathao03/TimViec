@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 <br />
-<p style="text-align: center; font-size: 23px; color: black">Bạn chắc chắn không muốn ứng tuyển công việc @Html.DisplayFor(model => model.JobID)?</p>
+<p style="text-align: center; font-size: 23px; color: black">Bạn chắc chắn không muốn ứng tuyển công việc @ViewBag.Jobname?</p>
 <div style="margin-left: 500px; color: black; font-size: 18px">
     <hr />
     <dl class="dl-horizontal">
@@ -25,9 +25,14 @@
             <p>Tên công việc</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.JobID)
+            @ViewBag.Jobname
         </dd>
-        
+        <dt>
+            <p>Công ty</p>
+        </dt>
+        <dd>
+            @ViewBag.CompanyName.CompanyName1
+        </dd>
         <dt>
             <p>Ghi chú</p>
         </dt>

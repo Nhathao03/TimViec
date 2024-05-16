@@ -5,17 +5,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav">
+    <form style="margin-right: 0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav" >
 
             @* User *@
             <li>
                 <a style="color: #fff" asp-area="Identity" asp-page="/Account/Manage/Index">Cá nhân</a>
-            </li>
-
-            @* Admin *@
-            <li>
-                <a style="color: #fff" asp-area="Admin" asp-controller="Manager" asp-action="Index">Admin</a>
             </li>
 
             <li style="margin-right: 10px">
@@ -26,7 +21,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 0">
         <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a></li>
         <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
     </ul>

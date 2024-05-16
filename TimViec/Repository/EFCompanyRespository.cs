@@ -2,6 +2,7 @@
 using TimViec.Models;
 using Microsoft.EntityFrameworkCore;
 using TimViec.ViewModel;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace TimViec.Respository
 {
@@ -42,6 +43,7 @@ namespace TimViec.Respository
 			var result = from j in _context.Jobs
 						 join c in _context.Companies on j.CompanyID equals c.Id
                          join t in _context.Type_Works on j.Type_workID equals t.Id
+
 						 where (c.Id.Equals(ID))
 						 select new Details_CPN
 						 {
@@ -64,5 +66,48 @@ namespace TimViec.Respository
 						 };
 			return result.ToList();
 		}
-	}
+
+        public async Task<Company> GetByEmailAsync(string email)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public List<CountJobInCompany> CountJobInCompanies(int ID)
+        {
+            var result = from j in _context.Jobs
+                         join c in _context.Companies on j.CompanyID equals c.Id
+                         where (j.CompanyID.Equals(ID))
+                         select new CountJobInCompany
+                         {
+                             Count = j.CompanyID,
+                         };
+            return result.ToList();
+        }
+
+        public List<GetJobByEmail> GetJobByEmail(string email)
+        {
+            var result = from j in _context.Jobs
+                         join c in _context.Companies on j.CompanyID equals c.Id
+                         join r in _context.Ranks on j.RankID equals r.Id
+                         join t in _context.Type_Works on j.Type_workID equals t.Id
+                         join s in _context.Skills on j.SkillID equals s.Id
+                         where (c.Email.Equals(email))
+                         select new GetJobByEmail
+                         {
+                             Salary = j.Salary,
+                             Id = j.Id,
+                             Skill = j.SkillID,
+                             JobName = j.Title,
+                             R1_Language = j.R1_Language,
+                             R2_Language = j.R2_Language,
+                             R3_Language = j.R3_Language,
+                             Rank = j.RankID,
+                             Type = j.Type_workID,
+                             Rankname = r.rank,
+                             Typename = t.Type,
+                             Skillname = s.Skills,
+                         };
+            return result.ToList();
+        }
+    }
 }

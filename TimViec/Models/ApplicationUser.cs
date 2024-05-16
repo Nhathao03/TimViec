@@ -13,5 +13,7 @@ namespace TimViec.Models
 
         public string? avatar { get; set; }
         public DateTime Birth { get; set; }
+
+   
     }
 }

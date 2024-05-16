@@ -22,6 +22,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\CompanyManage\Models\Data\" />
+    <Folder Include="Areas\CompanyManage\Models\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

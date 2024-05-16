@@ -15,6 +15,7 @@ using static TimViec.Helpers.Constants;
 namespace TimViec.Areas.Identity.Pages.Account.Manage
 {
     [Authorize]
+    [Authorize(Roles = "User")]
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -57,9 +58,6 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Kinh nghiệm")]
             public string? Experiance { get; set; }
 
-            [Display(Name = "Avatar")]
-            public string? avatar { get; set; }
-
             [Phone]
             [Display(Name = "Số điện thoại")]
             public string PhoneNumber { get; set; }
@@ -81,7 +79,6 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
                 Lastname = user.Lastname,
                 imgCV = user.imgCV,
                 Birth = user.Birth,
-                avatar = user.avatar,
             };
         }
 
@@ -116,7 +113,6 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             user.Fullname = Input.Fullname;
             user.PhoneNumber = Input.PhoneNumber;
             user.Birth = (DateTime)Input.Birth;
-            user.imgCV = Input.imgCV;
 
 			await _userManager.UpdateAsync(user);
 

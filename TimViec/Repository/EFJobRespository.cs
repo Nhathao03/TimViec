@@ -137,5 +137,28 @@ namespace TimViec.Respository
 						 };
 			return result.ToList();
 		}
-	}
+
+        public List<Details_Job> Details_Job(int ID)
+        {
+            var result = from j in _context.Jobs
+                         join c in _context.Companies on j.CompanyID equals c.Id
+                         where (j.Id.Equals(ID))
+                         select new Details_Job
+                         {
+                             Name = j.Title,
+                             Id = j.Id,
+                             CompanyID = c.Id,
+                             CompanyName = c.Name_company,
+                             Description = j.Description,
+                             R1_Language = j.R1_Language,
+                             R2_Language = j.R2_Language,
+                             R3_Language = j.R3_Language,
+                             Location = j.Location,
+                             Logo =  j.img,
+                             Salary = j.Salary,
+                         };
+            return result.ToList();
+        }
+
+    }
 }

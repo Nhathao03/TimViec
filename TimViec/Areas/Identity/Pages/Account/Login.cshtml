@@ -69,18 +69,9 @@
                         <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Nhập mật khẩu" />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                    <div class="checkbox mb-3">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
+            
                     <div>
-                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="width: 100%">
-                            <img data-controller="lazyload" src="https://itviec.com/assets/google_logo-af373a5e64715e7d4fcdea711f96995f7fd7a49725b3dd8910d4749b74742cb2.svg" width="30" height="30" class=" ls-is-cached lazyloaded">
-                            <span>Đăng nhập bằng Google</span>
-                        </button>
-                        <br /><br />
+                    <br />
                         <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="width: 100%">Đăng nhập</button>
                         <p>Bằng việc tiếp tục, bạn đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a> của Dev IT.</p>
                     </div>

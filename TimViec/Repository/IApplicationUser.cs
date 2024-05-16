@@ -9,8 +9,13 @@ namespace TimViec.Repository
 		Task<ApplicationUser> GetByIdAsync(int id);
 		Task AddAsync(ApplicationUser applicationUser);
 		Task UpdateAsync(ApplicationUser applicationUser);
-		Task DeleteAsync(int id);
-		List<ViewAccountUserModel> GetAllUser(string role);
+        Task DeleteAsync(int id);
+        Task DeleteStringAsync(string id);
+        List<ViewAccountUserModel> GetAllUser(string role);
+        List<ViewInforCompany> GetInforCompany(string email);
 
-	}
+        List<AccountCompanyViewModel> GetAllCompany(string role);
+        Task<ApplicationUser> GetByStringId(string ID);
+
+    }
 }

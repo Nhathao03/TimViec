@@ -12,7 +12,7 @@ using TimViec.ViewModel;
 namespace TimViec.Controllers
 {
 	[Authorize]
-	public class HomeController : Controller
+    public class HomeController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
 		private readonly ICompanyRespository _companyRepository;
@@ -78,9 +78,10 @@ namespace TimViec.Controllers
 			return View(home);
 		}
 
+        //**********************************************************************************************
         //status job
         public IActionResult StJ()
-		{		
+		{
             var name = User.Identity.Name;
 			var status = _statusRepository.GetListJobByEmail(email: name);
 
@@ -91,15 +92,45 @@ namespace TimViec.Controllers
 
 			return View(status);
 		}
+		
+        // Delete Status
+        public async Task<IActionResult> Delete_Status(int ID)
+         {
+            await DisplayDropdown();
+			var status = await _statusRepository.GetByIdAsync(ID);
+			var getjobname = await _jobRepository.GetByIdAsync(status.JobID);
+			var companyname = _companyRepository.Details_CPN(getjobname.CompanyID).FirstOrDefault();
+
+			ViewBag.CompanyName = companyname;
+			ViewBag.Jobname = getjobname.Title;
+
+            if (status == null) 
+            {
+                return NotFound();
+            }
+            return View(status);
+        }
 
 
-		//all Job
-		public async Task<IActionResult> Job()
+        // Process delete status
+        [HttpPost, ActionName("Delete_Status")]
+        public async Task<IActionResult> DeleteConfirmed_Company(int id)
+        {
+            await _statusRepository.DeleteAsync(id);
+            return RedirectToAction(nameof(StJ));
+
+        }
+
+        //**********************************************************************************************
+
+        //all Job                                 
+        public async Task<IActionResult> Job()
 		{
 
 			await DisplayDropdown();
 
 			var job = await _jobRepository.GetAllAsync();
+
 			return View(job);
 		}
 
@@ -112,8 +143,9 @@ namespace TimViec.Controllers
 			return View(companies);
 		}
 
-		// search
-		[HttpGet]
+        //**********************************************************************************************
+        // search
+        [HttpGet]
 		public async Task<IActionResult> Search(string stringSearch)
 		{
             await DisplayDropdown();
@@ -121,9 +153,9 @@ namespace TimViec.Controllers
 
 			return View(result);
 		}
-
-		// display item
-		public async Task<IActionResult> Details_CPN(int id)
+        //**********************************************************************************************
+        // display details company
+        public async Task<IActionResult> Details_CPN(int id)
 		{
             await DisplayDropdown();
 
@@ -140,7 +172,7 @@ namespace TimViec.Controllers
 		{
             await DisplayDropdown();
 
-            var job = await _jobRepository.GetByIdAsync(id);
+            var job = _jobRepository.Details_Job(id);
 			if (job == null)
 			{
 				return NotFound();
@@ -149,12 +181,13 @@ namespace TimViec.Controllers
 		}
 
 		//***************************************************************************************
-		//all Job
+		//create applications
 		public async Task<IActionResult> CreateApplication(int id)
 		{
             await DisplayDropdown();
 
             var status = await _statusRepository.GetAllAsync();
+
 			var job = await _jobRepository.GetByIdAsync(id);
 			ViewBag.GetJob = job;
 			
@@ -192,30 +225,6 @@ namespace TimViec.Controllers
 				await image.CopyToAsync(fileStream);
 			}
 			return "LayoutTimViec/img/" + image.FileName;
-		}
-
-		// Delete Status
-		public async Task<IActionResult> Delete_Status(int id)
-		{
-            await DisplayDropdown();
-
-            var status = await _statusRepository.GetByIdAsync(id);
-
-			if (status == null)
-
-			{
-				return NotFound();
-			}
-			return View(status);
-		}
-
-		// Process delete status
-		[HttpPost, ActionName("Delete_Status")]
-		public async Task<IActionResult> DeleteConfirmed_Company(int id)
-		{
-			await _statusRepository.DeleteAsync(id);
-			return RedirectToAction(nameof(StJ));
-
 		}
 
 		//**********************************************************************************************

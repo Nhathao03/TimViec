@@ -89,6 +89,7 @@ namespace TimViec.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed_Job(int id)
         {
             await _jobRepository.DeleteAsync(id);
+            
             return RedirectToAction(nameof(Index));
 
         }
@@ -167,7 +168,7 @@ namespace TimViec.Areas.Admin.Controllers
         }
 
         //*********************************************************************************************
-        //account user
+        //all account user
         public async Task<IActionResult> Account_User(string role)
         {
             role = "User";
@@ -176,26 +177,69 @@ namespace TimViec.Areas.Admin.Controllers
             return View(result);
         }
 
-        //// Delete user
-        //public async Task<IActionResult> Delete_User()
-        //{
-        //    var user = await _userManagers.GetUserAsync(User);
+        // Delete user
+        public async Task<IActionResult> Delete_User(string ID)
+        {
+           var user  = await _applicationUser.GetByStringId(ID);
 
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(user);
-        //}
+            ViewBag.user = user.Fullname;
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
 
-        //// Xử lý xóa sản phẩm
-        //[HttpPost, ActionName("Delete_User")]
-        //public async Task<IActionResult> DeleteConfirmed_User(int id)
-        //{
-        //    await _applicationUser.DeleteAsync(id);
-        //    return RedirectToAction(nameof(Job));
+        // Xử lý xóa
+        [HttpPost, ActionName("Delete_User")]
+        public async Task<IActionResult> DeleteConfirmed_User(string id)
+        {
+            await _applicationUser.DeleteStringAsync(id);
+            return RedirectToAction(nameof(Account_User));
 
-        //}
+        }
+
+        //*********************************************************************************************
+        //all account company
+        public async Task<IActionResult> Account_Company(string role)
+        {
+            
+            role = "Company";
+            var result = _applicationUser.GetAllCompany(role);
+
+
+            return View(result);
+        }
+
+        // Delete company
+        public async Task<IActionResult> Delete_Company(string ID)
+        {
+            var user = await _applicationUser.GetByStringId(ID);
+
+            var company = await _companyRepository.GetByEmailAsync(user.Email);
+
+            ViewBag.name = company.Name_company;
+            ViewBag.Size = company.Company_size;
+            ViewBag.Type = company.Company_type;
+            ViewBag.Location = company.Location;
+
+            ViewBag.user = user.Fullname;
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        // Xử lý xóa sản phẩm
+        [HttpPost, ActionName("Delete_Company")]
+        public async Task<IActionResult> DeleteConfirmed_Company(string id)
+        {
+            await _applicationUser.DeleteStringAsync(id);
+            return RedirectToAction(nameof(Account_Company));
+
+        }
+
 
     }
 }

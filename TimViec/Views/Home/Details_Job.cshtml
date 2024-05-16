@@ -1,7 +1,7 @@
-﻿@model TimViec.Models.Job
+﻿@model List<TimViec.ViewModel.Details_Job>
 
 @{
-    ViewData["Title"] = @Html.DisplayFor(model => model.Title);
+    ViewData["Title"] = "Ứng tuyển";
     Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
@@ -19,94 +19,106 @@
 <section class="explore-work" id="explore">
     <div class="container expanded">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading">
-                    <h1 style="font-size: 35px"> @Html.DisplayFor(model => model.Title)</h1>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="left-image">
-                    <img style="width: 100%; height: 300px" src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.img)" alt="Interior Design Work">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="right-content">
-                    <ul>
-                        <li>
-                            <h4>Mức lương</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                        @Html.DisplayFor(model => model.Salary)
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Địa chỉ</h4>
-                            <ul class="info">
-                                <li>
-                                    <span class="float-start">
-                                        @Html.DisplayFor(model => model.Location)
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Yêu cầu ngôn ngữ</h4>
-                            <ul class="info">
-                                <li>
-                                    <span class="float-start">
-                                        @Html.DisplayFor(model => model.R1_Language)
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="float-start">
-                                        @Html.DisplayFor(model => model.R2_Language)
-                                    </span>
-                                </li>
-                                <li>
-                                    <span class="float-start">
-                                        @Html.DisplayFor(model => model.R3_Language)
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Mô tả</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                        @Html.DisplayFor(model => model.Description)
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Quy trình phỏng vấn</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                        Vòng 1: Nộp CV ứng tuyển
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Vòng 2: Thực hiện bài khảo sát tại công ty
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a class="badge badge-pill badge-danger" style="font-size: 25px; background-color: rgb(94, 171, 247); padding: 10px; float: right" asp-area="" asp-controller="Home" asp-action="CreateApplication" asp-route-id="@Model.Id">Ứng tuyển ngay</a>
+            @foreach(var item in Model){
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h1 style="font-size: 35px">@item.Name</h1>
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-6">
+                    <div class="left-image">
+                        <img style="width: 100%; height: 300px" src="~/LayoutTimViec/img/@item.Logo" alt="Interior Design Work">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <ul>
+                            <li>
+                                <h4>Công ty</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            @item.CompanyName
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Mức lương</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            @item.Salary
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
 
+                            <li>
+                                <br />
+                                <h4>Địa chỉ</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span class="float-start">
+                                            @item.Location
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <br />
+                                <h4>Yêu cầu ngôn ngữ</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span class="float-start">
+                                            @item.R1_Language
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="float-start">
+                                            @item.R2_Language
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="float-start">
+                                            @item.R3_Language
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <br />
+                                <h4>Mô tả</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            @item.Description
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <br />
+                                <h4>Quy trình phỏng vấn</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            Vòng 1: Nộp CV ứng tuyển
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            Vòng 2: Thực hiện bài khảo sát tại công ty
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a class="badge badge-pill badge-danger" style="font-size: 25px; background-color: rgb(35 97 157); padding: 10px; float: right" asp-area="" asp-controller="Home" asp-action="CreateApplication" asp-route-id="@item.Id">Ứng tuyển ngay</a>
+                    </div>
+                </div> 
+                }
         </div>
     </div>
 </section>

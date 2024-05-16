@@ -21,5 +21,7 @@ namespace TimViec.Respository
 		List<ChoeseSearchRank> ChoeseSearchRank(int ID);
 		List<ChoeseSearchLocation> ChoeseSearchLocation(int ID);
 
-	}
+        List<Details_Job> Details_Job(int ID);
+
+    }
 }

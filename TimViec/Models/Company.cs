@@ -34,5 +34,6 @@ namespace TimViec.Models
 		public int? CityID { get; set; }
 
         public City? City { get; set; }
+       
     }
 }

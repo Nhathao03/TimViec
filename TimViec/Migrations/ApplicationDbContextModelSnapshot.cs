@@ -267,6 +267,12 @@ namespace TimViec.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ApplicationUserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("CityID")
                         .HasColumnType("int");
 
@@ -306,6 +312,8 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CityID");
 
@@ -496,6 +504,9 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IDJob")
+                        .HasColumnType("int");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -630,9 +641,12 @@ namespace TimViec.Migrations
 
             modelBuilder.Entity("TimViec.Models.Company", b =>
                 {
+
                     b.HasOne("TimViec.Models.City", "City")
                         .WithMany()
                         .HasForeignKey("CityID");
+
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("City");
                 });

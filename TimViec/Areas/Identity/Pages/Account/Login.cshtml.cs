@@ -86,6 +86,21 @@ namespace TimViec.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        return LocalRedirect(Url.Content("/Admin")); // Chuyển hướng đến trang Admin
+                    }
+                    else if (roles.Contains("Company"))
+                    {
+                        return LocalRedirect(Url.Content("/CompanyManage/Company/Index")); // Chuyển hướng đến trang Company
+                    }
+                    else if (roles.Contains("User"))
+                    {
+                        return LocalRedirect(Url.Content("/Home/Index")); // Chuyển hướng đến trang User
+                    }
                     return LocalRedirect(returnUrl);
             
                 }

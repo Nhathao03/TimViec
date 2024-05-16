@@ -1,0 +1,90 @@
+﻿@model TimViec.Models.Job
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="pagetitle">
+    <h1>Đăng tin tuyển dụng</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Đăng tin tuyển dụng</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<hr />
+<div class="row" style="display: flex; justify-content: center">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body pt-3">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label">Tên công việc</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Salary" class="control-label">Lương</label>
+                        <input asp-for="Salary" class="form-control" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="img" class="control-label">Ảnh</label>
+                        <input type="file" asp-for="img" class="form-control" />
+                        <span asp-validation-for="img" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="R1_Language" class="control-label">Ngôn ngữ 1</label>
+                        <input asp-for="R1_Language" class="form-control" />
+                        <span asp-validation-for="R1_Language" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="R2_Language" class="control-label">Ngôn ngữ 2</label>
+                        <input asp-for="R2_Language" class="form-control" />
+                        <span asp-validation-for="R2_Language" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="R3_Language" class="control-label">Ngôn ngữ 3</label>
+                        <input asp-for="R3_Language" class="form-control" />
+                        <span asp-validation-for="R3_Language" class="text-danger"></span>
+                    </div>
+           
+                    <div class="form-group">
+                        <label asp-for="RankID" class="control-label">Cấp bậc</label>
+                        <select asp-for="RankID" class="form-control" asp-items="ViewBag.Rank"></select>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label asp-for="SkillID" class="control-label">Kỹ năng</label>
+                        <select asp-for="SkillID" class="form-control" asp-items="ViewBag.Skill"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Type_workID" class="control-label">Loại hình</label>
+                        <select asp-for="Type_workID" class ="form-control" asp-items="ViewBag.Type"></select>
+                    </div>
+          
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label">Địa chỉ</label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Mô tả</label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                    </div>
+                    <br />
+                    <div class="form-group" style="float: right">
+                        <input type="submit" value="Đăng tuyển" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
