@@ -1,24 +1,21 @@
-﻿@model TimViec.Models.Company
+﻿@model TimViec.Models.ApplicationUser
 
 @{
-    ViewData["Title"] = "Delete_Company";
+    ViewData["Title"] = "Delete_User";
 }
+
+
 <br />
-<h3>Bạn chắc chắn muốn xóa công ty @Html.DisplayFor(model => model.Name_company) ? </h3>
+<p style="text-align: center; font-size: 23px; color: black">Bạn chắc chắn muốn xóa tài khoản @ViewBag.user ?</p>
 <div>
+    <br />
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="margin-left: 500px; color: black; font-size: 18px">
         <dt>
             <p>Tên công ty</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name_company)
-        </dd>
-        <dt>
-            <p>Địa chỉ</p>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
+            @ViewBag.name
         </dd>
         <dt>
             <p>Email</p>
@@ -27,40 +24,34 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            <p>Hình ảnh</p>
-        </dt>
-        <dd>
-            <img src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.Image)" alt="" />
-        </dd>
-        <dt>
             <p>Quy mô</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Company_size)
+            @ViewBag.Size
         </dd>
         <dt>
             <p>Loại hình</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Company_type)
+            @ViewBag.Type
         </dd>
         <dt>
-            <p>Ngày đăng ký</p>
+            <p>Địa chỉ</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @ViewBag.Location
         </dd>
-        <dt>
-            <p>Mô tả</p>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+
     </dl>
-    
-    <form asp-action="Delete_Company">
+
+
+    <form asp-action="Delete_Company" style="
+    display: flex;
+    justify-content: center;
+">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" /> |
-        <a asp-action="Company" class="btn btn-primary">Trở về</a>
+        <input type="submit" value="Xóa tài khoản" class="btn btn-danger" /> |
+        <a asp-action="Account_User" class="btn btn-primary">Trở lại</a>
     </form>
+
 </div>

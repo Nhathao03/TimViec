@@ -29,7 +29,7 @@ namespace TimViec.Models
 
         public Rank? Rank { get; set; }
 
-        public string img {  get; set; }
+        public string? img {  get; set; }
 
         public string? R1_Language { get; set; }
 

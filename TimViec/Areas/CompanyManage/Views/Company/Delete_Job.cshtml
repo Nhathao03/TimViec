@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "Delete_Job";
 }
+
 <br />
-<h3>Bạn chắc chắn muốn xóa công việc @Html.DisplayFor(model => model.Title) ?</h3>
+<h3>Bạn chắc chắn muốn xóa công việc @Html.DisplayFor(model => model.Title) thuộc công ty @Html.DisplayFor(model => model.Company) ?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -14,7 +15,12 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-      
+        <dt>
+            <p>Tên công ty</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
         <dt>
             <p>Địa chỉ làm việc</p>
         </dt>
@@ -70,5 +76,4 @@
         <input type="submit" value="Xóa" class="btn btn-danger" /> |
         <a asp-action="Job" class="btn btn-primary">Trở về</a>
     </form>
-
 </div>

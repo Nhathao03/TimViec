@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Shared;
+using TimViec.Helpers;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
@@ -12,12 +15,13 @@ namespace TimViec.Areas.CompanyManage.Controllers
     [Authorize(Roles = "Company")]
     public class CompanyController : Controller
     {
-       
         private readonly IJobRespository _jobRepository;
         private readonly ICompanyRespository _companyRepository;
         private readonly IStatusRepository _statusRepository;
         private readonly IApplicationUser _applicationUser;
         private readonly IType_WorkRespository _WorkRespository;
+        private readonly IRankRespository _rankRespository;
+        private readonly ISkillRespository _skillRespository;
         private readonly ICityRespository _cityRespository;
         private readonly UserManager<ApplicationUser> _userManagers;
 
@@ -25,6 +29,8 @@ namespace TimViec.Areas.CompanyManage.Controllers
             IJobRespository jobRepository,
             IStatusRepository statusRepository,
             IApplicationUser userManager,
+            IRankRespository rankRespository,
+            ISkillRespository skillRespository,
             IType_WorkRespository type_workRespository,
             ICityRespository cityRespository,
             UserManager<ApplicationUser> userManagers)
@@ -36,6 +42,8 @@ namespace TimViec.Areas.CompanyManage.Controllers
             _userManagers = userManagers;
             _WorkRespository = type_workRespository;
             _cityRespository = cityRespository;
+            _skillRespository = skillRespository;
+            _rankRespository = rankRespository;
         }
 
         //trang chu
@@ -46,70 +54,70 @@ namespace TimViec.Areas.CompanyManage.Controllers
 
             //dem so luong cong viec
             var getinfor = _applicationUser.GetInforCompany(us);
+
             int id = getinfor.Select(x => x.Id).FirstOrDefault();
             var Count = _companyRepository.CountJobInCompanies(id).Count();
 
+            var countstatus = _statusRepository.CompanyCheckStatus(user.Email).Count();
+
+            ViewBag.CountStatus = countstatus;
             ViewBag.Count = Count;
-            if (getinfor == null)
-            {
-                return NotFound();
-            }
+
             return View(getinfor);
         }
 
-
+        //**********************************************************************************************
         //Edit company
-        public async Task<IActionResult> Edit_company(string email)
+        public async Task<IActionResult> Edit_company()
         {
             var user = await _userManagers.GetUserAsync(User);
-            email = user.Email;
-            var getinfor = await _companyRepository.GetByEmailAsync(email);
 
-            if (getinfor == null)
-            {
-                return NotFound();
-            }
+            var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
+
+            var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
+            var type_work = await _WorkRespository.GetAllAsync();
+            ViewBag.Type = new SelectList(type_work, "Id", "Type");  
 
             var city = await _cityRespository.GetAllAsync();
-            ViewBag.city = new SelectList(city, "Id", "city", getinfor.CityID);
+            ViewBag.City = new SelectList(city, "Id", "Name_city");
 
-            var type = await _WorkRespository.GetAllAsync();
-            ViewBag.type = new SelectList(type, "Id", "Type", getinfor.Company_type);
-            return View(getinfor);
+            return View(editCPNa);
         }
 
         // Process the product update
         [HttpPost]
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
         {
-            if (ModelState.IsValid)
+
+            if (Image != null)
             {
-                if (Image != null)
-                {
-                    company.Image = await SaveImage(Image);
-                }
-                await _companyRepository.UpdateAsync(company);
-                return RedirectToAction("Index");
+                company.Image = await SaveImageEdit(Image);
             }
-            return View(company);
+            
+            await _companyRepository.UpdateAsync(company);
+
+            return RedirectToAction("Edit_company");
         }
 
+        //**********************************************************************************************
         //Luu anh
-        private async Task<string> SaveImage(IFormFile image)
+        private async Task<string> SaveImageEdit(IFormFile Image)
         {
-            var savePath = Path.Combine("wwwroot/Company/images", image.FileName);
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", Image.FileName);
             using (var fileStream = new FileStream(savePath, FileMode.Create))
             {
-                await image.CopyToAsync(fileStream);
+                await Image.CopyToAsync(fileStream);
             }
-            return "Company/images/" + image.FileName; 
+            return Image.FileName;
         }
 
+        //**********************************************************************************************
         // display details company
-        public async Task<IActionResult> AllJob(int id)
+        public async Task<IActionResult> AllJob()
         {
-            id = 3;
-            var result = _companyRepository.Details_CPN(id);
+            var user = await _userManagers.GetUserAsync(User);
+            string email = user.Email;
+            var result = _companyRepository.GetJobByEmail(email);
             if (result == null)
             {
                 return NotFound();
@@ -117,29 +125,95 @@ namespace TimViec.Areas.CompanyManage.Controllers
             return View(result);
         }
 
+        // Delete Job
+        public async Task<IActionResult> Delete_Job(int ID)
+        {
+            var result = await _jobRepository.GetByIdAsync(ID);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return View(result);
+        }
+
+
+        // Process delete job
+        [HttpPost, ActionName("Delete_Job")]
+        public async Task<IActionResult> DeleteConfirmed_Job(int id)
+        {
+            await _jobRepository.DeleteAsync(id);
+            return RedirectToAction(nameof(AllJob));
+
+        }
+        //**********************************************************************************************
+        // display details company
+        public async Task<IActionResult> Create()
+        {
+            var rank = await _rankRespository.GetAllAsync();
+            var skill = await _skillRespository.GetAllAsync();
+            var type_work = await _WorkRespository.GetAllAsync();
+
+
+            ViewBag.Skill = new SelectList(skill, "Id", "Skills");
+            ViewBag.Type = new SelectList(type_work, "Id", "Type");
+            ViewBag.Rank = new SelectList(rank, "Id", "rank");
+
+
+            return View();
+        }
+        //Luu anh
+        private async Task<string> SaveImage(IFormFile img)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", img.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await img.CopyToAsync(fileStream);
+            }
+            return img.FileName;
+        }
+
         // create 
         [HttpPost]
         public async Task<IActionResult> Create(Job job, IFormFile img)
         {
+
+            var company = await _userManagers.GetUserAsync(User);
+            var idcompany = await _companyRepository.GetByEmailAsync(company.Email);
+
+            job.CompanyID = idcompany.Id;
+
             if (ModelState.IsValid)
             {
                 if (img != null)
                 {
-                    // Lưu hình ảnh đại diện
-                    job.img = await SaveImage(img);
+                    job.img = await SaveImage(img);  
                 }
 
                 await _jobRepository.AddAsync(job);
                 return RedirectToAction(nameof(Index));
             }
-            
-            var type = await _WorkRespository.GetAllAsync();
-            ViewBag.type = new SelectList(type, "Id", "Type");
+             return View(job);
+        }
 
-            var city = await _cityRespository.GetAllAsync();
-            ViewBag.city = new SelectList(city, "Id", "Name_City");
+        //*************************************************************************************
+        //Applications Company
+        public async Task<IActionResult> CompanyCheckStatus()
+        {
+            var user = await _userManagers.GetUserAsync(User);
 
-            return View(job);
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+
+            foreach (var job in result)
+            {
+                job.Statusname = EnumExtension.GetEnumDescription((Constants.StatusJob)job.Status);
+            }
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return View(result);
         }
 
     }

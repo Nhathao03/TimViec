@@ -6,11 +6,11 @@
 
 
 <br />
-<p style="text-align: center; font-size: 23px; color: black">Bạn chắc chắn ?</p>
-<div style="margin-left: 500px; color: black; font-size: 18px">
+<p style="text-align: center; font-size: 23px; color: black">Bạn chắc chắn muốn xóa tài khoản @ViewBag.user ?</p>
+<div >
     <br />
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="margin-left: 500px; color: black; font-size: 18px">
         <dt>
             <p>Họ và tên</p>
         </dt>
@@ -40,10 +40,13 @@
     </dl>
 
     
-    <form asp-action="Delete_User">
-        <input type="hidden" asp-for="Email" />
-        <input type="submit" value="Xóa tài khoản" class="btn btn-default" />
-        <a asp-action="Account_User">Trở lại</a>
+    <form asp-action="Delete_User" style="
+    display: flex;
+    justify-content: center;
+">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Xóa tài khoản" class="btn btn-danger" /> | 
+        <a asp-action="Account_User" class="btn btn-primary">Trở lại</a>
     </form>
-    }
+
 </div>

@@ -5,11 +5,11 @@
 }
 
 <div class="pagetitle">
-    <h1>Thông tin công ty</h1>
+    <h1>Thay đổi thông tin</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Thông tin công ty</li>
+            <li class="breadcrumb-item active">Thay đổi thông tin</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -19,61 +19,55 @@
     <div class="col-xl-4">
         <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                <img src="~/Company/Image/@Html.DisplayFor(model => model.Image)" alt="Profile" class="rounded-circle">             
+                <img src="~/LayoutTimViec/img/@Html.DisplayFor(model => model.Image)" alt="Profile" class="rounded-circle" style="width: 100%">
             </div>
         </div>
     </div>
     <div class="col-xl-8">
         <div class="card">
             <div class="card-body pt-3">
-                <form asp-action="Edit_company">
+                <form asp-action="Edit_company" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group">
-                        <label asp-for="Name_company" class="control-label"></label>
+                        <label asp-for="Name_company" class="control-label">Tên công ty</label>
                         <input asp-for="Name_company" class="form-control" />
                         <span asp-validation-for="Name_company" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Location" class="control-label"></label>
-                        <input asp-for="Location" class="form-control" />
-                        <span asp-validation-for="Location" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" readonly class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Image" class="control-label"></label>
+                        <label asp-for="Image" class="control-label">Logo công ty</label>
                         <input type="file" asp-for="Image" class="form-control" />
                         <span asp-validation-for="Image" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Company_size" class="control-label"></label>
+                        <label asp-for="Company_size" class="control-label">Quy mô</label>
                         <input asp-for="Company_size" class="form-control" />
                         <span asp-validation-for="Company_size" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Company_type" class="control-label"></label>
-                        <input asp-for="Company_type" class="form-control" />
-                        <span asp-validation-for="Company_type" class="text-danger"></span>
+                        <label asp-for="Company_type" class="control-label">Loại hình</label>
+                        <select asp-for="Company_type" class="form-control" asp-items="ViewBag.Type"></select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Date" class="control-label"></label>
-                        <input asp-for="Date" class="form-control" />
-                        <span asp-validation-for="Date" class="text-danger"></span>
+                        <label asp-for="CityID" class="control-label">Loại hình</label>
+                        <select asp-for="CityID" class="form-control" asp-items="ViewBag.City"></select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="CityID" class="control-label"></label>
-                        <select asp-for="CityID" class="form-control" asp-items="ViewBag.CityID"></select>
-                        <span asp-validation-for="CityID" class="text-danger"></span>
+                        <label asp-for="Location" class="control-label">Địa chỉ</label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Mô tả</label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
                     <br />
                     <div class="form-group">
                         <input type="submit" value="Lưu thay đổi" class="btn btn-primary" style="float: right"/>

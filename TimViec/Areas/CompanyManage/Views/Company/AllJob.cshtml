@@ -1,10 +1,19 @@
-﻿@model List<TimViec.ViewModel.Details_CPN>
+﻿@model List<TimViec.ViewModel.GetJobByEmail>
 
 @{
     ViewData["Title"] = "Job";
 }
 
-<h2>Quản lý công việc</h2>
+<div class="pagetitle">
+    <h1>Quản lý công việc</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý công việc</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -15,9 +24,11 @@
                     <thead>
                         <tr>
                             <th>Tên công việc</th>
-                            <th style="width: 36.604651%;">Địa chỉ</th>
+                            <th>Lương</th>
+                            <th>Cấp bậc</th>
+                            <th>Loại hình</th>
+                            <th>Kỹ năng</th>
                             <th>Ngôn ngữ 1</th>
-                            @* <th data-type="date" data-format="YYYY/DD/MM">Start Date</th> *@
                             <th>Ngôn ngữ 2</th>
                             <th>Ngôn ngữ 3</th>
                             <th>Xóa</th>
@@ -28,43 +39,14 @@
                         {
                             <tr>
                                 <td>@item.JobName</td>
-                                <td>@item.Location</td>
+                                <td>@item.Salary</td>
+                                <td>@item.Rankname</td>
+                                <td>@item.Typename</td>
+                                <td>@item.Skillname</td>
                                 <td>@item.R1_Language</td>
                                 <td>@item.R2_Language</td>
                                 <td>@item.R3_Language</td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>@item.JobName</td>
-                                <td>@item.Location</td>
-                                <td>@item.R1_Language</td>
-                                <td>@item.R2_Language</td>
-                                <td>@item.R3_Language</td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>@item.JobName</td>
-                                <td>@item.Location</td>
-                                <td>@item.R1_Language</td>
-                                <td>@item.R2_Language</td>
-                                <td>@item.R3_Language</td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>@item.JobName</td>
-                                <td>@item.Location</td>
-                                <td>@item.R1_Language</td>
-                                <td>@item.R2_Language</td>
-                                <td>@item.R3_Language</td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
-                            </tr>
-                            <tr>
-                                <td>@item.JobName</td>
-                                <td>@item.Location</td>
-                                <td>@item.R1_Language</td>
-                                <td>@item.R2_Language</td>
-                                <td>@item.R3_Language</td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                                <td><a asp-controller="Company" asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
                             </tr>
                         }
                     </tbody>

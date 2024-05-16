@@ -6,12 +6,12 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public string Location { get; set; }
-        public string Type { get; set; }
+        public string TypeName { get; set; }
         public string Size { get; set; }
         public string Description { get; set; }
         public string logo { get; set; }
         public DateTime? Date { get; set; }
-        public int? City { get; set; }
+        public string? CityName { get; set; }
 
     }
 }

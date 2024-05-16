@@ -45,7 +45,9 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> 
+                                    @ViewBag.CountStatus
+                                </div>
                             </div>
 
                         </div>
@@ -102,26 +104,18 @@
 
 <div class="pagetitle">
     <h1>Thông tin công ty</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Thông tin công ty</li>
-        </ol>
-    </nav>
 </div><!-- End Page Title -->
 
 <section class="section profile">
     @foreach (var item in Model)
      {
     <div class="row">
-            <div class="col-xl-4">
-
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    <img src="~/Company/Image/@item.logo" alt="Profile" class="rounded-circle">
+                        <img src="~/LayoutTimViec/img/@item.logo" alt="Profile" class="rounded-circle" style="width: 100%">
                 </div>
             </div>
-
         </div>
         
         <div class="col-xl-8">
@@ -171,19 +165,26 @@
                         
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Loại hình</div>
-                                <div class="col-lg-9 col-md-8">@item.Type</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (item.TypeName == "1")
+                                    {
+                                        <p>In Office</p>
+                                    }
+                                    else if (item.TypeName == "2")
+                                    {
+                                        <p>Hybird</p>
+                                    }
+                                    else if (item.TypeName == "3")
+                                    {
+                                        <p>Remote</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Oversea</p>
+                                    }
+                                </div>
                             </div>
-                        
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Ngày thành lập</div>
-                                <div class="col-lg-9 col-md-8">@item.Date</div>
-                            </div>
-                        
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Thành phố</div>
-                                <div class="col-lg-9 col-md-8">@item.City</div>
-                            </div>
-                        
+
                         </div>
 
                         <div class="tab-pane fade pt-3" id="profile-settings">

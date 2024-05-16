@@ -105,7 +105,7 @@ namespace TimViec.Areas.Identity.Pages.Account
                     var roles = _roleManager.Roles;
                     await _userManager.AddToRoleAsync(user, "Company");
 
-                    var company = new Company { Name_company = Input.NameCompany, Company_size = Input.CompanySize, Company_type = "In Office", Location = Input.Location, Description = Input.NameCompany, Email = Input.Email, Image = "Image"};
+                    var company = new Company { Name_company = Input.NameCompany, Company_size = Input.CompanySize, Company_type = "1", Location = Input.Location, Description = Input.NameCompany, Email = Input.Email, Image = "companny.jpg", CityID = 1 };
                     await _companyRepository.AddAsync(company);
                     _logger.LogInformation("User created a new account with password.");
 
@@ -127,7 +127,7 @@ namespace TimViec.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return RedirectToAction("Index", "Company", new { area = "CompanyManage" });
+                        return RedirectToAction("Index");
                     } 
                 }
                 foreach (var error in result.Errors)

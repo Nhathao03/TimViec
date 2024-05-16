@@ -1,0 +1,57 @@
+﻿@model List<TimViec.ViewModel.CompanyCheckStatusViewModel>
+
+@{
+    ViewData["Title"] = "Job";
+}
+<div class="pagetitle">
+    <h1>Quản lý đơn tuyển dụng</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý đơn tuyển dụng</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th style="width: 12.978261%">Họ và tên</th>
+                            <th>Email</th>
+                            <th>Tên công việc</th>
+                            <th style="width: 18.118012%;">Ảnh CV</th>
+                            <th>Ghi Chú</th>
+                            <th>Trạng thái</th>
+                            <th style="width: 6.618012%;">Duyệt</th>
+                            <th style="width: 6.065217%;">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.NameUser</td>
+                                <td>@item.Email</td>
+                                <td>@item.JobName</td>
+                                <td><img style="width: 200px" src="~/@item.imgCV" /></td>
+                                <td>@item.Note</td>
+                                <td>@item.Statusname</td>
+                                <td><a asp-action="" asp-route-id="@item.Id" class="btn btn-danger">Duyệt</a></td>
+                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
