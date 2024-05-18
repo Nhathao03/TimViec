@@ -10,5 +10,6 @@
         public string Note { get; set; }
         public int Status { get; set; }
         public string Statusname { get; set; }
+        public int Read {  get; set; }
     }
 }

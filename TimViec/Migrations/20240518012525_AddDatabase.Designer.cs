@@ -12,7 +12,7 @@ using TimViec.Data;
 namespace TimViec.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240508100114_AddDatabase")]
+    [Migration("20240518012525_AddDatabase")]
     partial class AddDatabase
     {
         /// <inheritdoc />
@@ -296,7 +296,6 @@ namespace TimViec.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
@@ -360,7 +359,14 @@ namespace TimViec.Migrations
                     b.Property<int?>("Type_workID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Work_responsibility")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("treatment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -436,6 +442,9 @@ namespace TimViec.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Read")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -498,6 +507,9 @@ namespace TimViec.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IDJob")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .IsRequired()

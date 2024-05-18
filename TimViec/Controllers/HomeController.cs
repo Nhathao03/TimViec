@@ -210,8 +210,9 @@ namespace TimViec.Controllers
 			}
 
             statusJob.Status = (int)Constants.StatusJob.Inprogress;
+            statusJob.Read = (int)Constants.ViewStatus.NoRead;
 
-			await _statusRepository.AddAsync(statusJob);
+            await _statusRepository.AddAsync(statusJob);
 			return RedirectToAction(nameof(Index));
 
 		}

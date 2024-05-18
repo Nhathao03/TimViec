@@ -224,7 +224,7 @@ namespace TimViec.Migrations
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Company_size = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Company_type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -253,11 +253,13 @@ namespace TimViec.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SkillID = table.Column<int>(type: "int", nullable: true),
                     RankID = table.Column<int>(type: "int", nullable: true),
-                    img = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     R1_Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     R2_Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     R3_Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type_workID = table.Column<int>(type: "int", nullable: true)
+                    Type_workID = table.Column<int>(type: "int", nullable: true),
+                    Work_responsibility = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    treatment = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -296,7 +298,8 @@ namespace TimViec.Migrations
                     Fullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     imgCV = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    JobID = table.Column<int>(type: "int", nullable: false)
+                    JobID = table.Column<int>(type: "int", nullable: false),
+                    Read = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

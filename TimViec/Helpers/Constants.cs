@@ -11,5 +11,11 @@ namespace TimViec.Helpers
 			[Description("Đã duyệt")]
 			Completed = 2
 		}
+
+		public enum ViewStatus
+		{
+			NoRead = 0,
+			Read = 1
+		}
 	}
 }

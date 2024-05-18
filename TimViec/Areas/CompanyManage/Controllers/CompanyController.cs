@@ -8,6 +8,8 @@ using TimViec.Helpers;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
+using static System.Net.Mime.MediaTypeNames;
+using static TimViec.Helpers.Constants;
 
 namespace TimViec.Areas.CompanyManage.Controllers
 {
@@ -60,6 +62,9 @@ namespace TimViec.Areas.CompanyManage.Controllers
 
             var countstatus = _statusRepository.CompanyCheckStatus(user.Email).Count();
 
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
             ViewBag.CountStatus = countstatus;
             ViewBag.Count = Count;
 
@@ -71,11 +76,15 @@ namespace TimViec.Areas.CompanyManage.Controllers
         public async Task<IActionResult> Edit_company()
         {
             var user = await _userManagers.GetUserAsync(User);
-
             var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
-
             var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
             var type_work = await _WorkRespository.GetAllAsync();
+
+
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
+
             ViewBag.Type = new SelectList(type_work, "Id", "Type");  
 
             var city = await _cityRespository.GetAllAsync();
@@ -89,11 +98,18 @@ namespace TimViec.Areas.CompanyManage.Controllers
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
         {
 
-            if (Image != null)
-            {
-                company.Image = await SaveImageEdit(Image);
-            }
-            
+                if (Image != null)
+                {
+                    company.Image = await SaveImageEdit(Image);
+                }
+                else
+                {
+                    var user = await _userManagers.GetUserAsync(User);
+                    var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
+                    var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
+                    company.Image = editCPNa.Image;
+                }
+
             await _companyRepository.UpdateAsync(company);
 
             return RedirectToAction("Edit_company");
@@ -118,6 +134,10 @@ namespace TimViec.Areas.CompanyManage.Controllers
             var user = await _userManagers.GetUserAsync(User);
             string email = user.Email;
             var result = _companyRepository.GetJobByEmail(email);
+
+            var resultBell = _statusRepository.CompanyCheckStatus(user.Email);
+            ViewBag.Bell = resultBell.Where(s => s.Read == 0).ToList();
+
             if (result == null)
             {
                 return NotFound();
@@ -128,7 +148,76 @@ namespace TimViec.Areas.CompanyManage.Controllers
         // Delete Job
         public async Task<IActionResult> Delete_Job(int ID)
         {
+            var user = await _userManagers.GetUserAsync(User);
             var result = await _jobRepository.GetByIdAsync(ID);
+            var resultBell = _statusRepository.CompanyCheckStatus(user.Email);
+
+            ViewBag.Bell = resultBell.Where(s => s.Read == 0).ToList();
+
+            ViewBag.Rank = "abc";
+            if (result.RankID == 1)
+            {
+                ViewBag.Rank = "Intern";
+            }
+            else if (result.RankID == 2)
+            {
+                ViewBag.Rank = "Fresher";
+            }
+            else if (result.RankID == 3)
+            {
+                ViewBag.Rank = "Junior";
+            }
+            else if (result.RankID == 4)
+            {
+                ViewBag.Rank = "Middle";
+            }
+            else if (result.RankID == 5)
+            {
+                ViewBag.Rank = "Senior";
+            }
+            else if (result.RankID == 6)
+            {
+                ViewBag.Rank = "Trưởng nhóm";
+            }
+            else if (result.RankID == 7)
+            {
+                ViewBag.Rank = "Trưởng phòng";
+            }
+            else
+            {
+                ViewBag.Rank = "All Levels";
+            }
+
+            ViewBag.Type = "abc";
+            if (result.Type_workID == 1)
+            {
+                ViewBag.Type = "In Office";
+            }
+            else if (result.Type_workID == 2)
+            {
+                ViewBag.Type = "Hybird";
+            }
+            else if (result.Type_workID == 3)
+            {
+                ViewBag.Type = "Remote";
+            }
+            else if(result.Type_workID == 4)
+            {
+                ViewBag.Type = "Oversea";
+            }
+
+            if (result.R1_Language == null)
+            {
+                result.R1_Language = "Không yêu cầu";
+            }
+            else if (result.R1_Language == null)
+            {
+                result.R2_Language = "Không yêu cầu";
+            }
+            else if (result.R3_Language == null)
+            {
+                result.R3_Language = "Không yêu cầu";
+            }
 
             if (result == null)
             {
@@ -153,7 +242,11 @@ namespace TimViec.Areas.CompanyManage.Controllers
             var rank = await _rankRespository.GetAllAsync();
             var skill = await _skillRespository.GetAllAsync();
             var type_work = await _WorkRespository.GetAllAsync();
+            var user = await _userManagers.GetUserAsync(User);
 
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
 
             ViewBag.Skill = new SelectList(skill, "Id", "Skills");
             ViewBag.Type = new SelectList(type_work, "Id", "Type");
@@ -203,6 +296,7 @@ namespace TimViec.Areas.CompanyManage.Controllers
             var user = await _userManagers.GetUserAsync(User);
 
             var result = _statusRepository.CompanyCheckStatus(user.Email);
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
 
             foreach (var job in result)
             {
@@ -215,6 +309,50 @@ namespace TimViec.Areas.CompanyManage.Controllers
             }
             return View(result);
         }
+
+        // Process the accept status
+        [HttpGet]
+        public async Task<IActionResult> Accept_Status(int ID)
+        {
+            var getid = await _statusRepository.GetByIdAsync(ID);
+            getid.Status = (int)Constants.StatusJob.Completed;
+            getid.Read = (int)Constants.ViewStatus.Read;
+            await _statusRepository.UpdateAsync(getid);
+
+            return RedirectToAction("CompanyCheckStatus");
+        }
+
+        // Process the  read status and detail
+        [HttpGet]
+        public async Task<IActionResult> Read_Status(int ID)
+        {
+            var getid = await _statusRepository.GetByIdAsync(ID);
+            getid.Read = (int)Constants.ViewStatus.Read;
+            await _statusRepository.UpdateAsync(getid);
+            var user = await _userManagers.GetUserAsync(User);
+
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
+
+            if (getid == null)
+            {
+                return NotFound();
+            }
+            return View(getid);
+            
+        }
+
+        // Process delete job
+        [HttpGet]
+        public async Task<IActionResult> DeleteConfirmed_Status(int id)
+        {
+            await _statusRepository.DeleteAsync(id);
+            return RedirectToAction(nameof(CompanyCheckStatus));
+
+        }
+
+        //*************************************************************************************
 
     }
 }

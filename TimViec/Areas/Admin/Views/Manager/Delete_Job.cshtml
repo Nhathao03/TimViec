@@ -28,16 +28,10 @@
             @Html.DisplayFor(model => model.Salary)
         </dd>
         <dt>
-            <p>Mô tả</p>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
             <p>Cấp bậc</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.RankID)
+            @ViewBag.Rank
         </dd>
         <dt>
             <p>Ngôn ngữ 1</p>
@@ -58,10 +52,16 @@
             @Html.DisplayFor(model => model.R3_Language)
         </dd>
         <dt>
-            <p>Loại công việc</p>
+            <p>Loại hình</p>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Type_work.Type)
+            @ViewBag.Type
+        </dd>
+        <dt>
+            <p>Mô tả</p>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
 
