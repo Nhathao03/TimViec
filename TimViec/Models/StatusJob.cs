@@ -14,5 +14,7 @@ namespace TimViec.Models
 		[ForeignKey("Job")]
         public int JobID { get; set; }
         public Job? Job { get; set; }
+
+        public int Read { get; set; }  
 	}
 }

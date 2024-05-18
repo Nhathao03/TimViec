@@ -61,30 +61,88 @@
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
         </div><!-- End Search Bar -->
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <form style="margin-right: 0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <li style="margin-right: 10px">
-                        <button style="
-                            margin-left: 830px;
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-danger badge-number">@ViewBag.Bell.Count</span>
+                    </a><!-- End Messages Icon -->
+                    @foreach(var item in ViewBag.Bell){
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            Bạn có @ViewBag.Bell.Count đơn ứng tuyển mới
+                                <a href="/CompanyManage/Company/CompanyCheckStatus"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            @if (ViewBag.Bell != null && ViewBag.Bell.Count > 0)
+                            {
+                                for (int i = 0; i < ViewBag.Bell.Count; i++)
+                                {
+                                    <a href="#">
+                                            <img style="width: 50px;" src="/@ViewBag.Bell[i].imgCV" alt="" class="rounded-circle">
+                                        <div>
+                                                <h4>@ViewBag.Bell[i].NameUser</h4>
+                                                <p>@ViewBag.Bell[i].Email</p>
+                                                <p>@ViewBag.Bell[i].JobName</p>
+                                        </div>
+                                    </a>
+                                    <hr />
+                                }  
+                            }
+                            else
+                            {
+                                <p>Không có đơn ứng tuyển mới</p>
+                            }
+
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                                <a href="/CompanyManage/Company/CompanyCheckStatus">Xem tất vả đơn ứng tuyển</a>
+                        </li>
+                    </ul><!-- End Messages Dropdown Items -->
+                    }
+                </li><!-- End Messages Nav -->
+                <li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form style="margin-right: 0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li style="margin-right: 10px">
+                                    <button style="
                             text-decoration: none;
                             color: black;
                             font-size: 20px;" type="submit" class="btn btn-link navbar-btn navbar-link">
-                            Đăng xuất
-                        </button>
-                    </li>
-                </ul>
-            </form>
-        }
-        else
-        {
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 0">
-                <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a></li>
-                <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
-            </ul>
-        }
+                                        Đăng xuất
+                                    </button>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 0">
+                            <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a></li>
+                            <li><a style="color: #fff" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a></li>
+                        </ul>
+                    }
 
+                </li>
+
+            </ul>
+
+        </nav><!-- End Icons Navigation -->
+
+      
 
         
 
@@ -117,7 +175,7 @@
                     </li>
                     <li>
                         <a asp-area="CompanyManage" asp-controller="Company" asp-action="CompanyCheckStatus">
-                            <i class="bi bi-circle"></i><span>CV chờ duyệt</span>
+                            <i class="bi bi-circle"></i><span>Đơn ứng tuyển</span>
                         </a>
                     </li>
                 </ul>
@@ -130,7 +188,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" asp-area="CompanyManage" asp-controller="Company" asp-action="Create">
                     <i class="bi bi-person"></i>
-                    <span>Đăng tin tuyển dụng</span>
+                    <span>Đăng công việc tuyển dụng</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 

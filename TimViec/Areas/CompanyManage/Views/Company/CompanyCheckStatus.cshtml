@@ -22,13 +22,12 @@
                 <table class="table datatable">
                     <thead>
                         <tr>
-                            <th style="width: 12.978261%">Họ và tên</th>
-                            <th>Email</th>
+                            <th >Họ và tên</th>
                             <th>Tên công việc</th>
                             <th style="width: 18.118012%;">Ảnh CV</th>
                             <th>Ghi Chú</th>
-                            <th>Trạng thái</th>
-                            <th style="width: 6.618012%;">Duyệt</th>
+                            <th style="width: 11.431677%;">Trạng thái</th>
+                            <th style="width: 8.627329%;">Chi tiết</th>
                             <th style="width: 6.065217%;">Xóa</th>
                         </tr>
                     </thead>
@@ -37,13 +36,12 @@
                         {
                             <tr>
                                 <td>@item.NameUser</td>
-                                <td>@item.Email</td>
                                 <td>@item.JobName</td>
                                 <td><img style="width: 200px" src="~/@item.imgCV" /></td>
                                 <td>@item.Note</td>
                                 <td>@item.Statusname</td>
-                                <td><a asp-action="" asp-route-id="@item.Id" class="btn btn-danger">Duyệt</a></td>
-                                <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
+                                <td><a asp-action="Read_Status" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
+                                <td><a asp-action="DeleteConfirmed_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
                             </tr>
                         }
                     </tbody>

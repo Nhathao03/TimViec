@@ -41,5 +41,7 @@ namespace TimViec.Models
 		public int? Type_workID { get; set; }
 
         public Type_work? Type_work { get; set; }
+        public string? Work_responsibility {  get; set; }
+        public string? treatment { get; set; }
     }
 }

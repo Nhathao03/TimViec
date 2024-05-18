@@ -8,6 +8,7 @@ using System.Data;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
+using TimViec.ViewModel;
 
 namespace TimViec.Areas.Admin.Controllers
 {
@@ -76,8 +77,72 @@ namespace TimViec.Areas.Admin.Controllers
         {
             var job = await _jobRepository.GetByIdAsync(id);
 
-            if (job == null)
+            ViewBag.Rank = "abc";
+            if(job.RankID == 1)
+            {
+                ViewBag.Rank = "Intern";
+            }
+            else if(job.RankID == 2)
+            {
+                ViewBag.Rank = "Fresher";
+            }
+            else if (job.RankID == 3)
+            {
+                ViewBag.Rank = "Junior";
+            }
+            else if (job.RankID == 4)
+            {
+                ViewBag.Rank = "Middle";
+            }
+            else if (job.RankID == 5)
+            {
+                ViewBag.Rank = "Senior";
+            }
+            else if (job.RankID == 6)
+            {
+                ViewBag.Rank = "Trưởng nhóm";
+            }
+            else if (job.RankID == 7)
+            {
+                ViewBag.Rank = "Trưởng phòng";
+            }
+            else
+            {
+                ViewBag.Rank = "All Levels";
+            }
 
+            ViewBag.Type = "abc";
+            if (job.Type_workID == 1)
+            {
+                ViewBag.Type = "In Office";
+            }
+            else if (job.Type_workID == 2)
+            {
+                ViewBag.Type = "Hybird";
+            }
+            else if (job.Type_workID == 3)
+            {
+                ViewBag.Type = "Remote";
+            }
+            else 
+            {
+                ViewBag.Type = "Oversea";
+            }
+
+            if(job.R1_Language == null)
+            {
+                job.R1_Language = "Không yêu cầu";
+            }
+            else if(job.R1_Language == null)
+            {
+                job.R2_Language = "Không yêu cầu";
+            }
+            else if(job.R3_Language == null)
+            {
+                job.R3_Language = "Không yêu cầu";
+            }
+
+            if (job == null)
             {
                 return NotFound();
             }
@@ -90,7 +155,7 @@ namespace TimViec.Areas.Admin.Controllers
         {
             await _jobRepository.DeleteAsync(id);
             
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Job));
 
         }
         //***************************************************************************
@@ -103,25 +168,12 @@ namespace TimViec.Areas.Admin.Controllers
             return View(companies);
         }
 
-        // Hiển thị form xác nhận xóa công ty
-        public async Task<IActionResult> Delete_Company(int id)
-        {
-            var company = await _companyRepository.GetByIdAsync(id);
-
-            if (company == null)
-
-            {
-                return NotFound();
-            }
-            return View(company);
-        }
-
         // Xử lý xóa sản phẩm
-        [HttpPost, ActionName("Delete_Company")]
+        [HttpGet]
         public async Task<IActionResult> DeleteConfirmed_Company(int id)
         {
             await _companyRepository.DeleteAsync(id);
-            return RedirectToAction(nameof(Job));
+            return RedirectToAction(nameof(Account_Company));
 
         }
         //***************************************************************************
