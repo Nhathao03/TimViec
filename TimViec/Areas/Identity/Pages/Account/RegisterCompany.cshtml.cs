@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using TimViec.Models;
@@ -24,6 +25,7 @@ namespace TimViec.Areas.Identity.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICityRespository _cityRespository;
         private readonly ICompanyRespository _companyRepository;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
@@ -31,7 +33,7 @@ namespace TimViec.Areas.Identity.Pages.Account
         public RegisterCompanyModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
- 
+            ICityRespository cityRespository,
             ICompanyRespository companyRepository,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
@@ -40,7 +42,7 @@ namespace TimViec.Areas.Identity.Pages.Account
             _userManager = userManager;
             _signInManager = signInManager;
             _companyRepository = companyRepository;
-    
+            _cityRespository = cityRespository;
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
@@ -86,6 +88,7 @@ namespace TimViec.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

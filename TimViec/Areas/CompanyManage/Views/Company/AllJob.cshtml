@@ -31,6 +31,7 @@
                             <th>Ngôn ngữ 1</th>
                             <th>Ngôn ngữ 2</th>
                             <th>Ngôn ngữ 3</th>
+                            <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                 <td>@item.R1_Language</td>
                                 <td>@item.R2_Language</td>
                                 <td>@item.R3_Language</td>
+                                <td><a asp-controller="Company" asp-action="Edit_Job" asp-route-id="@item.Id" class="btn btn-primary">Sửa</a></td>
                                 <td><a asp-controller="Company" asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
                             </tr>
                         }

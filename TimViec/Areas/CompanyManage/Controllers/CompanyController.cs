@@ -56,7 +56,6 @@ namespace TimViec.Areas.CompanyManage.Controllers
 
             //dem so luong cong viec
             var getinfor = _applicationUser.GetInforCompany(us);
-
             int id = getinfor.Select(x => x.Id).FirstOrDefault();
             var Count = _companyRepository.CountJobInCompanies(id).Count();
 
@@ -93,23 +92,22 @@ namespace TimViec.Areas.CompanyManage.Controllers
             return View(editCPNa);
         }
 
-        // Process the product update
+        // Process the company update
         [HttpPost]
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
         {
 
-                if (Image != null)
-                {
-                    company.Image = await SaveImageEdit(Image);
-                }
-                else
-                {
-                    var user = await _userManagers.GetUserAsync(User);
-                    var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
-                    var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
-                    company.Image = editCPNa.Image;
-                }
-
+            if (Image != null)
+            {
+                company.Image = await SaveImageEdit(Image);
+            }
+            else
+            {
+                var user = await _userManagers.GetUserAsync(User);
+                var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
+                var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
+            }
+            
             await _companyRepository.UpdateAsync(company);
 
             return RedirectToAction("Edit_company");
@@ -227,6 +225,43 @@ namespace TimViec.Areas.CompanyManage.Controllers
         }
 
 
+        //Edit Job
+        public async Task<IActionResult> Edit_Job(int ID)
+        {
+            var job = await _jobRepository.GetByIdAsync(ID);
+
+            var user = await _userManagers.GetUserAsync(User);
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
+
+            var rank = await _rankRespository.GetAllAsync();
+            var skill = await _skillRespository.GetAllAsync();
+            var type_work = await _WorkRespository.GetAllAsync();
+
+            ViewBag.Skill = new SelectList(skill, "Id", "Skills");
+            ViewBag.Type = new SelectList(type_work, "Id", "Type");
+            ViewBag.Rank = new SelectList(rank, "Id", "rank");
+
+            return View(job);
+        }
+
+        // Process the job update
+        [HttpPost]   
+        public async Task<IActionResult> Edit_Job(Job job, IFormFile img)
+        {
+
+            var user = await _userManagers.GetUserAsync(User);
+            string email = user.Email;
+            var result = await _companyRepository.GetByEmailAsync(email);
+            job.CompanyID = result.Id;
+            if (img != null)
+            {
+                job.img = await SaveImageEdit(img);
+            }
+            await _jobRepository.UpdateAsync(job);
+            return RedirectToAction("Edit_Job");
+        }
+
         // Process delete job
         [HttpPost, ActionName("Delete_Job")]
         public async Task<IActionResult> DeleteConfirmed_Job(int id)
@@ -242,10 +277,9 @@ namespace TimViec.Areas.CompanyManage.Controllers
             var rank = await _rankRespository.GetAllAsync();
             var skill = await _skillRespository.GetAllAsync();
             var type_work = await _WorkRespository.GetAllAsync();
+
             var user = await _userManagers.GetUserAsync(User);
-
             var result = _statusRepository.CompanyCheckStatus(user.Email);
-
             ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
 
             ViewBag.Skill = new SelectList(skill, "Id", "Skills");

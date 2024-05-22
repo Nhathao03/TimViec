@@ -20,6 +20,6 @@ namespace TimViec.ViewModel
 		public string Image { get; set; }
 		public string ImageJob { get; set; }
 		public int IDJob { get; set; }
-
+		public string city { get; set; }
 	}
 }

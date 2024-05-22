@@ -13,105 +13,66 @@
     }
 
 </style>
-<br />
-<section class="explore-work" id="explore">
+<section class="explore-work" id="explore" style="background-color: #e2e2e2;margin-top: -20px;">
     <div class="container expanded">
-        @foreach (var item in Model)
-        {
-            <div class="row">
-                <div class="col-lg-12">
-                <div class="section-heading">
-                    <h1 style="font-size: 35px">@item.CompanyName1</h1>
+        <div class="row" style="margin-top: 25px;">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4" style="width: 28%;background-color: white;border-radius: 10px;margin-left: 20px;padding: 10px;margin-top: 10px">
+                    <div class="left-image">
+                        <img style="width: 100%; height: auto" src="~/LayoutTimViec/img/@item.Image" alt="Interior Design Work">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="left-image">
-                    <img style="width: 100%; height: 300px" src="~/LayoutTimViec/img/@item.Image" alt="Interior Design Work">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="right-content">
-                    <ul>
-                        <li>
-                            <h4>Quy mô</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                       @item.Company_Size
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;margin-top: 10px;">
+                    <h1 style="font-size: 36px">công ty @item.CompanyName1</h1>
+                    <hr />
+                    <div class="right-content">
+                        <div style="display: flex; justify-content: space-evenly">
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Quy mô công ty</h1>
+                                <span style="display: flex; justify-content: center">@item.Company_Size</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Loại hình</h1>
+                                <span style="display: flex; justify-content: center">@item.Company_Type</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">Thành phố</h1>
+                                <span style="display: flex; justify-content: center">@item.city</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <h4>Địa chỉ</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.Location
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
                             <br />
-                            <h4>Loại hình</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                       @item.Company_Type
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Địa chỉ</h4>
-                            <ul class="info">
-                                <li>
-                                    <span class="float-start">
-                                       @item.Location
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Email</h4>
-                            <ul class="info">
-                                <li>
-                                    <span class="float-start">
-                                       @item.Email
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Mô tả</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                        @item.Description
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <br />
-                            <h4>Quy trình phỏng vấn</h4>
-                            <ul class="info">
-                                <li>
-                                    <span>
-                                        Vòng 1: Nộp CV ứng tuyển
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Vòng 2: Thực hiện bài khảo sát tại công ty
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        break;
-        }
-    </div>
-    </div>
-</section>
+                            <li>
+                                <h4>Mô tả</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.Description
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
 
+                        </ul>
+                    </div>
+                </div>
+                break;
+            }
+        </div>
+    </div>
+    <br />
+</section>
 <section id="explore" class="explore">
     <div class="container">
         <div class="section-header">
@@ -156,12 +117,7 @@
                                     <span class="explore-price-box">@item.R2_Language</span>
                                     <a href="#">@item.R3_Language</a>
                                 </p>
-                                <div class="explore-person">
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                        </div>
-                                    </div>
-                                </div>
+                                <hr />
                                 <div class="explore-open-close-part">
                                     <div class="row">
                                         <div class="col-sm-5">

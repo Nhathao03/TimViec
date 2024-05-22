@@ -16,99 +16,167 @@
 
 </style>
 <br />
-<section class="explore-work" id="explore" style="background-color: #f6f9ff;margin-top: -16px;">
+<section class="explore-work" id="explore" style="background-color: #e2e2e2;margin-top: -20px;">
     <div class="container expanded">
         <div class="row" style="margin-top: 25px;">
             @foreach(var item in Model){
-                <div class="col-lg-4" style="width: 27%;background-color: white;border-radius: 10px;margin-left: 20px;padding: 10px;">
+                <div class="col-lg-4" style="width: 28%;background-color: white;border-radius: 10px;margin-left: 20px;padding: 10px;">
                     <div class="left-image">
-                        <img style="width: 100%; height: 300px" src="~/LayoutTimViec/img/@item.Logo" alt="Interior Design Work">
+                        <img style="width: 100%; height: auto" src="~/LayoutTimViec/img/@item.Logo" alt="Interior Design Work">
                     </div>
-                    <hr />
-                    <div class="left">
-                        <h1>Công ty</h1>
-                    </div>
-                </div>
-                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 13px;margin-left: 26px;">
-                    <h1>@item.Name</h1>
-                    <hr />
-                    <div class="right-content">
+                    <hr style="border: solid 1px black" />
+                    <div class="left" style="padding-left: 14px;">  
                         <ul>
                             <li>
-                                <h4>Công ty</h4>
+                                <h4>Loại hình</h4>
                                 <ul class="info">
                                     <li>
                                         <span>
-                                            @item.CompanyName
+                                            • @item.type
                                         </span>
                                     </li>
                                 </ul>
                             </li>
                             <br />
                             <li>
-                                <br />
-                                <h4>Địa chỉ</h4>
+                                <h4>Cấp bậc</h4>
                                 <ul class="info">
                                     <li>
-                                        <span class="float-start">
-                                            @item.Location
+                                        <span>
+                                            • @item.rank
                                         </span>
                                     </li>
                                 </ul>
                             </li>
+                            <br />
                             <li>
-                                <br />
-                                <h4>Yêu cầu ngôn ngữ</h4>
+                                <h4>Kỹ năng</h4>
                                 <ul class="info">
                                     <li>
                                         <span class="float-start">
-                                            @item.R1_Language
+                                            • @item.R1_Language
                                         </span>
                                     </li>
                                     <li>
                                         <span class="float-start">
-                                            @item.R2_Language
+                                            • @item.R2_Language
                                         </span>
                                     </li>
                                     <li>
                                         <span class="float-start">
-                                            @item.R3_Language
+                                            • @item.R3_Language
                                         </span>
                                     </li>
                                 </ul>
                             </li>
+                            <br />
                             <li>
-                                <br />
-                                <h4>Mô tả</h4>
+                                <h4>Mức lương</h4>
                                 <ul class="info">
                                     <li>
                                         <span>
-                                            @item.Description
-                                        </span>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <br />
-                                <h4>Quy trình phỏng vấn</h4>
-                                <ul class="info">
-                                    <li>
-                                        <span>
-                                            Vòng 1: Nộp CV ứng tuyển
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            Vòng 2: Thực hiện bài khảo sát tại công ty
+                                            • @item.Salary
                                         </span>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <a class="badge badge-pill badge-danger" style="font-size: 25px; background-color: rgb(35 97 157); padding: 10px; float: right" asp-area="" asp-controller="Home" asp-action="CreateApplication" asp-route-id="@item.Id">Ứng tuyển ngay</a>
                     </div>
-                </div> 
+                    <a class="badge badge-pill badge-danger" style="font-size: 25px; background-color: rgb(35 97 157); padding: 10px;width: 100%" asp-area="" asp-controller="Home" asp-action="CreateApplication" asp-route-id="@item.Id">Ứng tuyển ngay</a>
+
+                </div>
+
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;">
+                    <h1 style="font-size: 30px">@item.Name</h1>
+                    <hr/>
+                    <div class="right-content">
+                        <ul>   
+                            <li>
+                                <h4>Trách nhiệm công việc</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.work_responsitory
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Đãi ngộ</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.treatment
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Quy trình phỏng vấn</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • Vòng 1: Nộp CV ứng tuyển
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            • Vòng 2: Thực hiện bài khảo sát tại công ty
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;margin-top: 10px;">
+                    <h1 style="font-size: 36px">công ty @item.CompanyName</h1>
+                    <hr/>
+                    <div class="right-content">
+                        <div style="display: flex; justify-content: space-evenly">
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Quy mô công ty</h1>
+                                <span style="display: flex; justify-content: center">@item.size</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Loại hình</h1>
+                                <span style="display: flex; justify-content: center">@item.type</span>
+                            </div>
+                            <div style="width: 130px">
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">Thành phố</h1>
+                                <span style="display: flex; justify-content: center">@item.city</span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <h4>Địa chỉ</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.Location
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <br />
+                            <li>
+                                <h4>Mô tả</h4>
+                                <ul class="info">
+                                    <li>
+                                        <span>
+                                            • @item.descriptioncpn
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
                 }
         </div>
     </div>
+    <br />
 </section>
