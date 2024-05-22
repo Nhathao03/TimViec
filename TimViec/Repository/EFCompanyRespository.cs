@@ -43,6 +43,7 @@ namespace TimViec.Respository
 			var result = from j in _context.Jobs
 						 join c in _context.Companies on j.CompanyID equals c.Id
                          join t in _context.Type_Works on j.Type_workID equals t.Id
+                         join ct in _context.Cities on c.CityID equals ct.Id 
 
 						 where (c.Id.Equals(ID))
 						 select new Details_CPN
@@ -61,8 +62,8 @@ namespace TimViec.Respository
 							 LocationJob = j.Location,
 							 Image = c.Image,
 							 ImageJob = j.img,
-							 IDJob = j.Id
-
+							 IDJob = j.Id,
+                             city = ct.Name_city,
 						 };
 			return result.ToList();
 		}

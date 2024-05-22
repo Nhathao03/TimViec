@@ -16,11 +16,13 @@ namespace TimViec.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly UserManager<ApplicationUser> _userManagers;
 
-        public LogoutModel(SignInManager<ApplicationUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<ApplicationUser> signInManager, ILogger<LogoutModel> logger, UserManager<ApplicationUser> userManagers)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManagers = userManagers;
         }
 
         public void OnGet()
@@ -30,15 +32,17 @@ namespace TimViec.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("Logout.");
+
             if (returnUrl != null)
             {
-                return LocalRedirect(returnUrl);
+                return LocalRedirect(Url.Content("/Identity/Account/Login"));
             }
             else
             {
                 return RedirectToPage();
             }
+            
         }
     }
 }

@@ -52,6 +52,9 @@ namespace TimViec.Areas.Admin.Controllers
             int CountS = (from s in GetJob select s.Salary).Count();
             int totalSalary = Convert.ToInt32(GetJob.Sum(s => s.Salary));
 
+            var admin = await _userManagers.GetUserAsync(User);
+            ViewBag.Admin = admin.Fullname;
+  
             int MiddleSalary = 0;
             for (int i = 0; i < CountS; i++)
             {
@@ -195,14 +198,11 @@ namespace TimViec.Areas.Admin.Controllers
 
 		// Process the product update
 		[HttpPost]
-		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser, IFormFile avatar)
+		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser)
 		{
 			if (ModelState.IsValid)
 			{
-				if (avatar != null)
-				{
-					applicationUser.avatar = await SaveImage(avatar);
-				}
+
 				await _applicationUser.UpdateAsync(applicationUser);
 				return RedirectToAction("Account_Admin");
 			}

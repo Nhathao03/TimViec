@@ -13,6 +13,12 @@
         public string R3_Language { get; set;}
         public string Location { get; set; }
         public string Logo { get; set; }
-
+        public string rank { get; set; }
+        public string type { get; set; }
+        public string size { get; set; }
+        public string descriptioncpn { get; set; }
+        public string work_responsitory { get; set; }
+        public string treatment { get; set; }
+        public string city { get; set; }
     }
 }

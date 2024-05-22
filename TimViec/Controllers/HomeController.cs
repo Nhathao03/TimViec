@@ -140,7 +140,7 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var companies = await _companyRepository.GetAllAsync();
-			return View(companies);
+            return View(companies);
 		}
 
         //**********************************************************************************************
@@ -185,7 +185,8 @@ namespace TimViec.Controllers
 		public async Task<IActionResult> CreateApplication(int id)
 		{
             await DisplayDropdown();
-
+			var user = await _userManager.GetUserAsync(User);
+			ViewBag.Email = user.Email;
             var status = await _statusRepository.GetAllAsync();
 
 			var job = await _jobRepository.GetByIdAsync(id);
@@ -213,7 +214,7 @@ namespace TimViec.Controllers
             statusJob.Read = (int)Constants.ViewStatus.NoRead;
 
             await _statusRepository.AddAsync(statusJob);
-			return RedirectToAction(nameof(Index));
+			return RedirectToAction(nameof(StJ));
 
 		}
 

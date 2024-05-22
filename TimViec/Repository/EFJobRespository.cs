@@ -142,6 +142,9 @@ namespace TimViec.Respository
         {
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
+                         join r in _context.Ranks on j.RankID equals r.Id
+                         join t in _context.Type_Works on j.Type_workID equals t.Id
+                         join city in _context.Cities on c.CityID equals city.Id
                          where (j.Id.Equals(ID))
                          select new Details_Job
                          {
@@ -154,8 +157,15 @@ namespace TimViec.Respository
                              R2_Language = j.R2_Language,
                              R3_Language = j.R3_Language,
                              Location = j.Location,
-                             Logo =  j.img,
+                             Logo = j.img,
                              Salary = j.Salary,
+                             rank = r.rank,
+                             type = t.Type,
+                             size = c.Company_size,
+                             descriptioncpn = c.Description,
+                             work_responsitory = j.Work_responsibility,
+                             treatment = j.treatment,
+                             city = city.Name_city,
                          };
             return result.ToList();
         }
