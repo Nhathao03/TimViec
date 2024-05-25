@@ -21,5 +21,6 @@ namespace TimViec.ViewModel
 		public string ImageJob { get; set; }
 		public int IDJob { get; set; }
 		public string city { get; set; }
+		public string About_Me { get; set; }
 	}
 }

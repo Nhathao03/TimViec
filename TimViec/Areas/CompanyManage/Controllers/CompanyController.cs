@@ -96,20 +96,19 @@ namespace TimViec.Areas.CompanyManage.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
         {
-
+            //var user = await _userManagers.GetUserAsync(User);
+            //var result = await _companyRepository.GetByEmailAsync(user.Email);
             if (Image != null)
             {
                 company.Image = await SaveImageEdit(Image);
             }
-            else
-            {
-                var user = await _userManagers.GetUserAsync(User);
-                var getinfor = await _companyRepository.GetByEmailAsync(user.Email);
-                var editCPNa = await _companyRepository.GetByIdAsync(getinfor.Id);
-            }
-            
-            await _companyRepository.UpdateAsync(company);
+            //else
+            //{
+            //    company.Image = result.Image;
+            //}
 
+            await _companyRepository.UpdateAsync(company);
+            await Task.Delay(2000);
             return RedirectToAction("Edit_company");
         }
 
@@ -224,7 +223,6 @@ namespace TimViec.Areas.CompanyManage.Controllers
             return View(result);
         }
 
-
         //Edit Job
         public async Task<IActionResult> Edit_Job(int ID)
         {
@@ -251,12 +249,15 @@ namespace TimViec.Areas.CompanyManage.Controllers
         {
 
             var user = await _userManagers.GetUserAsync(User);
-            string email = user.Email;
-            var result = await _companyRepository.GetByEmailAsync(email);
+            var result = await _companyRepository.GetByEmailAsync(user.Email);
             job.CompanyID = result.Id;
             if (img != null)
             {
                 job.img = await SaveImageEdit(img);
+            }
+            else
+            {
+                job.img = result.Image;
             }
             await _jobRepository.UpdateAsync(job);
             return RedirectToAction("Edit_Job");
@@ -316,11 +317,10 @@ namespace TimViec.Areas.CompanyManage.Controllers
                 {
                     job.img = await SaveImage(img);  
                 }
-
-                await _jobRepository.AddAsync(job);
-                return RedirectToAction(nameof(Index));
             }
-             return View(job);
+
+            await _jobRepository.AddAsync(job);
+            return RedirectToAction(nameof(AllJob));
         }
 
         //*************************************************************************************

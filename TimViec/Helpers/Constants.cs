@@ -17,5 +17,11 @@ namespace TimViec.Helpers
 			NoRead = 0,
 			Read = 1
 		}
+
+		public enum favouriteJob
+		{
+			favourite = 1,
+			nofavourite = 0
+		}
 	}
 }

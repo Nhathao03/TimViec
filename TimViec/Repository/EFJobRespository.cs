@@ -41,14 +41,16 @@ namespace TimViec.Respository
 		{
             var result = from j in _context.Jobs
                          join c in _context.Companies on j.CompanyID equals c.Id
+                         join ct in _context.Cities on c.CityID equals ct.Id
                          where (j.Title.Contains(stringSearch)
                                 || j.R1_Language.Contains(stringSearch)
                                 || j.R2_Language.Contains(stringSearch)
                                 || j.R3_Language.Contains(stringSearch)
                                 || c.Name_company.Contains(stringSearch)
+                                || ct.Name_city.Contains(stringSearch)
                                 || c.Location.Contains(stringSearch))
                          select new SearchViewModel
-                         {
+                         {  
                              Id = j.Id,
                              JobName = j.Title,
                              CompanyName = c.Name_company,
@@ -166,6 +168,7 @@ namespace TimViec.Respository
                              work_responsitory = j.Work_responsibility,
                              treatment = j.treatment,
                              city = city.Name_city,
+                             advanced_skill = j.advanced_skill
                          };
             return result.ToList();
         }

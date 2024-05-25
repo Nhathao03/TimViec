@@ -35,7 +35,5 @@ namespace TimViec.Respository
             _context.Ranks.Remove(rank);
             await _context.SaveChangesAsync();
         }
-
-
     }
 }

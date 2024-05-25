@@ -8,7 +8,7 @@
         public string R2_Language { get; set;}
         public string R3_Language { get; set;}
 
-        public Decimal? Salary { get; set;}
+        public int? Salary { get; set;}
         public int? Rank { get; set;}
         public string Rankname { get; set; }
         public int? Type { get; set;}

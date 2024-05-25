@@ -22,6 +22,8 @@
                     <div class="left-image">
                         <img style="width: 100%; height: auto" src="~/LayoutTimViec/img/@item.Image" alt="Interior Design Work">
                     </div>
+                    <br />
+                    <iframe src="@item.About_Me" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;margin-top: 10px;">
                     <h1 style="font-size: 36px">công ty @item.CompanyName1</h1>
@@ -30,15 +32,15 @@
                         <div style="display: flex; justify-content: space-evenly">
                             <div style="width: 130px">
                                 <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Quy mô công ty</h1>
-                                <span style="display: flex; justify-content: center">@item.Company_Size</span>
+                                <p style="display: flex; justify-content: center">@item.Company_Size</p>
                             </div>
                             <div style="width: 130px">
                                 <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Loại hình</h1>
-                                <span style="display: flex; justify-content: center">@item.Company_Type</span>
+                                <p style="display: flex; justify-content: center">@item.Company_Type</p>
                             </div>
                             <div style="width: 130px">
                                 <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">Thành phố</h1>
-                                <span style="display: flex; justify-content: center">@item.city</span>
+                                <p style="display: flex; justify-content: center">@item.city</p>
                             </div>
                         </div>
                         <ul>
@@ -46,9 +48,9 @@
                                 <h4>Địa chỉ</h4>
                                 <ul class="info">
                                     <li>
-                                        <span>
+                                        <p>
                                             • @item.Location
-                                        </span>
+                                        </p>
                                     </li>
                                 </ul>
                             </li>
@@ -57,9 +59,9 @@
                                 <h4>Mô tả</h4>
                                 <ul class="info">
                                     <li>
-                                        <span>
+                                        <p style="text-align: justify;">
                                             • @item.Description
-                                        </span>
+                                        </p>
                                     </li>
                                 </ul>
                             </li>
@@ -78,41 +80,27 @@
         <div class="section-header">
             @foreach (var item in Model)
             {
-                <h2>Danh sách công việc của công ty @item.CompanyName1</h2>
+                <h2>Công việc của @item.CompanyName1</h2>
                 break;
             }
         </div><!--/.section-header-->
         <div class="explore-content">
             <div class="row">
-
                 @foreach (var item in Model)
                 {
                     <div class=" col-md-4 col-sm-6">
                         <div class="single-explore-item">
                             <div class="single-explore-img">
-                                <img style="height: 256px; width: 100%" src="~/LayoutTimViec/img/@item.ImageJob" alt="explore image">
+                                <img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.ImageJob" alt="explore image">
                                 <div class="single-explore-img-info">
-                                    <button onclick="window.location.href='#'">best rated</button>
-                                    <div class="single-explore-image-icon-box">
-                                        <ul>
-                                            <li>
-                                                <div class="single-explore-image-icon">
-                                                    <i class="fa fa-arrows-alt"></i>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="single-explore-image-icon">
-                                                    <i class="fa fa-bookmark-o"></i>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <button onclick="window.location.href='#'" style="width: 35px;height: 37px;">
+                                        <a asp-action="Favourite_Job" asp-route-id="@item.IDJob"><img src="~/LayoutTimViec/img/star.png" /></a>
+                                    </button>
                                 </div>
                             </div>
                             <div class="single-explore-txt bg-theme-1">
-                                <h2><a href="#">@item.JobName</a></h2>
+                                <h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.JobName</a></h2>
                                 <p class="explore-rating-price">
-                                    <span class="explore-rating">5.0</span>
                                     <a href="#">@item.R1_Language</a>
                                     <span class="explore-price-box">@item.R2_Language</span>
                                     <a href="#">@item.R3_Language</a>

@@ -19,7 +19,8 @@ namespace TimViec.Data
         public DbSet<Rank> Ranks { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Type_work> Type_Works { get; set; }
-        public DbSet<StatusJob> StatusJobs { get; set; }  
+        public DbSet<StatusJob> StatusJobs { get; set; }
+        public DbSet<favourite_job> favourite_Jobs { get; set; }
         public DbSet<TimViec.ViewModel.SearchViewModel> SearchViewModel { get; set; } = default!;
         public DbSet<TimViec.ViewModel.Details_CPN> Details_CPN { get; set; } = default!;
     }
