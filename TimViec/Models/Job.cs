@@ -16,7 +16,7 @@ namespace TimViec.Models
         [Required]
         public string Location { get; set; }
         [Required]
-        public decimal Salary { get; set; }
+        public int Salary { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -29,7 +29,8 @@ namespace TimViec.Models
 
         public Rank? Rank { get; set; }
 
-        public string? img {  get; set; }
+        [Required]
+        public string img {  get; set; }
 
         public string? R1_Language { get; set; }
 
@@ -41,7 +42,11 @@ namespace TimViec.Models
 		public int? Type_workID { get; set; }
 
         public Type_work? Type_work { get; set; }
-        public string? Work_responsibility {  get; set; }
-        public string? treatment { get; set; }
+        [Required]
+        public string Work_responsibility {  get; set; }
+        [Required]
+        public string treatment { get; set; }
+
+        public string? advanced_skill { get; set; }
     }
 }

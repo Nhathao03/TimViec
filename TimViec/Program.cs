@@ -32,6 +32,7 @@ builder.Services.AddScoped<IRankRespository, EFRankRespository>();
 builder.Services.AddScoped<ICityRespository, EFCityRespository>();
 builder.Services.AddScoped<IType_WorkRespository, EFType_WorkRespository>();
 builder.Services.AddScoped<ISkillRespository, EFSkillRespository>();
+builder.Services.AddScoped<IfavouriteJob, EFfavouriteJob>();
 
 var app = builder.Build();
 

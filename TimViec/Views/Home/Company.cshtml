@@ -19,24 +19,15 @@
 						<div class="single-explore-item">
 							<div class="single-explore-img">
 								<img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
-								<div class="single-explore-img-info">
-									<button onclick="window.location.href='#'" style="width: 35px;height: 37px;">
-										<img src="~/LayoutTimViec/img/save.png" />
-									</button>
-								</div>
 							</div>
 							<div class="single-explore-txt bg-theme-1">
-								<h2><a asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a></h2>
+								<h2>
+									<a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_CPN" asp-route-id="@item.Id">@item.Name_company</a>
+								</h2>
 								<p class="explore-rating-price">
-									<span class="explore-rating">5.0</span>
 									<a href="#">Quy mô: @item.Company_size</a>
 								</p>
-								<div class="explore-person">
-									<div class="row">
-										<div class="col-sm-10">
-										</div>
-									</div>
-								</div>
+								<hr />
 								<div class="explore-open-close-part">
 									<div class="row">
 										<div class="col-sm-5">

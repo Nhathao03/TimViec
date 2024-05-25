@@ -8,11 +8,13 @@ using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
 using TimViec.ViewModel;
+using static TimViec.Helpers.Constants;
 
 namespace TimViec.Controllers
 {
 	[Authorize]
-    public class HomeController : Controller
+	[Authorize(Roles = "User")]
+	public class HomeController : Controller
 	{
 		private readonly IJobRespository _jobRepository;
 		private readonly ICompanyRespository _companyRepository;
@@ -21,6 +23,7 @@ namespace TimViec.Controllers
 		private readonly ISkillRespository _skillRespository;
 		private readonly IType_WorkRespository _WorkRespository;
 		private readonly ICityRespository _cityRespository;
+		private readonly IfavouriteJob _favouriteJob;
 		private readonly UserManager<ApplicationUser> _userManager;
 
 		public HomeController(ICompanyRespository companyRepository,
@@ -30,6 +33,7 @@ namespace TimViec.Controllers
 			ISkillRespository skillRespository,
 			IType_WorkRespository type_workRespository,
 			ICityRespository cityRespository,
+			IfavouriteJob favouriteJob,
 			UserManager<ApplicationUser> userManager)
 		{
 			_jobRepository = jobRepository;
@@ -40,6 +44,7 @@ namespace TimViec.Controllers
 			_WorkRespository = type_workRespository;
 			_cityRespository = cityRespository;
 			_rankRespository = rankRespository;
+			_favouriteJob = favouriteJob;
 		}
 
 		private async Task DisplayDropdown()
@@ -66,7 +71,7 @@ namespace TimViec.Controllers
 			// get list companies
 
 			//take n = 6 item in table job
-			jobs = jobs.Take(6);
+			jobs = jobs.Where(x => x.Id == 25 || x.Id == 27 || x.Id == 35 || x.Id == 32 || x.Id == 39 || x.Id == 40);
 
 			companies = companies.Take(3);
 			HomeViewModel home = new HomeViewModel()
@@ -160,6 +165,7 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var result = _companyRepository.Details_CPN(id);
+
 			if (result == null)
 			{
 				return NotFound();
@@ -173,8 +179,9 @@ namespace TimViec.Controllers
             await DisplayDropdown();
 
             var job = _jobRepository.Details_Job(id);
+
 			if (job == null)
-			{
+			{ 
 				return NotFound();
 			}
 			return View(job);
@@ -200,7 +207,7 @@ namespace TimViec.Controllers
 		}
 		// add status job
 		[HttpPost]
-		public async Task<IActionResult> CreateApplication(StatusJob statusJob, IFormFile imgCV, int id)
+		public async Task<IActionResult> CreateApplication(Models.StatusJob statusJob, IFormFile imgCV, int id)
 		{
             statusJob.ID = 0;
 			statusJob.JobID = id;
@@ -267,6 +274,47 @@ namespace TimViec.Controllers
 			return View(location);
 		}
 		//*******************************************************************************************
+		public async Task<IActionResult> GetAllFavouriteJob()
+		{
+			await DisplayDropdown();
+            var getemailuser = await _userManager.GetUserAsync(User);
+
+            var fbJob = await _favouriteJob.GetAllAsync();
+			var display = fbJob.Where(e => e.email == getemailuser.Email);
+			return View(display);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Favourite_Job(favourite_job favourite_Job,  int ID)
+		{
+            var getemailuser = await _userManager.GetUserAsync(User);
+            await DisplayDropdown();
+			var getfvrjob = await _favouriteJob.GetAllAsync();
+
+			var getID = await _jobRepository.GetByIdAsync(ID);
+			favourite_Job.email = getemailuser.Email;
+			favourite_Job.Id = 0;
+			favourite_Job.IDJob = getID.Id;
+			favourite_Job.Name = getID.Title;
+			favourite_Job.R1_Language = getID.R1_Language;
+			favourite_Job.R2_Language = getID.R2_Language;
+			favourite_Job.R3_Language = getID.R3_Language;
+			favourite_Job.image = getID.img;
+			favourite_Job.favourite = (int)Constants.favouriteJob.favourite;
+
+			await _favouriteJob.AddAsync(favourite_Job);
+			return RedirectToAction("GetAllFavouriteJob"); ;
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> ChangeFavourite_Job(favourite_job favourite_Job, int ID)
+		{
+			await DisplayDropdown();
+			await _favouriteJob.DeleteAsync(ID);
+			return RedirectToAction("GetAllFavouriteJob"); ;
+		}
+		//*******************************************************************************************
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

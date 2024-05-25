@@ -64,6 +64,7 @@ namespace TimViec.Respository
 							 ImageJob = j.img,
 							 IDJob = j.Id,
                              city = ct.Name_city,
+                             About_Me = c.About_Me
 						 };
 			return result.ToList();
 		}

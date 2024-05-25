@@ -180,19 +180,6 @@
 										</table>
 									</div>
 								</div>
-								<a href="#">Đăng bài tuyển dụng</a>
-							</div>
-						</div>
-						<div class="dropdn">
-							<button class="dropbtn">Top công ty IT Việt Nam</button>
-							<div class="dropdn-content">
-								<div class="dropdn-submenu">
-									<a href="#">Trong năm 2024</a>
-									<a href="#">Trong năm 2023</a>
-									<a href="#">Trong năm 2022</a>
-									<a href="#">Trong năm 2021</a>
-									<a href="#">Trong năm 2020</a>
-								</div>
 							</div>
 						</div>
 						<div class="dropdn">
@@ -202,7 +189,13 @@
 							<button class="dropbtn"><a style="color: white" asp-area="" asp-controller="Home" asp-action="Company">Công ty</a></button>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn"><a style="color: white" asp-area="" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a></button>
+							<button class="dropbtn">Trạng thái và yêu thích</button>
+							<div class="dropdn-content">
+								<div class="dropdn-submenu">
+									<a style="width: 202px" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a>
+									<a style="width: 202px" asp-controller="Home" asp-action="GetAllFavouriteJob">Công việc yêu thích</a>									
+								</div>
+							</div>
 						</div>
 					</div><!-- /.navbar-collapse -->
 				</div><!--/.container-->

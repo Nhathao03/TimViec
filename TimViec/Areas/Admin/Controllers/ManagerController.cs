@@ -48,22 +48,11 @@ namespace TimViec.Areas.Admin.Controllers
             var CountUser = _applicationUser.GetAllUser(role);
             int CountU = (from u in CountUser select u.email).Count();
 
-            var GetJob = await _jobRepository.GetAllAsync();
-            int CountS = (from s in GetJob select s.Salary).Count();
-            int totalSalary = Convert.ToInt32(GetJob.Sum(s => s.Salary));
-
             var admin = await _userManagers.GetUserAsync(User);
             ViewBag.Admin = admin.Fullname;
-  
-            int MiddleSalary = 0;
-            for (int i = 0; i < CountS; i++)
-            {
-                MiddleSalary = totalSalary / CountS;
-            }
 
             ViewBag.CountCompany = CountC;
             ViewBag.CountUser = CountU;
-            ViewBag.MiddleSalary = MiddleSalary;
 
             return View();
         }

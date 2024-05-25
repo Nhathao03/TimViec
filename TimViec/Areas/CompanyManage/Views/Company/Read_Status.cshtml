@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="../../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-<link href="../../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="../../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="../../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="../../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="../../../../Company/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../../Company/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../Company/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="../../../../Company/vendor/quill/quill.snow.css" rel="stylesheet">
+<link href="../../../../Company/vendor/quill/quill.bubble.css" rel="stylesheet">
+<link href="../../../../Company/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="../../../../Company/vendor/simple-datatables/style.css" rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="../../../Company/css/style.css" rel="stylesheet">
+<link href="../../../../Company/css/style.css" rel="stylesheet">
 
 
 <div class="pagetitle">
@@ -38,9 +38,29 @@
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     <img src="~/@Html.DisplayFor(Model => Model.imgCV)" alt="Profile" >
                 </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Xem ảnh CV
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="margin-left: 19%">
+                        <div class="modal-content" style="width: 1100px;">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ảnh CV</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="~/@Html.DisplayFor(Model => Model.imgCV)" alt="Profile" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-
         <div class="col-xl-8">
 
             <div class="card">
@@ -74,3 +94,16 @@
         </div>
     </div>
 </section>
+   
+<!-- Vendor JS Files -->
+<script src="../../../Company/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="../../../Company/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../Company/vendor/chart.js/chart.umd.js"></script>
+<script src="../../../Company/vendor/echarts/echarts.min.js"></script>
+<script src="../../../Company/vendor/quill/quill.js"></script>
+<script src="../../../Company/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="../../../Company/vendor/tinymce/tinymce.min.js"></script>
+<script src="../../../Company/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../../Company/js/main.js"></script>

@@ -20,7 +20,8 @@ namespace TimViec.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public string? Image { get; set; }
+        [Required]
+        public string Image { get; set; }
 
         [StringLength(50)]
         public string Company_size { get; set; }
