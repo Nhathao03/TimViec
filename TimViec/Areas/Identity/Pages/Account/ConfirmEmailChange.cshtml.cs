@@ -43,12 +43,13 @@ namespace TimViec.Areas.Identity.Pages.Account
             var result = await _userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
-                StatusMessage = "Error changing email.";
+                StatusMessage = "Lỗi thay đổi email.";
                 return Page();
             }
 
             // In our UI email and user name are one and the same, so when we update the email
             // we need to update the user name.
+   
             var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {

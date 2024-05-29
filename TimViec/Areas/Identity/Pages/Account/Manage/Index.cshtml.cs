@@ -49,9 +49,6 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Tên")]
             public string Lastname { get; set; }
 
-            [Display(Name = "Avatar")]
-            public string? imgCV { get; set; }
-
             [Display(Name = "Ngày sinh")]
             public DateTime? Birth { get; set; }
 
@@ -77,7 +74,6 @@ namespace TimViec.Areas.Identity.Pages.Account.Manage
                 Fullname = user.Fullname,
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
-                imgCV = user.imgCV,
                 Birth = user.Birth,
             };
         }

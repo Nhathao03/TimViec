@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TimViec;
 using TimViec.Data;
 using TimViec.Models;
 using TimViec.Repository;
@@ -33,6 +34,7 @@ builder.Services.AddScoped<ICityRespository, EFCityRespository>();
 builder.Services.AddScoped<IType_WorkRespository, EFType_WorkRespository>();
 builder.Services.AddScoped<ISkillRespository, EFSkillRespository>();
 builder.Services.AddScoped<IfavouriteJob, EFfavouriteJob>();
+builder.Services.AddScoped<IfeedbackRepository, EFfeedbackRepository>();
 
 var app = builder.Build();
 
@@ -56,13 +58,20 @@ app.UseEndpoints(endpoints =>
 {
 	endpoints.MapControllerRoute(
 	  name: "Admin",
-      pattern: "{area:exists}/{controller=Manager}/{action=Index}/{id?}"
+	  pattern: "{area:exists}/{controller=Manager}/{action=Index}/{id?}"
 	);
 
-    endpoints.MapControllerRoute(
-     name: "Company",
-     pattern: "{area:exists}/{controller=Company}/{action=Index}/{id?}"
+	endpoints.MapControllerRoute(
+	 name: "Company",
+	 pattern: "{area:exists}/{controller=Company}/{action=Index}/{id?}"
    );
+
+    endpoints.MapGet("/TestGmail", async (context) =>
+	{
+		var message = await SendMail.SendGmail("nhathaoha11@gmail.com", "yukunvip21@gmail.com", "hello", "Xin chao", "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
+
+		await context.Response.WriteAsync(message);
+    });
 });
 
 app.MapControllerRoute(

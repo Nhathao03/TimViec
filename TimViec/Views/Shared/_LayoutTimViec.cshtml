@@ -77,7 +77,7 @@
 					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 							<div class="dropdn">
-								<button class="dropbtn"><a style="color: white" asp-controller="Home" asp-action="Index">Trang chủ</a></button>
+								<button class="dropbtn"><a style="color: white" href="/Home/Index">Trang chủ</a></button>
 							</div>
 							<div class="dropdn">
 								<button class="dropbtn">Tìm việc làm</button>
@@ -183,17 +183,17 @@
 							</div>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn"><a style="color: white" asp-area="" asp-controller="Home" asp-action="Job">Công việc</a></button>
+							<button class="dropbtn"><a style="color: white" href="/Home/Job">Công việc</a></button>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn"><a style="color: white" asp-area="" asp-controller="Home" asp-action="Company">Công ty</a></button>
+							<button class="dropbtn"><a style="color: white" href="/Home/Company">Công ty</a></button>
 						</div>
 						<div class="dropdn">
 							<button class="dropbtn">Trạng thái và yêu thích</button>
 							<div class="dropdn-content">
 								<div class="dropdn-submenu">
-									<a style="width: 202px" asp-controller="Home" asp-action="StJ">Trạng thái công việc</a>
-									<a style="width: 202px" asp-controller="Home" asp-action="GetAllFavouriteJob">Công việc yêu thích</a>									
+									<a style="width: 202px"  href="/Home/StJ">Trạng thái công việc</a>
+									<a style="width: 202px" href="/Home/GetAllFavouriteJob">Công việc yêu thích</a>									
 								</div>
 							</div>
 						</div>
@@ -222,16 +222,23 @@
 			<div class="hm-footer-copyright">
 				<div class="row">
 					<div class="col-sm-5">
-						
+						<p  style="color: black">Địa chỉ: Khu Công nghệ cao Xa Lộ Hà Nội, Hiệp Phú, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</p>
+						<p  style="color: black">Liên hệ: +84123456789 - <a style="color: black" asp-controller="Home" asp-action="feedback">nhathaoha11@gmail.com</a> </p>
 					</div>
-					<div class="col-sm-7">
-						<div class="footer-social">
-							<span><i class="fa fa-phone">+84 123456789</i></span>
-							<a href="https://www.facebook.com/nhathao721179786105/"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a>
-							<a href="#"><i class="fa fa-google-plus"></i></a>
-						</div>
+					<div class="col-sm-3">
+						<h4 style="text-align: center">Ứng viên</h4>
+						<p style="margin-left: 30px"><a href="#">Tìm kiếm việc làm</a></p>
+						<p style="margin-left: 30px"><a href="/Home/StJ">Trạng thái công việc</a></psty>
+						<p style="margin-left: 30px"><a href="/Home/GetAllFavouriteJob">Công việc yêu thích</a></p>
+						<p style="margin-left: 30px"><a href="/Home/Job">Công việc</a></p>
+						<p style="margin-left: 30px"><a href="/Home/Company">Công ty</a></p>
+						<p style="margin-left: 30px"><a href="/Home/feedback">Đóng góp ý kiến</a></p>
+
+					</div>
+					<div class="col-sm-3">
+						<h4 style="text-align: center">Nhà tuyển dụng</h4>
+						<p  style="text-align: center">Đăng tin tuyển dụng</p>
+						<p  style="text-align: center">Tạo tài khoản</p>
 					</div>
 				</div>
 
