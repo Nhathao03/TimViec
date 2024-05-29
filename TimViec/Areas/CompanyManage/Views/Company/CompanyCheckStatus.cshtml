@@ -28,7 +28,6 @@
                             <th>Ghi Chú</th>
                             <th style="width: 11.431677%;">Trạng thái</th>
                             <th style="width: 8.627329%;">Chi tiết</th>
-                            <th style="width: 6.065217%;">Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,9 +38,21 @@
                                 <td>@item.JobName</td>
                                 <td><img style="width: 200px" src="~/@item.imgCV" /></td>
                                 <td>@item.Note</td>
-                                <td>@item.Statusname</td>
+                                <td>
+                                    @if (@item.Statusname == "Từ chối")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                    else if (item.Statusname == "Đang chờ duyệt")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                    else if (item.Statusname == "Đã duyệt")
+                                    {
+                                        <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.Statusname</div>
+                                    }
+                                </td>
                                 <td><a asp-action="Read_Status" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
-                                <td><a asp-action="DeleteConfirmed_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
                             </tr>
                         }
                     </tbody>

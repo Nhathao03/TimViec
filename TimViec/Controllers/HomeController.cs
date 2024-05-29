@@ -1,8 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
+using System.Net.Mail;
 using TimViec.Helpers;
 using TimViec.Models;
 using TimViec.Repository;
@@ -12,7 +13,7 @@ using static TimViec.Helpers.Constants;
 
 namespace TimViec.Controllers
 {
-	[Authorize]
+    [Authorize]
 	[Authorize(Roles = "User")]
 	public class HomeController : Controller
 	{
@@ -24,7 +25,8 @@ namespace TimViec.Controllers
 		private readonly IType_WorkRespository _WorkRespository;
 		private readonly ICityRespository _cityRespository;
 		private readonly IfavouriteJob _favouriteJob;
-		private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IfeedbackRepository _feedbackRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 		public HomeController(ICompanyRespository companyRepository,
 			IJobRespository jobRepository,
@@ -34,6 +36,7 @@ namespace TimViec.Controllers
 			IType_WorkRespository type_workRespository,
 			ICityRespository cityRespository,
 			IfavouriteJob favouriteJob,
+			IfeedbackRepository feedback,
 			UserManager<ApplicationUser> userManager)
 		{
 			_jobRepository = jobRepository;
@@ -45,6 +48,7 @@ namespace TimViec.Controllers
 			_cityRespository = cityRespository;
 			_rankRespository = rankRespository;
 			_favouriteJob = favouriteJob;
+			_feedbackRepository = feedback;
 		}
 
 		private async Task DisplayDropdown()
@@ -313,9 +317,28 @@ namespace TimViec.Controllers
 			await _favouriteJob.DeleteAsync(ID);
 			return RedirectToAction("GetAllFavouriteJob"); ;
 		}
-		//*******************************************************************************************
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+		//*******************************************************************************************
+		//feedback                               
+		public async Task<IActionResult> feedback()
+		{
+
+			await DisplayDropdown();
+			return View();
+		}
+
+        // add status job
+        [HttpPost]
+        public async Task<IActionResult> feedback(feedback feedback)
+        {
+            await _feedbackRepository.AddAsync(feedback);
+            return RedirectToAction(nameof(Index));
+
+        }
+        //*******************************************************************************************
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

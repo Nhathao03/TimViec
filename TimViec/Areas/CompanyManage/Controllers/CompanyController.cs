@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Shared;
+using Org.BouncyCastle.Crypto.Macs;
+using System.Text;
 using TimViec.Helpers;
 using TimViec.Models;
 using TimViec.Repository;
@@ -328,7 +331,6 @@ namespace TimViec.Areas.CompanyManage.Controllers
         public async Task<IActionResult> CompanyCheckStatus()
         {
             var user = await _userManagers.GetUserAsync(User);
-
             var result = _statusRepository.CompanyCheckStatus(user.Email);
             ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
 
@@ -356,17 +358,35 @@ namespace TimViec.Areas.CompanyManage.Controllers
             return RedirectToAction("CompanyCheckStatus");
         }
 
+        // Process the refuse status
+        [HttpGet]
+        public async Task<IActionResult> Refuse_Status(int ID)
+        {
+            var getid = await _statusRepository.GetByIdAsync(ID);
+            getid.Status = (int)Constants.StatusJob.Refuse;
+            getid.Read = (int)Constants.ViewStatus.Read;
+            await _statusRepository.UpdateAsync(getid);
+
+            return RedirectToAction("CompanyCheckStatus");
+        }
+
         // Process the  read status and detail
         [HttpGet]
         public async Task<IActionResult> Read_Status(int ID)
         {
             var getid = await _statusRepository.GetByIdAsync(ID);
+            var getJob = await _jobRepository.GetByIdAsync(getid.JobID);
+
+            ViewBag.JobName = getJob.Title;
+            ViewBag.Fullname = getid.Fullname;
             getid.Read = (int)Constants.ViewStatus.Read;
             await _statusRepository.UpdateAsync(getid);
             var user = await _userManagers.GetUserAsync(User);
+            var company = await _companyRepository.GetByEmailAsync(user.Fullname);
 
+            ViewBag.NameCPN = company.Name_company;
+            ViewBag.Email = user.Email;
             var result = _statusRepository.CompanyCheckStatus(user.Email);
-
             ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
 
             if (getid == null)
@@ -387,6 +407,26 @@ namespace TimViec.Areas.CompanyManage.Controllers
         }
 
         //*************************************************************************************
+		[HttpPost]
+		public async Task<IActionResult> SendEmailByAdmin(EmailData data, int ID)
+		{
+            var user = await _userManagers.GetUserAsync(User);
+            var company = await _companyRepository.GetByEmailAsync(user.Fullname);
+            //lay du lieeu de hien thi
+			var getNameUser = await _statusRepository.GetByIdAsync(ID);
+            var getJob = await _jobRepository.GetByIdAsync(getNameUser.JobID);
+			data.From = "nhathaoha11@gmail.com";		
+            data.Body = System.IO.File.ReadAllText("C:/Users/yukun/source/repos/TimViec/TimViec/wwwroot/Template/BodyEmail.html");
+            data.Body = data.Body.Replace("{{UserName}}", getNameUser.Fullname)
+                                 .Replace("{{Position}}", getJob.Title)
+                                 .Replace("{{CompanyName}}", company.Name_company)
+								 .Replace("{{Email}}", user.Email);
 
-    }
+			var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
+
+			return RedirectToAction(nameof(CompanyCheckStatus)); ;
+		}
+		//*******************************************************************************************
+
+	}
 }

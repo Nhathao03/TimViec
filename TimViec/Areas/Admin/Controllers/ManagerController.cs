@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Text;
 using TimViec.Models;
 using TimViec.Repository;
 using TimViec.Respository;
@@ -21,6 +22,7 @@ namespace TimViec.Areas.Admin.Controllers
         private readonly IStatusRepository _statusRepository;
         private readonly IApplicationUser _applicationUser;
         private readonly IType_WorkRespository _WorkRespository;
+        private readonly IfeedbackRepository _feedback;
         private readonly UserManager<ApplicationUser> _userManagers;
 
 		public ManagerController(ICompanyRespository companyRepository,
@@ -28,6 +30,7 @@ namespace TimViec.Areas.Admin.Controllers
 			IStatusRepository statusRepository,
 			IApplicationUser userManager,
             IType_WorkRespository type_workRespository,
+            IfeedbackRepository feedback,
             UserManager<ApplicationUser> userManagers)
 		{
 			_jobRepository = jobRepository;
@@ -36,6 +39,7 @@ namespace TimViec.Areas.Admin.Controllers
             _applicationUser = userManager;
 			_userManagers = userManagers;
             _WorkRespository = type_workRespository;
+            _feedback = feedback;
         }
 
         //Index
@@ -281,6 +285,48 @@ namespace TimViec.Areas.Admin.Controllers
 
         }
 
+        //get feedback
+        public async Task<IActionResult> Getfeedback()
+        {
+            var result = await _feedback.GetAllAsync();
+            return View(result);
+        }
 
+		[HttpGet]
+		public async Task<IActionResult> DetailsFeedback(int ID)
+		{
+			var getfeedback = await _feedback.GetByIdAsync(ID);
+            ViewBag.NameUserFeedback = getfeedback.Name;
+            ViewBag.NoteUserFeedback = getfeedback.Note;
+            if (getfeedback == null)
+			{
+				return NotFound();
+			}
+			return View(getfeedback);
+
+		}
+
+		public async Task<IActionResult> Delete_Feedback(int ID)
+        {
+            await _feedback.DeleteAsync(ID);
+            return RedirectToAction(nameof(Getfeedback));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendEmail(EmailData data, int ID)
+        {
+
+            data.From = "nhathaoha11@gmail.com";
+
+            //lay du lieeu de hien thi
+            var getNameUser = await _feedback.GetByIdAsync(ID);
+            data.Body = System.IO.File.ReadAllText("C:/Users/yukun/source/repos/TimViec/TimViec/wwwroot/Template/feedback.html");
+            data.Body = data.Body.Replace("{{UserName}}", getNameUser.Name)
+                                 .Replace("{{Note}}", getNameUser.Note);
+
+            var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
+
+            return RedirectToAction(nameof(Getfeedback)); ;
+        }
     }
 }

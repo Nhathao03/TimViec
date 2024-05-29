@@ -58,7 +58,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-xl-8">
@@ -87,7 +86,53 @@
                         </div>
 
                     </div><!-- End Bordered Tabs -->
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        Gửi email cho ứng viên
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="margin-left: 19%">
+                            <div class="modal-content" style="width: 1100px;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" asp-action="SendEmailByAdmin" asp-route-id="@Model.ID">
+                                        <div class="form-group">
+                                            <label for="to">Đến:</label>
+                                            <input type="email" readonly class="form-control" id="to" name="To" placeholder="Nhập email người nhận" value="@Html.DisplayFor(Model => Model.Email)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject">Tiêu đề:</label>
+                                            <input type="text" class="form-control" id="subject" name="Subject" placeholder="Nhập tiêu đề email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="body">Nội dung:</label>
+                                            <p>Kính gửi @ViewBag.FullName </p>
+                                            <p>
+                                                Chúng tôi rất vui mừng thông báo rằng đơn ứng tuyển của bạn cho vị trí @ViewBag.JobName tại công ty @ViewBag.NameCPN đã được xem
+                                                xét và thông qua.
+                                            </p>
+                                            <p>
+                                                Bước tiếp theo, chúng tôi xin mời bạn tham gia buổi phỏng vấn trực tiếp để trao đổi chi tiết hơn về vai trò cũng như để
+                                                hiểu thêm về bạn. Vui lòng liên hệ với chúng tôi qua email @ViewBag.Email  để xác nhận thời gian phỏng vấn thuận tiện nhất cho bạn.
+                                            </p>
+                                            <p>Chúng tôi rất mong đợi được gặp bạn và thảo luận thêm về cơ hội hợp tác này.</p>
+                                        </div>
+                                        <br/>
+                                        <button style="float: right" type="submit" class="btn btn-primary">Gửi email</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a style="float: right;width: 100px;" asp-action="Accept_Status" asp-route-id="@Model.ID" class="btn btn-primary">Duyệt</a>
+                    <a style="float: right;width: 100px;margin-right: 10px;" asp-action="Refuse_Status" asp-route-id="@Model.ID" class="btn btn-danger">Từ chối</a>
+                    <a style="float: right;width: 100px;margin-right: 10px;" asp-action="DeleteConfirmed_Status" asp-route-id="@Model.ID" class="btn btn-danger">Xóa</a>
                 </div>
             </div>
 

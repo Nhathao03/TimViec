@@ -9,8 +9,10 @@ namespace TimViec.Helpers
 			[Description("Đang chờ duyệt")]
 			Inprogress = 1,
 			[Description("Đã duyệt")]
-			Completed = 2
-		}
+			Completed = 2,
+            [Description("Từ chối")]
+            Refuse = 3
+        }
 
 		public enum ViewStatus
 		{
