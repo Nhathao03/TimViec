@@ -17,7 +17,7 @@ using static TimViec.Helpers.Constants;
 namespace TimViec.Areas.CompanyManage.Controllers
 {
     [Area("CompanyManage")]
-    [Authorize(Roles = "Company")]
+    [Authorize(Roles = "Company")]  
     public class CompanyController : Controller
     {
         private readonly IJobRespository _jobRepository;
