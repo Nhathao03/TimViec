@@ -4,15 +4,6 @@
     ViewData["Title"] = "Edit_company";
 }
 
-<div class="pagetitle">
-    <h1>Thay đổi thông tin</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-area="CompanyManage" asp-controller="Company" asp-action="Index">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Thay đổi thông tin</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
 
 <hr />
 <div class="row">
@@ -23,7 +14,7 @@
             </div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Xem ảnh 
+                Xem ảnh
             </button>
 
             <!-- Modal -->
@@ -94,7 +85,10 @@
                     <br />
                     <div class="form-group">
                         <!-- Button trigger modal -->
-                        <button style="float: right" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModl">
+                        <button style="float: right" type="submit" class="btn btn-danger">
+                            <a href="/Admin/Manager/Company" style="color: white; text-decoration: none">Hủy thay đổi</a>
+                        </button>
+                        <button style="float: right; margin-right: 5px" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModl">
                             Lưu thay đổi
                         </button>
 

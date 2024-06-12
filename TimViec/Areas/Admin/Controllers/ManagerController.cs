@@ -23,14 +23,20 @@ namespace TimViec.Areas.Admin.Controllers
         private readonly IApplicationUser _applicationUser;
         private readonly IType_WorkRespository _WorkRespository;
         private readonly IfeedbackRepository _feedback;
+        private readonly ICityRespository _cityRespository;
+        private readonly IRankRespository _rankRespository;
+        private readonly ISkillRespository _skillRespository;
         private readonly UserManager<ApplicationUser> _userManagers;
 
 		public ManagerController(ICompanyRespository companyRepository,
 			IJobRespository jobRepository,
 			IStatusRepository statusRepository,
 			IApplicationUser userManager,
+            IRankRespository rankRespository,
+            ISkillRespository skillRespository,
             IType_WorkRespository type_workRespository,
             IfeedbackRepository feedback,
+            ICityRespository cityRespository,
             UserManager<ApplicationUser> userManagers)
 		{
 			_jobRepository = jobRepository;
@@ -40,6 +46,9 @@ namespace TimViec.Areas.Admin.Controllers
 			_userManagers = userManagers;
             _WorkRespository = type_workRespository;
             _feedback = feedback;
+            _skillRespository = skillRespository;
+            _rankRespository = rankRespository;
+            _cityRespository = cityRespository;
         }
 
         //Index
@@ -328,5 +337,107 @@ namespace TimViec.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Getfeedback)); ;
         }
+
+        //details job     
+        public async Task<IActionResult> Details_Job(int id)
+        {
+            var job = _jobRepository.Details_Job(id);
+
+            if (job == null)
+            {
+                return NotFound();
+            }
+            return View(job);
+        }
+
+        //Edit Job
+        public async Task<IActionResult> Edit_Job(int ID)
+        {
+            var job = await _jobRepository.GetByIdAsync(ID);
+            var user = await _userManagers.GetUserAsync(User);
+            var result = _statusRepository.CompanyCheckStatus(user.Email);
+            ViewBag.Bell = result.Where(s => s.Read == 0).ToList();
+
+            var rank = await _rankRespository.GetAllAsync();
+            var skill = await _skillRespository.GetAllAsync();
+            var type_work = await _WorkRespository.GetAllAsync();
+
+            ViewBag.Skill = new SelectList(skill, "Id", "Skills");
+            ViewBag.Type = new SelectList(type_work, "Id", "Type");
+            ViewBag.Rank = new SelectList(rank, "Id", "rank");
+
+            return View(job);
+        }
+
+        // Process the job update
+        [HttpPost] 
+        public async Task<IActionResult> Edit_Job(Job job, IFormFile img)
+        {
+     
+            job.Description = "abc";
+            if (img != null)
+            {
+                job.img = await SaveImageEdit(img);
+            }
+            await _jobRepository.UpdateAsync(job);
+            return RedirectToAction("Edit_Job");
+        }
+
+        //Luu anh
+        private async Task<string> SaveImageEdit(IFormFile Image)
+        {
+            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", Image.FileName);
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await Image.CopyToAsync(fileStream);
+            }
+            return Image.FileName;
+        }
+
+        //**********************************************************************************************
+        //Edit company
+        public async Task<IActionResult> Edit_company(int ID)
+        {
+
+            var result = await _companyRepository.GetByIdAsync(ID);
+
+            var type_work = await _WorkRespository.GetAllAsync();
+            ViewBag.Type = new SelectList(type_work, "Id", "Type");
+            var city = await _cityRespository.GetAllAsync();
+            ViewBag.City = new SelectList(city, "Id", "Name_city");
+
+            return View(result);
+        }
+
+        // Process the company update
+        [HttpPost]
+        public async Task<IActionResult> Edit_company(Company company, IFormFile Image)
+        {
+            if (Image != null)
+            {
+                company.Image = await SaveImageEdit(Image);
+            }
+            //else
+            //{
+            //    company.Image = result.Image;
+            //}
+
+            await _companyRepository.UpdateAsync(company);
+            await Task.Delay(2000);
+            return RedirectToAction("Edit_company");
+        }
+
+        //details job     
+        public async Task<IActionResult> Details_Company(int id)
+        {
+            var result = _companyRepository.Details_CPN(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return View(result);
+        }
+
     }
 }
