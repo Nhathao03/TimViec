@@ -16,35 +16,24 @@
             <thead>
                 <tr>
                     <th>Tên công việc</th>
-                    <th>Địa chỉ</th>
-                    <th>Lương</th>
                     <th>Ngôn ngữ 1</th>
                     <th>Ngôn ngữ 2</th>
                     <th>Ngôn ngữ 3</th>
+                    <th>Sửa</th>
+                    <th>Chi tiết</th>
                     <th>Xóa</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <th>Tên công việc</th>
-                    <th>Địa chỉ</th>
-                    <th>Lương</th>
-                    <th>Ngôn ngữ 1</th>
-                    <th>Ngôn ngữ 2</th>
-                    <th>Ngôn ngữ 3</th>
-                    <th>Xóa</th>
-                </tr>
-            </tfoot>
             <tbody>
                 @foreach(var item in Model)
                 {            
                     <tr>
                         <td>@item.Title</td>
-                        <td>@item.Location</td>
-                        <td>@item.Salary</td>
                         <td>@item.R1_Language</td>
                         <td>@item.R2_Language</td>
                         <td>@item.R3_Language</td>
+                        <td><a asp-action="Edit_Job" asp-route-id="@item.Id" class="btn btn-success">Sửa</a></td>
+                        <td><a asp-action="Details_Job" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a></td>
                         <td><a asp-action="Delete_Job" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a></td>
                     </tr>
                 }
