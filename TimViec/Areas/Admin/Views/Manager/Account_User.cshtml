@@ -19,6 +19,7 @@
                     <th>Email</th>
                     <th>Ngày sinh</th>
                     <th>Số điện thoại</th> 
+                    <th>Chi tiết</th> 
                     <th>Xóa</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                     <th>Email</th>
                     <th>Ngày sinh</th>
                     <th>Số điện thoại</th>
+                    <th>Chi tiết</th>
                     <th>Xóa</th>
                 </tr>
             </tfoot>
@@ -41,9 +43,13 @@
                         <td>@item.phonenumber</td>
                         <td>
                             <form>
-                                <button type="submit" asp-action="Delete_User" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                                <button type="submit" asp-action="Details_AccountUser" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</button>
                             </form>
-                            
+                        </td>
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Delete_User" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                            </form>  
                         </td> 
                     </tr>
                 }

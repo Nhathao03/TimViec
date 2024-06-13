@@ -19,6 +19,7 @@
                     <th>Email</th>
                     <th>Quy mô</th>
                     <th>Địa chỉ</th>
+                    <th>Chi tiết</th>
                     <th>Xóa</th>
                 </tr>
             </thead>
@@ -32,7 +33,12 @@
                         <td>@item.CompanySize</td>
                         <td>@item.Location</td>
                         <td>
-                            <a asp-action ="DeleteConfirmed_Company" asp-route-id="@item.Id" class="btn btn-danger">Xóa </a>
+                            <a style="
+    width: 77px;
+    " asp-action="Details_AccountCompany" asp-route-id="@item.Id" class="btn btn-primary">Chi tiết</a>
+                        </td>
+                        <td>
+                            <a asp-action ="DeleteConfirmed_Company" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 }
