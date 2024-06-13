@@ -26,36 +26,32 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
         <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <div style="margin-left: 1307px">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <button style="text-decoration: none;color: white;font-size: 20px;" type="submit" class="btn btn-link navbar-btn navbar-link">
+                                Đăng xuất
+                            </button>
+                        </li>
+                    </ul>
+                </form>
+            }
+        </div>
+        
+       @*  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Manager" asp-action="Account_Admin" >Tài khoản</a></li>  
-                    <li><hr class="dropdown-divider" /></li>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> 
                     <li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <form style="margin-right: 0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-                                <ul class="nav navbar-nav">
-                                    <li style="margin-right: 10px">
-                                        <button style="text-decoration: none;color: black;font-size: 20px;" type="submit" class="btn btn-link navbar-btn navbar-link">
-                                            Đăng xuất
-                                        </button>
-                                    </li>
-                                </ul>
-                            </form>
-                        }
+                        
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> *@
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">

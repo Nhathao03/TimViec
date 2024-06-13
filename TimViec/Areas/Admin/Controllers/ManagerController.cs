@@ -184,11 +184,11 @@ namespace TimViec.Areas.Admin.Controllers
         //***************************************************************************
 
 
-        //account admin
-        public async Task<IActionResult> Account_Admin()
+        //account user
+        public async Task<IActionResult> Details_AccountUser(string ID)
         {
-            
-            var user = await _userManagers.GetUserAsync(User);
+
+            var user = await _userManagers.FindByIdAsync(ID);
 
 			if (user == null)
 			{
@@ -197,28 +197,19 @@ namespace TimViec.Areas.Admin.Controllers
 
 			return View(user);
         }
-
-		// Process the product update
-		[HttpPost]
-		public async Task<IActionResult> Account_Admin(ApplicationUser applicationUser)
-		{
-			if (ModelState.IsValid)
-			{
-
-				await _applicationUser.UpdateAsync(applicationUser);
-				return RedirectToAction("Account_Admin");
-			}
-			return View(applicationUser);
-		}
-
-		private async Task<string> SaveImage(IFormFile image)
+        
+        //account company
+        public async Task<IActionResult> Details_AccountCompany(int ID)
         {
-            var savePath = Path.Combine("wwwroot/LayoutTimViec/img", image.FileName);
-            using (var fileStream = new FileStream(savePath, FileMode.Create))
-            {
-                await image.CopyToAsync(fileStream);
-            }
-            return "LayoutTimViec/img/" + image.FileName;
+
+            var company = await _companyRepository.GetByIdAsync(ID);
+
+			if (company == null)
+			{
+				return NotFound();
+			}
+
+			return View(company);
         }
 
         //*********************************************************************************************
@@ -270,7 +261,7 @@ namespace TimViec.Areas.Admin.Controllers
         {
             var user = await _applicationUser.GetByStringId(ID);
 
-            var company = await _companyRepository.GetByEmailAsync(user.Email);
+            var company = await _companyRepository. GetByEmailAsync(user.Email);
 
             ViewBag.name = company.Name_company;
             ViewBag.Size = company.Company_size;
@@ -334,7 +325,6 @@ namespace TimViec.Areas.Admin.Controllers
                                  .Replace("{{Note}}", getNameUser.Note);
 
             var result = await SendMail.SendGmail(data.From, data.To, data.Subject, data.Body, "nhathaoha11@gmail.com", "gheh wppp gokl rmrn");
-
             return RedirectToAction(nameof(Getfeedback)); ;
         }
 
