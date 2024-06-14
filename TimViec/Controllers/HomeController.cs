@@ -343,5 +343,17 @@ namespace TimViec.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
-	}
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Rules()
+		{
+			return View();
+		}
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Policy()
+		{
+			return View();
+		}
+	} 
 }
