@@ -27,19 +27,18 @@
 <section id="home" class="welcome-hero">
 	<div class="container">
 		<div class="welcome-hero-txt">
-			<h2>Tìm việc là dễ<br> không dễ không tìm</h2>
+			<h2>You need Job ? DEV IT will help you</h2>
 			<p>
-				Tìm theo ngôn ngữ, địa điểm và nhiều sự lựa chọn khác chỉ với một lần nhấp chuột
+				Find by language, location and more option just with one click.
 			</p>
 		</div>
 		<div class="welcome-hero-serch-box">
 			<div class="welcome-hero-form">
-				<div class="single-welcome-hero-form">
-					
-					<form asp-action="Search" asp-controller="Home" method="get">
-						<input style="margin-left: -760px" type="text" placeholder="Ví dụ: Javascript, Hồ Chí Minh, Hà Nội" name="stringSearch" />
+				<div class="single-welcome-hero-form" style="width: 930px;">
+					<form asp-action="Search" asp-controller="Search" method="get">
+						<input style="margin-left: -760px" type="text" placeholder="Ex: Javascript, C#,..." name="stringSearch" />
 							<button class="welcome-hero-btn" type="submit" style="margin-left: 900px; margin-top: -70px" >
-								Tìm kiếm<i data-feather="search"></i>
+								Search<i data-feather="search"></i>
 							</button>
 					</form>
 				</div>
@@ -106,7 +105,7 @@
 	<div class="container">
 		<div class="section-header">
 			<h2>TOP 3</h2>
-			<h4>Công ty nổi bật nhất hiện nay</h4>
+			<h4>Company outstanding now</h4>
 		</div><!--/.section-header-->
 		<div class="works-content">
 			<div class="row">
@@ -118,7 +117,7 @@
 								<img src="~/LayoutTimViec/img/@item.Image" alt="" />
 							</div>
 							<h2><a href="#">@item.Name_company</a></h2>
-							<button class="welcome-hero-btn how-work-btn" ><a asp-action="Details_CPN" asp-route-id="@item.Id">Chi tiết</a></button>
+							<button class="welcome-hero-btn how-work-btn" ><a asp-controller="Company" asp-action="Details_CPN" asp-route-id="@item.Id">Detail</a></button>
 						</div>
 					</div>
 				}
@@ -132,7 +131,7 @@
 <section id="explore" class="explore">
 	<div class="container">
 		<div class="section-header">
-			<h2>Các công việc phổ biến hiện nay</h2>
+			<h2>Job popular now</h2>
 			
 		</div><!--/.section-header-->
 		<div class="explore-content">
@@ -143,17 +142,17 @@
 				<div class=" col-md-4 col-sm-6">
 					<div class="single-explore-item">
 						<div class="single-explore-img">
-								<img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.img" alt="explore image">
+								<img style="height: 200px; width: 100%; object-fit: fill" src="~/LayoutTimViec/img/@item.img" alt="explore image">
 							<div class="single-explore-img-info">
 								<div class="single-explore-img-info">
 									<button onclick="window.location.href='#'" style="width: 35px;height: 37px;">
-											<a asp-action="Favourite_Job" asp-route-id="@item.Id"><img src="~/LayoutTimViec/img/star.png" /></a>
+											<a asp-controller="Job" asp-action="Favourite_Job" asp-route-id="@item.Id"><img src="~/LayoutTimViec/img/star.png" /></a>
 									</button>
 								</div>
 							</div>
 						</div>
 						<div class="single-explore-txt bg-theme-1">
-								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.Id">@item.Title</a></h2>
+								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-controller="Job" asp-action="Details_Job" asp-route-id="@item.Id">@item.Title</a></h2>
 							<p class="explore-rating-price">
 								<a href="#">@item.R1_Language</a>
 								<span class="explore-price-box">@item.R2_Language</span>
@@ -163,7 +162,7 @@
 							<div class="explore-open-close-part">
 								<div class="row">
 									<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Chi tiết</a></button>
+											<button class="close-btn" onclick="window.location"><a asp-controller="Job" asp-action="Details_Job" asp-route-id="@item.Id">Detail</a></button>
 									</div>
 									<div class="col-sm-7">
 										<div class="explore-map-icon">

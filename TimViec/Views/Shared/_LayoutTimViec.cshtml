@@ -77,13 +77,13 @@
 					<div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 						<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 							<div class="dropdn">
-								<button class="dropbtn"><a style="color: white" href="/Home/Index">Trang chủ</a></button>
+								<button class="dropbtn"><a style="color: white" href="/Home/Index">Home</a></button>
 							</div>
 							<div class="dropdn">
-								<button class="dropbtn">Tìm việc làm</button>
+								<button class="dropbtn">IT Jobs</button>
 							<div class="dropdn-content">
 								<div class="dropdn-submenu">
-									<a href="#">Kỹ năng</a>
+									<a href="#">By Skill</a>
 									<div class="dropdn-submenu-content">
 										<table>
 											@if(ViewBag.Skill != null && ViewBag.Skill.Count > 0)
@@ -95,7 +95,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<td><a style=cursor:pointer href='/Home/ChoeseSearchSkill/"+ViewBag.Skill[i].Id+"'>"+ViewBag.Skill[i].Skills+"</a></td>";												
+													dataMenu += "<td><a style=cursor:pointer href='/Search/ChoeseSearchSkill/"+ViewBag.Skill[i].Id+"'>"+ViewBag.Skill[i].Skills+"</a></td>";												
 												}
 												 @Html.Raw(dataMenu);
 											}
@@ -103,7 +103,7 @@
 									</div>
 								</div>
 								<div class="dropdn-submenu">
-									<a href="#">Loại hình</a>
+									<a href="#">By Type</a>
 									<div class="dropdn-submenu-content">
 										<table>
 											@if(ViewBag.Type != null && ViewBag.Type.Count > 0)
@@ -115,7 +115,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer href='/Home/ChoeseSearchType/"+ViewBag.Type[i].Id+"'>"+ViewBag.Type[i].Type+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer href='/Search/ChoeseSearchType/"+ViewBag.Type[i].Id+"'>"+ViewBag.Type[i].Type+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -129,7 +129,7 @@
 									</div>
 								</div>
 								<div class="dropdn-submenu">
-									<a href="#">Cấp bậc</a>
+									<a href="#">By Rank</a>
 									<div class="dropdn-submenu-content">
 										<table>
 											@if(ViewBag.Rank != null && ViewBag.Rank.Count > 0)
@@ -141,7 +141,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer  href='/Home/ChoeseSearchRank/"+ViewBag.Rank[i].Id+"'>"+ViewBag.Rank[i].rank+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer  href='/Search/ChoeseSearchRank/"+ViewBag.Rank[i].Id+"'>"+ViewBag.Rank[i].rank+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -155,7 +155,7 @@
 									</div>
 								</div>
 								<div class="dropdn-submenu">
-									<a href="#">Địa điểm</a>
+									<a href="#">By Address</a>
 									<div class="dropdn-submenu-content">
 										<table>
 											@if(ViewBag.Location != null && ViewBag.Location.Count > 0)
@@ -167,7 +167,7 @@
 													{
 														dataMenu += "<tr>";
 													}
-													dataMenu += "<tr><a style=cursor:pointer  href='/Home/ChoeseSearchLocation/"+ViewBag.Location[i].Id+"'>"+ViewBag.Location[i].Name_city+"</a></t>";
+													dataMenu += "<tr><a style=cursor:pointer  href='/Search/ChoeseSearchLocation/"+ViewBag.Location[i].Id+"'>"+ViewBag.Location[i].Name_city+"</a></t>";
 													
 
 													if(i%4 == 0)
@@ -183,17 +183,17 @@
 							</div>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn"><a style="color: white" href="/Home/Job">Công việc</a></button>
+							<button class="dropbtn"><a style="color: white" href="/Job/Job">Job</a></button>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn"><a style="color: white" href="/Home/Company">Công ty</a></button>
+							<button class="dropbtn"><a style="color: white" href="/Company/Company">Company</a></button>
 						</div>
 						<div class="dropdn">
-							<button class="dropbtn">Trạng thái và yêu thích</button>
+							<button class="dropbtn">Status and Favorite</button>
 							<div class="dropdn-content">
 								<div class="dropdn-submenu">
-									<a style="width: 202px"  href="/Home/StJ">Trạng thái công việc</a>
-									<a style="width: 202px" href="/Home/GetAllFavouriteJob">Công việc yêu thích</a>									
+									<a style="width: 202px"  href="/StatusJob/StatusJob">Status job</a>
+									<a style="width: 202px" href="/Job/GetAllFavouriteJob">Favorite job</a>									
 								</div>
 							</div>
 						</div>
@@ -222,16 +222,16 @@
 			<div class="hm-footer-copyright">
 				<div class="row">
 					<div class="col-sm-5">
-						<p  style="color: black">Địa chỉ: Khu Công nghệ cao Xa Lộ Hà Nội, Hiệp Phú, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</p>
-						<p  style="color: black">Liên hệ: +84123456789 - <a style="color: black" asp-controller="Home" asp-action="feedback">nhathaoha11@gmail.com</a> </p>
+						<p  style="color: black">Address: Thu Duc, TP. Ho Chi Minh</p>
+						<p  style="color: black">Contact: +84123456789 - <a style="color: black" asp-controller="Home" asp-action="feedback">nhathaoha11@gmail.com</a> </p>
 					</div>
 					<div class="col-sm-3">
 						<h4 style="text-align: center">Ứng viên</h4>
 						<p style="margin-left: 30px"><a href="#">Tìm kiếm việc làm</a></p>
-						<p style="margin-left: 30px"><a href="/Home/StJ">Trạng thái công việc</a></psty>
-						<p style="margin-left: 30px"><a href="/Home/GetAllFavouriteJob">Công việc yêu thích</a></p>
-						<p style="margin-left: 30px"><a href="/Home/Job">Công việc</a></p>
-						<p style="margin-left: 30px"><a href="/Home/Company">Công ty</a></p>
+						<p style="margin-left: 30px"><a href="/Job/StatusJob">Trạng thái công việc</a></psty>
+						<p style="margin-left: 30px"><a href="/Job/GetAllFavouriteJob">Công việc yêu thích</a></p>
+						<p style="margin-left: 30px"><a href="/Job/Job">Công việc</a></p>
+						<p style="margin-left: 30px"><a href="/Company/Company">Công ty</a></p>
 						<p style="margin-left: 30px"><a href="/Home/feedback">Đóng góp ý kiến</a></p>
 
 					</div>

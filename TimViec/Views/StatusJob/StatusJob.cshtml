@@ -21,21 +21,21 @@
                     <th scope="col">Xóa</th>
                 </tr>
             </thead>
-        @foreach (var item in Model)
-        {
-            <tbody>
-                <tr>
-                    <td scope="row">@item.Name</td>
-                    <td scope="row">@item.NameJob</td>
-                    <td scope="row">@item.CompanyName</td>
-                    <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
-                    <td scope="row">@item.Note</td>
-                    <td scope="row">
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td scope="row">@item.Name</td>
+                        <td scope="row">@item.NameJob</td>
+                        <td scope="row">@item.CompanyName</td>
+                        <td scope="row"><img src="~/@item.imgCV" style="width: 100px"></td>
+                        <td scope="row">@item.Note</td>
+                        <td scope="row">
                             @if (@item.StatusName == "Từ chối")
                             {
                                 <div style="height: auto; width: 100%; background-color: indianred; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
-                            else if(item.StatusName == "Đang chờ duyệt")
+                            else if (item.StatusName == "Đang chờ duyệt")
                             {
                                 <div style="height: auto; width: 100%; background-color: cornflowerblue; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
@@ -43,15 +43,15 @@
                             {
                                 <div style="height: auto; width: 100%; background-color: lightgreen; color: white; text-align: center;border-radius: 5px;">@item.StatusName</div>
                             }
-                    </td>
-                    <td>
-                        <form>
-                            <button type="submit" asp-action="Delete_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
-                        </form> 
-                    </td> 
-                </tr>
-            </tbody>
-        }
+                        </td>
+                        <td>
+                            <form>
+                                <button type="submit" asp-action="Delete_Status" asp-route-id="@item.Id" class="btn btn-danger">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            }
         </table>
     </dl>
 </div>

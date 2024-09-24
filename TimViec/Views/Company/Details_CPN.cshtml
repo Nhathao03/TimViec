@@ -26,26 +26,26 @@
                     <iframe src="@item.About_Me" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-lg-8" style="background-color: white;border-radius: 10px;padding: 30px;margin-left: 20px;margin-top: 10px;">
-                    <h1 style="font-size: 36px">công ty @item.CompanyName1</h1>
+                    <h1 style="font-size: 36px">Company @item.CompanyName1</h1>
                     <hr />
                     <div class="right-content">
                         <div style="display: flex; justify-content: space-evenly">
                             <div style="width: 130px">
-                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Quy mô công ty</h1>
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/users.png" /><br /><h1 style="font-size:15px; text-align: center">Size</h1>
                                 <p style="display: flex; justify-content: center">@item.Company_Size</p>
                             </div>
                             <div style="width: 130px">
-                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Loại hình</h1>
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/hotel.png" /><br /><h1 style="font-size:15px; text-align: center">Type</h1>
                                 <p style="display: flex; justify-content: center">@item.Company_Type</p>
                             </div>
                             <div style="width: 130px">
-                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">Thành phố</h1>
+                                <img style="margin-left: 40px; width: 50px" src="~/LayoutTimViec/logo/map-pin.png" /><br /><h1 style="font-size:15px; text-align: center">City</h1>
                                 <p style="display: flex; justify-content: center">@item.city</p>
                             </div>
                         </div>
                         <ul>
                             <li>
-                                <h4>Địa chỉ</h4>
+                                <h4>Address</h4>
                                 <ul class="info">
                                     <li>
                                         <p>
@@ -56,7 +56,7 @@
                             </li>
                             <br />
                             <li>
-                                <h4>Mô tả</h4>
+                                <h4>Description</h4>
                                 <ul class="info">
                                     <li>
                                         <p style="text-align: justify;">
@@ -80,7 +80,7 @@
         <div class="section-header">
             @foreach (var item in Model)
             {
-                <h2>Công việc của @item.CompanyName1</h2>
+                <h2>Job of @item.CompanyName1</h2>
                 break;
             }
         </div><!--/.section-header-->
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="single-explore-txt bg-theme-1">
-                                <h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.JobName</a></h2>
+                                <h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-controller="Job" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.JobName</a></h2>
                                 <p class="explore-rating-price">
                                     <a href="#">@item.R1_Language</a>
                                     <span class="explore-price-box">@item.R2_Language</span>
@@ -109,7 +109,7 @@
                                 <div class="explore-open-close-part">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.IDJob">Chi tiết</a></button>
+                                            <button class="close-btn" onclick="window.location"><a asp-controller="Job" asp-action="Details_Job" asp-route-id="@item.IDJob">Detail</a></button>
                                         </div>
                                         <div class="col-sm-7">
                                             <div class="explore-map-icon">

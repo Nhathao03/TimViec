@@ -35,7 +35,5 @@ namespace TimViec.Respository
             _context.Cities.Remove(city);
             await _context.SaveChangesAsync();
         }
-
-
     }
 }

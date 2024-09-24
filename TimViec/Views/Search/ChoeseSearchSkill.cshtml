@@ -1,42 +1,37 @@
-﻿@model IEnumerable<TimViec.Models.favourite_job>
+﻿@model List<TimViec.ViewModel.ChoeseSearchSkill>
 @{
-    ViewData["Title"] = "Job";
-    Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
+	ViewData["Title"] = "Job";
+	Layout = "~/Views/Shared/_LayoutTimViec.cshtml";
 }
 
 <section id="explore" class="explore">
 	<div class="container">
-		<div class="section-header">
-			<h2>Công việc yêu thích </h2>
-
-		</div><!--/.section-header-->
 		<div class="explore-content">
 			<div class="row">
-
 				@foreach (var item in Model)
 				{
 					<div class=" col-md-4 col-sm-6">
 						<div class="single-explore-item">
 							<div class="single-explore-img">
-								<img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.image" alt="explore image">
+								<img style="height: 200px; width: 100%" src="~/LayoutTimViec/img/@item.Image" alt="explore image">
 								<div class="single-explore-img-info">
 									<button onclick="window.location.href='#'" style="width: 35px;height: 37px;">
-										<a asp-action="ChangeFavourite_Job" asp-route-id="@item.Id"><img src="~/LayoutTimViec/img/star.png" /></a>
+										<img src="~/LayoutTimViec/img/star.png" />
 									</button>
 								</div>
 							</div>
 							<div class="single-explore-txt bg-theme-1">
-								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.IDJob">@item.Name</a></h2>
+								<h2><a style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width: 307px" asp-action="Details_Job" asp-route-id="@item.Id">@item.NameJob</a></h2><br />
+								<span class="explore-rating" style="width: 70px">@item.SkillName</span>
 								<p class="explore-rating-price">
 									<a href="#">@item.R1_Language</a>
 									<span class="explore-price-box">@item.R2_Language</span>
 									<a href="#">@item.R3_Language</a>
 								</p>
-								<hr />
 								<div class="explore-open-close-part">
 									<div class="row">
 										<div class="col-sm-5">
-											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.IDJob">Chi tiết</a></button>
+											<button class="close-btn" onclick="window.location"><a asp-action="Details_Job" asp-route-id="@item.Id">Detail</a></button>
 										</div>
 										<div class="col-sm-7">
 											<div class="explore-map-icon">
@@ -50,6 +45,10 @@
 							</div>
 						</div>
 					</div>
+				}
+				@if (Model.Count == 0)
+				{
+					<p style="text-align: center;font-size: 20px;">Your select don't have on Website now</p>
 				}
 			</div>
 		</div>

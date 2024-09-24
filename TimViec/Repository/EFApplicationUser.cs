@@ -107,15 +107,5 @@ namespace TimViec.Repository
         {
             return await _context.applicationUsers.FindAsync(ID);
         }
-
-		//public async Task<ApplicationUser> GetCompanyByEmail(string Email)
-		//{
-		//	var result = from c in _context.Companies
-		//				 join a in _context.applicationUsers on c.Email equals a.Email
-		//				 where (c.Email.Equals(Email))
-		//				 select new { Name = c.Name_company};
-		//	return await result;
-		//}
-
 	}
 }
