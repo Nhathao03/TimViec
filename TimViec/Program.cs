@@ -10,11 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).
-//    AddEntityFrameworkStores<ApplicationDbContext>();
-
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
  .AddDefaultTokenProviders()
  .AddDefaultUI()
@@ -52,7 +47,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.MapRazorPages();
+app.MapRazorPages();   
 
 app.UseEndpoints(endpoints =>
 {
@@ -72,6 +67,14 @@ app.UseEndpoints(endpoints =>
 
 		await context.Response.WriteAsync(message);
     });
+});
+
+app.MapWhen(context => context.Request.Path.Value.Contains("hello"), builder =>
+{
+	builder.Run(async context =>
+	{
+		await context.Response.WriteAsync("Nhat Hao");
+	});
 });
 
 app.MapControllerRoute(

@@ -49,7 +49,7 @@ namespace TimViec.Respository
                                 || c.Name_company.Contains(stringSearch)
                                 || ct.Name_city.Contains(stringSearch)
                                 || c.Location.Contains(stringSearch))
-                         select new SearchViewModel
+						 select new SearchViewModel
                          {  
                              Id = j.Id,
                              JobName = j.Title,
@@ -60,12 +60,11 @@ namespace TimViec.Respository
                              Location = c.Location,
                              Salary = j.Salary,
                              Image = j.img,
+                             City = ct.Name_city
                          };
 		    return result.ToList();
 
         }
-
-       
 
 		public List<ChoeseSearchSkill> ChoeseSearchSkills(int ID)
 		{

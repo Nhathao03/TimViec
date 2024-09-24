@@ -24,5 +24,6 @@ namespace TimViec.Data
         public DbSet<feedback> feedbacks { get; set; }
         public DbSet<TimViec.ViewModel.SearchViewModel> SearchViewModel { get; set; } = default!;
         public DbSet<TimViec.ViewModel.Details_CPN> Details_CPN { get; set; } = default!;
+        public DbSet<TimViec.ViewModel.StatusViewModel> StatusViewModel { get; set; } = default!;
     }
 }

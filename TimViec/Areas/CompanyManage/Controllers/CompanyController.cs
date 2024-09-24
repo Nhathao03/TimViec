@@ -314,13 +314,11 @@ namespace TimViec.Areas.CompanyManage.Controllers
 
             job.CompanyID = idcompany.Id;
 
-            if (ModelState.IsValid)
-            {
                 if (img != null)
                 {
                     job.img = await SaveImage(img);  
                 }
-            }
+
 
             await _jobRepository.AddAsync(job);
             return RedirectToAction(nameof(AllJob));
